@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="300" height="64" role="img" aria-label="Kaizen Studios">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4dca0"/>
+      <stop offset=".5" stop-color="#d8b265"/>
+      <stop offset="1" stop-color="#bf914a"/>
+    </linearGradient>
+    <radialGradient id="s" cx="32" cy="12" r="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3d2" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#fff3d2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(4,8) scale(0.75)">
+    <rect width="64" height="64" rx="15" fill="url(#g)"/>
+    <rect width="64" height="64" rx="15" fill="url(#s)"/>
+    <g fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="miter" stroke-linecap="butt">
+      <path d="M22 14 V50"/>
+      <path d="M46 14 L26 32 L46 50"/>
+    </g>
+  </g>
+  <text x="66" y="35" font-family="'Syne',system-ui,sans-serif" font-size="23" font-weight="800" letter-spacing="1" fill="#eae6da">KAIZEN</text>
+  <text x="67" y="51" font-family="'DM Mono',monospace" font-size="10" letter-spacing="5" fill="#c8a45a">STUDIOS</text>
+</svg>

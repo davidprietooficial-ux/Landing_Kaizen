@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Kaizen Studios">
+  <defs>
+    <linearGradient id="kz-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4dca0"/>
+      <stop offset=".5" stop-color="#d8b265"/>
+      <stop offset="1" stop-color="#bf914a"/>
+    </linearGradient>
+    <radialGradient id="kz-sheen" cx="32" cy="12" r="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3d2" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#fff3d2" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="kz-shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="1.1" stdDeviation="1" flood-color="#4d340f" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#kz-bg)"/>
+  <rect width="64" height="64" rx="15" fill="url(#kz-sheen)"/>
+  <g fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="miter" stroke-linecap="butt" filter="url(#kz-shadow)">
+    <path d="M22 14 V50"/>
+    <path d="M46 14 L26 32 L46 50"/>
+  </g>
+</svg>
