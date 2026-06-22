@@ -35,31 +35,38 @@ export const DAVID_LINKS = {
 }
 
 // Equipo de Kaizen además de David (refuerza "es un estudio, no un freelance").
-// [[ TODO David: nombres reales + foto opcional en /public/img + red social de cada uno ]]
-export const TEAM: { name: string; role: string; photo?: string; social?: string }[] = [
-  { name: 'Por confirmar', role: 'Cámara / Dirección de foto', social: '' },
-  { name: 'Por confirmar', role: 'Postproducción / Edición', social: '' },
+// pos: object-position del avatar (encuadre de la cara). social: '' = ícono deshabilitado.
+// [[ TODO David: pegar el @ de Instagram de cada uno cuando los tengas ]]
+export const TEAM: { name: string; role: string; photo?: string; pos?: string; social?: string }[] = [
+  { name: 'Juan C. Moreno', role: 'Editor y socio estratégico', photo: '/img/team-1.jpeg', social: 'https://www.instagram.com/juan.edita/' },
+  { name: 'Juan Guzmán', role: 'Filmmaker y editor', photo: '/img/team-2.jpg', pos: '50% 26%', social: 'https://www.instagram.com/juanfilmmaker377/' },
 ]
 
 // URL de Calendly de la llamada de cierre (vacío = muestra fallback con CTA a correo)
 export const CALENDLY_URL = 'https://calendly.com/kaisenpoststudio/30min'
 
-// Métricas reales — [[ TODO ]]. value: null muestra "—" + "por confirmar". No inventar.
+// Métricas reales. value: null muestra "—" + "por confirmar". No inventar.
 export const METRICS: { value: number | null; suffix: string; label: string }[] = [
-  { value: null, suffix: '+', label: 'Proyectos entregados' },
-  { value: null, suffix: '+', label: 'Clientes atendidos' },
-  { value: null, suffix: '', label: 'Años produciendo' },
-  { value: null, suffix: '+', label: 'Piezas publicadas' },
+  { value: 15, suffix: '+', label: 'Proyectos entregados' },
+  { value: 8, suffix: '+', label: 'Clientes atendidos' },
+  { value: 4, suffix: '+', label: 'Años en audiovisual' },
+  { value: 70, suffix: '+', label: 'Piezas entregadas' },
 ]
 
-// Logos de clientes reales (con permiso). Vacío = oculta el marquee. — [[ TODO ]]
-// { name: 'Cliente', src: '/logos-clientes/cliente-1.svg' }
-export const CLIENTS: { name: string; src: string }[] = []
+// Logos de clientes reales (con permiso). Vacío = oculta la sección.
+// h: alto máx del logo (px). w: ancho del chip (px) para logos anchos que se ven pequeños.
+export const CLIENTS: { name: string; src: string; h?: number; w?: number }[] = [
+  { name: 'Harumi', src: '/logos-clientes/harumi-logo.png', h: 70 },
+  { name: 'Neuropúblico', src: '/logos-clientes/Neuro-logo.png' },
+  { name: 'Trifactor', src: '/logos-clientes/Trifactor-Logo.png', h: 66 },
+  { name: 'Atlax 360', src: '/logos-clientes/atlax_logo.webp' },
+  { name: 'Secretaría de Educación de Bogotá', src: '/logos-clientes/LOGO-SED.png', h: 90, w: 350 },
+]
 
 // Flags de assets: ponlos en true cuando subas los archivos reales a /public.
 export const ASSETS = {
-  hasShowreel: false, // /video/showreel-loop.{webm,mp4} + poster
+  hasShowreel: true, // /video/SHOWREEL.{webm,mp4}
   hasSequence: false, // /sequence/frame-0001.jpg … (si false, apertura procedural en canvas)
-  hasDavidPhoto: false, // /img/david-retrato.jpg, etc.
+  hasDavidPhoto: true, // /img/david-retrato.jpg, etc.
   hasStageArt: true, // /stages/*.png (iconos 3D por etapa; si false usa el line-art SVG)
 }

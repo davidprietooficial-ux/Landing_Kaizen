@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Favicon Kaizen: cuadrado dorado (gradiente del manual) + K blanca.
+       La K se dibuja con trazos para verse nitida a 16px sin depender de fuentes. -->
+  <defs>
+    <linearGradient id="kz-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c97a"/>
+      <stop offset="0.45" stop-color="#c8a45a"/>
+      <stop offset="1" stop-color="#7a5020"/>
+    </linearGradient>
+    <linearGradient id="kz-gloss" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="0.4" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="88" height="88" rx="22" fill="url(#kz-gold)"/>
+  <rect x="6" y="6" width="88" height="88" rx="22" fill="url(#kz-gloss)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M37 27 V73"/>
+    <path d="M44 50 L71 27"/>
+    <path d="M44 50 L71 73"/>
+  </g>
+</svg>

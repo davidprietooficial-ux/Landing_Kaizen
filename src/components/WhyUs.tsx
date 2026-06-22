@@ -81,11 +81,19 @@ export default function WhyUs() {
         </div>
 
         {hasClients && (
-          <div className="marquee" aria-label="Clientes">
-            <div className="marquee__track">
-              {[...CLIENTS, ...CLIENTS].map((c, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={`${c.name}-${i}`} src={c.src} alt={c.name} />
+          <div className="clients" aria-label="Clientes con los que hemos trabajado">
+            <p className="mono clients__kicker">Clientes con los que hemos trabajado</p>
+            <div className="clients__grid">
+              {CLIENTS.map((c) => (
+                <div
+                  className={`client-logo${c.w ? ' client-logo--wide' : ''}`}
+                  key={c.name}
+                  title={c.name}
+                  style={c.w ? { flexBasis: c.w, maxWidth: c.w } : undefined}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.src} alt={c.name} loading="lazy" style={c.h ? { maxHeight: c.h } : undefined} />
+                </div>
               ))}
             </div>
           </div>

@@ -72,32 +72,30 @@ export default function About() {
           </h2>
           <div className="about__lead">
             <p className="lead about__p">
-              Cada semana empieza igual: la presión de publicar algo, lo que sea, antes de que el feed se enfríe. Grabas
-              suelto, a las carreras, y cada pieza termina viéndose distinta a la anterior. Y mientras tanto pierdes más
-              de lo que crees: clientes que eligen al competidor porque «se ve más serio o profesional», precio que no
-              puedes subir porque tu marca no proyecta valor, oportunidades que pasan de largo y horas tuyas quemadas en
-              contenido que no posiciona. Cada semana sin sistema es terreno que le regalas a alguien más.
+              Cada semana arranca igual: la presión de publicar algo, lo que sea, antes de que el feed se enfríe. Grabas
+              suelto, a las carreras, y cada pieza se ve distinta a la anterior — y eso cuesta más de lo que crees:
+              clientes que eligen al competidor porque «se ve más serio o profesional», precio que no puedes subir porque
+              tu marca no proyecta valor y horas tuyas quemadas en contenido que no posiciona. Cada semana sin sistema es
+              terreno que le regalas a alguien más. Ahora imagina lo opuesto: una sola sesión de grabación que llena tu
+              calendario un mes entero, con cada pieza al nivel de un comercial, ordenada por canal y lista para
+              publicar. No improvisas ni corres: cada pieza proyecta por fuera el nivel premium que tu negocio ya tiene
+              por dentro. Por primera vez compites por percepción, no por precio.
             </p>
             <p className="lead about__p">
-              Ahora imagina lo opuesto. Una sola sesión de grabación que llena tu calendario un mes entero. Abres tu
-              carpeta y ahí está todo: cada pieza al nivel de un comercial, ordenada por canal, lista para publicar. No
-              improvisas, no corres, no dudas si «se ve bien». Y no se trata solo de que se vea bien — se trata de que
-              funcione para tu marca: cada pieza proyecta visualmente el nivel premium que tu negocio ya tiene por
-              dentro, pero que hasta ahora no se notaba por fuera. Por primera vez compites por percepción, no por precio.
+              Eso es exactamente lo que construimos en <b style={{ color: 'var(--text)', fontWeight: 500 }}>Kaizen
+              Studios</b>: un estudio audiovisual colombiano con estándar internacional, dirigido por David Seiko, con
+              más de 4 años en el audiovisual premium.
             </p>
           </div>
         </div>
 
-        {/* columna derecha: 3er párrafo (identidad) + tarjetas de valor debajo */}
+        {/* columna derecha: cierre de identidad (foco + sistema) + tarjetas de valor (los 4 elementos) */}
         <div className="about__right">
           <p className="lead about__p about__p--ident">
-            Eso es exactamente lo que construimos en <b style={{ color: 'var(--text)', fontWeight: 500 }}>Kaizen
-            Studios</b>. Somos un estudio audiovisual colombiano con estándar internacional, dirigido por David Seiko,
-            con más de 4 años en el mundo audiovisual premium trabajando con marcas de distintos sectores y un foco
-            constante en una sola cosa: piezas de alta calidad con storytelling que conecta. Grabamos una vez y de esa
-            misma sesión sale tu sistema de contenido completo: calidad de cine real, cada formato y cada canal con la
-            misma firma. No somos un proveedor que te entrega un video y desaparece — somos el sistema que mantiene tu
-            marca premium, semana tras semana.
+            Trabajamos con marcas de distintos sectores siempre con el mismo foco: piezas de alta calidad con
+            storytelling que conecta. Grabamos una vez y de esa misma sesión sale tu sistema de contenido completo
+            —calidad de cine real, cada formato y cada canal con la misma firma—. No somos un proveedor que te entrega un
+            video y desaparece: somos el sistema que mantiene tu marca premium, semana tras semana.
           </p>
 
           <ul className="value-list" style={{ listStyle: 'none' }}>
@@ -113,13 +111,12 @@ export default function About() {
           </ul>
         </div>
 
-        {/* Imagen full-width (ocupa ambas columnas, no afecta la composición de texto/ventajas).
-            Cuando esté el archivo, reemplaza el placeholder por <img src="/img/about.jpg" … />. */}
-        <div className="about__media" role="img" aria-label="Imagen de Kaizen Studios (por agregar)">
-          <div className="about__media-ph">
-            <span className="ring"><Camera size={26} /></span>
-            <small>Imagen · set / detrás de cámaras / equipo</small>
-          </div>
+        {/* Video full-width (ocupa ambas columnas, no afecta la composición de texto/ventajas). */}
+        <div className="about__media">
+          <video autoPlay muted loop playsInline preload="metadata" aria-label="Kaizen Studios en acción">
+            <source src="/video/about.webm" type="video/webm" />
+            <source src="/video/about.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>

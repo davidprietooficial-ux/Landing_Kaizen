@@ -31,9 +31,9 @@ export default function Hero() {
     <section ref={root} id="top" className="hero" aria-label="Inicio">
       <div className="hero__media">
         {ASSETS.hasShowreel ? (
-          <video autoPlay muted loop playsInline preload="metadata" poster="/video/showreel-poster.jpg">
-            <source src="/video/showreel-loop.webm" type="video/webm" />
-            <source src="/video/showreel-loop.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline preload="auto">
+            <source src="/video/SHOWREEL.webm" type="video/webm" />
+            <source src="/video/SHOWREEL.mp4" type="video/mp4" />
           </video>
         ) : (
           <div className="hero__fallback" />

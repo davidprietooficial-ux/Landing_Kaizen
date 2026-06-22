@@ -1,9 +1,10 @@
 import { SITE, CONTACT, SOCIAL } from '@/lib/config'
-import { Instagram, Youtube, Linkedin, Mail } from './Icons'
+import { Instagram, Youtube, /* Linkedin, */ Mail } from './Icons'
 import Logo from './Logo'
 
 const SOCIALS = [
-  { label: 'LinkedIn', Icon: Linkedin, href: SOCIAL.linkedin },
+  // --- LinkedIn oculto temporalmente (descomenta para reactivar) ---
+  // { label: 'LinkedIn', Icon: Linkedin, href: SOCIAL.linkedin },
   { label: 'YouTube', Icon: Youtube, href: SOCIAL.youtube },
   { label: 'Instagram', Icon: Instagram, href: SOCIAL.instagram },
 ]

@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ASSETS, DAVID_LINKS, TEAM } from '@/lib/config'
-import { Camera, Instagram, Linkedin, Youtube, ArrowRight } from './Icons'
+import { Camera, Instagram, /* Linkedin, */ Youtube, ArrowRight } from './Icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,7 +14,8 @@ gsap.registerPlugin(ScrollTrigger)
 const LINKS = [
   { key: 'youtube', label: 'YouTube', Icon: Youtube, href: DAVID_LINKS.youtube },
   { key: 'instagram', label: 'Instagram', Icon: Instagram, href: DAVID_LINKS.instagram },
-  { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin, href: DAVID_LINKS.linkedin },
+  // --- LinkedIn oculto temporalmente (descomenta para reactivar) ---
+  // { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin, href: DAVID_LINKS.linkedin },
 ]
 
 export default function Founder() {
@@ -57,7 +58,7 @@ export default function Founder() {
         <div className="founder__photo">
           <div className="founder__mask">
             {ASSETS.hasDavidPhoto ? (
-              <Image src="/img/david-retrato.jpg" alt="David Seiko, fundador de Kaizen Studios" fill sizes="(max-width: 860px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+              <Image src="/img/david-retrato.jpg" alt="David Seiko, fundador de Kaizen Studios" fill sizes="(max-width: 860px) 100vw, 40vw" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
             ) : (
               <div className="photo-ph">
                 <span className="ring"><Camera size={26} /></span>
@@ -112,7 +113,7 @@ export default function Founder() {
                     <span className="team__avatar">
                       {m.photo ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={m.photo} alt={m.name} />
+                        <img src={m.photo} alt={m.name} style={m.pos ? { objectPosition: m.pos } : undefined} />
                       ) : (
                         <Camera size={18} />
                       )}

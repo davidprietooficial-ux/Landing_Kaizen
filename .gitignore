@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# originales pesados sin uso (se sirve la versión .jpg/.jpeg optimizada)
+/public/img/team-1.png
+/public/img/david-retrato.png
+/public/img/agenda-popup.png
+/public/img/agenda.png

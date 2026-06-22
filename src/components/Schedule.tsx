@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { CALENDLY_URL, CONTACT } from '@/lib/config'
-import { Check, Mail, ArrowRight, Lock, Camera } from './Icons'
+import { Check, Mail, ArrowRight, Lock } from './Icons'
 import { lockScroll, unlockScroll } from '@/lib/scroll'
 
 // Carga diferida: solo baja el bundle de Calendly en el cliente (y solo dentro del popup, tras calificar).
@@ -117,6 +117,14 @@ export default function Schedule() {
               30 minutos donde sales con un plan claro para tu contenido y podemos empezar a trabajar juntos.
             </p>
 
+            {/* Imagen: render 3D dorado (calendario + reloj) flotando sobre el fondo,
+                igual que los iconos de "El sistema" (mismo float + halo, sin caja).
+                Va entre el subtítulo y el resto, según pedido. */}
+            <div className="schedule__media">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/img/agenda-web.png" alt="Agenda tu llamada con Kaizen Studios" loading="lazy" />
+            </div>
+
             <div className="schedule__banner">
               <Lock size={15} />
               <span>Cupos limitados cada mes. El calendario se desbloquea solo si tu proyecto califica.</span>
@@ -130,15 +138,6 @@ export default function Schedule() {
                 </li>
               ))}
             </ul>
-
-            {/* Banner de imagen flexible: rellena el espacio junto al cuadro de la derecha.
-                Cuando esté el archivo, reemplaza el placeholder por <img src="/img/agenda.jpg" … />. */}
-            <div className="schedule__media" role="img" aria-label="Imagen de Kaizen Studios (por agregar)">
-              <div className="schedule__media-ph">
-                <span className="ring"><Camera size={24} /></span>
-                <small>Imagen · por agregar</small>
-              </div>
-            </div>
           </div>
 
           {/* ── derecha: formulario de pre-calificación ── */}
@@ -276,13 +275,10 @@ export default function Schedule() {
               </>
             ) : (
               <div className="modal__result">
-                {/* Imagen del popup (estilo dorado 3D). Cuando esté el archivo:
-                    reemplaza el placeholder por <img src="/img/agenda-popup.png" alt="" /> */}
-                <div className="modal__result-media" role="img" aria-label="Kaizen Studios">
-                  <div className="modal__result-ph">
-                    <span className="ring"><Camera size={26} /></span>
-                    <small>Imagen · por agregar</small>
-                  </div>
+                {/* Imagen del popup: reloj de arena dorado 3D (estándar de cine, tiempo limitado). */}
+                <div className="modal__result-media">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/img/agenda-popup.jpg" alt="" loading="lazy" />
                 </div>
                 <div className="modal__result-text">
                   <strong>{(status === 'red' ? MSG.red : MSG.yellow).title}</strong>
