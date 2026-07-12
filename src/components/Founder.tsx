@@ -89,19 +89,29 @@ export default function Founder() {
             )}
           </div>
 
-          <p className="founder__reveal">
-            El mercado audiovisual se está saturando de contenido vacío: piezas sin estética, sin lenguaje, sin alma —
-            videos hechos solo por llenar el feed. En Kaizen creemos lo contrario: cada pieza tiene que transmitir una
-            emoción y contar una historia. No marketing vacío, sino contenido con corazón, que conecta y que se queda.
+          <p className="founder__reveal founder__p--full">
+            Internet está lleno de webs que se ven iguales: plantillas genéricas, hechas por salir del paso, que no
+            cuentan nada y no venden nada. En Kaizen creemos lo contrario: tu presencia digital tiene que transmitir
+            quién eres y convertir — diseño con alma audiovisual, tecnología que funciona y tráfico que te pone frente
+            a las personas correctas.
           </p>
-          <p className="founder__reveal">
-            Y esto no es un freelance. Kaizen Studios es un estudio serio: un equipo de profesionales que sostiene cada
-            proyecto de principio a fin, con procesos y estándar propios. David Seiko dirige y pone la cara por cada
-            entrega, pero detrás hay un equipo audiovisual que garantiza la misma calidad de cine, siempre.
+          <p className="founder__reveal founder__p--full">
+            Y esto no es un freelance. Kaizen Studios es un estudio serio: un equipo que sostiene cada proyecto de
+            principio a fin, con procesos y estándar propios. David Seiko dirige y pone la cara por cada entrega, pero
+            detrás hay un equipo creativo y técnico que garantiza el mismo nivel — del primer frame del video al último
+            píxel de la web.
           </p>
-          <p className="founder__reveal">
-            Su obsesión por el detalle y por los procesos es lo que convierte una grabación en un sistema de contenido
-            que trabaja para tu marca con el tiempo — no una vez, sino semana tras semana.
+          <p className="founder__reveal founder__p--full">
+            Su obsesión por el detalle y por los procesos hoy corre por cada línea de código: webs construidas a medida
+            — nada de plantillas — con la misma tecnología que usan las startups más exigentes del mundo: veloces,
+            medibles y diseñadas para convertir. Del copy al código, cada decisión tiene un porqué: que tu web sea un
+            sistema de ventas que trabaja para tu marca todos los días.
+          </p>
+          {/* Versión phone: un solo párrafo con lo esencial (los completos se ocultan por CSS) */}
+          <p className="founder__reveal founder__p--mobile">
+            Internet está lleno de webs plantilla que no venden nada. En Kaizen creemos lo contrario: diseño con alma
+            audiovisual, tecnología y tráfico que convierten. David Seiko dirige y pone la cara por cada entrega, con
+            un equipo creativo y técnico detrás — del primer frame del video al último píxel de la web.
           </p>
 
           {TEAM.length > 0 && (

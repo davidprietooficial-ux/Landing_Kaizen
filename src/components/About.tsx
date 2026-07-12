@@ -10,10 +10,10 @@ import { Camera, Layers, Repeat, Sparkle } from './Icons'
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const VALUES = [
-  { Icon: Camera, title: 'Calidad de cine, no de feed', text: 'Dirección, cámara y luz de cine en cada pieza.' },
-  { Icon: Layers, title: 'Una grabación, un mes de contenido', text: 'De una sesión, tu librería lista para publicar.' },
-  { Icon: Repeat, title: 'Consistente, no “a veces”', text: 'El mismo proceso y estándar en cada entrega.' },
-  { Icon: Sparkle, title: 'Un sistema, no un proveedor', text: 'Flujo ágil sin bajar calidad; el activo es tuyo.' },
+  { Icon: Camera, title: 'Enfoque audiovisual', text: 'Video y motion de nivel de cine integrados en tu web.' },
+  { Icon: Layers, title: 'Diseñadas para convertir', text: 'Cada sección empuja al visitante hacia la acción.' },
+  { Icon: Repeat, title: 'Tráfico que tú controlas', text: 'Pauta que llena tu agenda, no tu feed.' },
+  { Icon: Sparkle, title: 'Vende mientras duermes', text: 'Tu web trabaja 24/7: capta, califica y agenda por ti.' },
 ]
 
 export default function About() {
@@ -64,27 +64,32 @@ export default function About() {
       <div className="container about__grid">
         <div>
           <span className="eyebrow eyebrow--emoji">
-            <span className="emoji" aria-hidden="true">🎬</span> Quiénes somos
+            <span className="emoji" aria-hidden="true">🚀</span> Quiénes somos
           </span>
 
           <h2 className="about__title" style={{ fontSize: 'clamp(1.3rem,2.4vw,1.92rem)', overflow: 'hidden' }}>
-            Deja de competir por precio. Empieza a competir por percepción.
+            Tu web no es una tarjeta de presentación. Es tu vendedor más importante.
           </h2>
           <div className="about__lead">
-            <p className="lead about__p">
-              Cada semana arranca igual: la presión de publicar algo, lo que sea, antes de que el feed se enfríe. Grabas
-              suelto, a las carreras, y cada pieza se ve distinta a la anterior — y eso cuesta más de lo que crees:
-              clientes que eligen al competidor porque «se ve más serio o profesional», precio que no puedes subir porque
-              tu marca no proyecta valor y horas tuyas quemadas en contenido que no posiciona. Cada semana sin sistema es
-              terreno que le regalas a alguien más. Ahora imagina lo opuesto: una sola sesión de grabación que llena tu
-              calendario un mes entero, con cada pieza al nivel de un comercial, ordenada por canal y lista para
-              publicar. No improvisas ni corres: cada pieza proyecta por fuera el nivel premium que tu negocio ya tiene
-              por dentro. Por primera vez compites por percepción, no por precio.
+            <p className="lead about__p about__p--full">
+              Inviertes en redes, en pauta, en contenido… y cuando alguien por fin se interesa, aterriza ¿dónde? ¿En un
+              perfil de Instagram? ¿En una web plantilla que se ve igual a mil? Ahí se pierde la venta. El problema no
+              es tu producto — es que tu presencia digital no está diseñada para vender, y tu negocio depende de un
+              algoritmo que no controlas. Ahora imagina lo opuesto: un activo tuyo — una landing page con nivel
+              audiovisual de cine, que carga rápido, cuenta tu historia en segundos y convierte visitas en llamadas — y
+              detrás, tráfico llegando todos los días. No cuando el algoritmo quiera: cuando tú lo decidas.
             </p>
-            <p className="lead about__p">
+            <p className="lead about__p about__p--full">
               Eso es exactamente lo que construimos en <b style={{ color: 'var(--text)', fontWeight: 500 }}>Kaizen
-              Studios</b>: un estudio audiovisual colombiano con estándar internacional, dirigido por David Seiko, con
-              más de 4 años en el audiovisual premium.
+              Studios</b>: un estudio creativo y tecnológico dirigido por David Seiko, que une diseño, audiovisual y
+              tráfico para convertir tu presencia digital en un canal de ventas.
+            </p>
+            {/* Versión phone: un solo párrafo con lo esencial (los completos se ocultan por CSS) */}
+            <p className="lead about__p about__p--mobile">
+              Inviertes en redes y en pauta, pero la venta se pierde en una web que no está diseñada para vender. En{' '}
+              <b style={{ color: 'var(--text)', fontWeight: 500 }}>Kaizen Studios</b> unimos diseño web, audiovisual y
+              tráfico en un solo sistema: landing pages con nivel de cine y tráfico que tú controlas — un activo tuyo
+              que convierte visitas en llamadas, 24/7.
             </p>
           </div>
         </div>
@@ -92,10 +97,10 @@ export default function About() {
         {/* columna derecha: cierre de identidad (foco + sistema) + tarjetas de valor (los 4 elementos) */}
         <div className="about__right">
           <p className="lead about__p about__p--ident">
-            Trabajamos con marcas de distintos sectores siempre con el mismo foco: piezas de alta calidad con
-            storytelling que conecta. Grabamos una vez y de esa misma sesión sale tu sistema de contenido completo
-            —calidad de cine real, cada formato y cada canal con la misma firma—. No somos un proveedor que te entrega un
-            video y desaparece: somos el sistema que mantiene tu marca premium, semana tras semana.
+            Unimos lo que normalmente contratas por separado —diseño web, producción audiovisual y tráfico— en un solo
+            sistema con una sola firma. Venimos del audiovisual premium, con más de 4 años produciendo con estándar de
+            cine, y llevamos ese estándar al lugar donde hoy se decide la venta: tu web. No somos una agencia que
+            entrega y desaparece: somos el equipo que mantiene tu máquina de ventas funcionando, semana tras semana.
           </p>
 
           <ul className="value-list" style={{ listStyle: 'none' }}>

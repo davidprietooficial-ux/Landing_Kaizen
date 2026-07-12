@@ -25,7 +25,17 @@ export function scrollToId(id: string) {
   const el = document.getElementById(id)
   if (!el) return
   if (lenis) {
-    lenis.scrollTo(el, { offset: 0 })
+    lenis.scrollTo(el, {
+      offset: 0,
+      // lock: la inercia del trackpad/touch no corta la animación a mitad de camino
+      lock: true,
+      force: true,
+      onComplete: () => {
+        // Si el layout se movió durante la animación (media cargando), re-aterriza exacto.
+        const drift = el.getBoundingClientRect().top
+        if (Math.abs(drift) > 2) lenis?.scrollTo(el, { offset: 0, immediate: true })
+      },
+    })
   } else {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }

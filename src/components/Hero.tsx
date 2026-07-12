@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { scrollToId } from '@/lib/scroll'
-import { ChevronDown } from './Icons'
+import { ArrowRight, ChevronDown } from './Icons'
 import { SITE, ASSETS } from '@/lib/config'
 
 export default function Hero() {
@@ -32,8 +32,7 @@ export default function Hero() {
       <div className="hero__media">
         {ASSETS.hasShowreel ? (
           <video autoPlay muted loop playsInline preload="auto">
-            <source src="/video/SHOWREEL.webm" type="video/webm" />
-            <source src="/video/SHOWREEL.mp4" type="video/mp4" />
+            <source src="/video/new-background.mp4" type="video/mp4" />
           </video>
         ) : (
           <div className="hero__fallback" />
@@ -45,14 +44,27 @@ export default function Hero() {
       <div className="hero__content">
         <span className="mono hero-anim">{SITE.name}</span>
         <h1 className="hero__title hero-anim">
-          <span className="lt">Una grabación.</span>
-          <span className="lt">Un sistema de contenido.</span>
+          <span className="lt">Webs que venden.</span>
+          <span className="lt">Tráfico que convierte.</span>
         </h1>
-        <p className="hero__desc hero-anim">{SITE.description}</p>
+        <p className="hero__desc hero-anim">
+          <span className="hero__desc--full">{SITE.description}</span>
+          <span className="hero__desc--short">{SITE.descriptionMobile}</span>
+        </p>
+
+        <div className="hero__actions hero-anim">
+          <button className="btn-gold" onClick={() => scrollToId('agendar')}>
+            <span className="btn-gold__full">Agenda tu Llamada Gratis</span>
+            <span className="btn-gold__short">Llamada Gratis</span>
+            <ArrowRight size={16} />
+          </button>
+          <button className="btn-gold btn-gold--outline" onClick={() => scrollToId('trabajo')}>
+            Ver nuestro trabajo
+          </button>
+        </div>
       </div>
 
-      <button className="hero__cue" onClick={() => scrollToId('quienes')} aria-label="¿Quiénes somos? Bajar a la siguiente sección">
-        ¿Quiénes somos?
+      <button className="hero__cue" onClick={() => scrollToId('trabajo')} aria-label="Bajar a la siguiente sección">
         <span className="chev" aria-hidden="true">
           <ChevronDown size={18} />
         </span>

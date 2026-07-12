@@ -30,8 +30,8 @@ export default function Header() {
         </button>
 
         <button className="btn-gold" onClick={() => scrollToId('agendar')}>
-          <span className="btn-gold__full">Agenda tu llamada ahora</span>
-          <span className="btn-gold__short">Agenda ahora</span>
+          <span className="btn-gold__full">Agenda tu Llamada Gratis</span>
+          <span className="btn-gold__short">Llamada Gratis</span>
           <ArrowRight size={16} />
         </button>
       </div>

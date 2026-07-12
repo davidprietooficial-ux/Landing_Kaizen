@@ -23,6 +23,13 @@ function Svg({ size = 20, children, ...rest }: IconProps & { children: React.Rea
 }
 
 export const ChevronDown = (p: IconProps) => <Svg {...p}><path d="m6 9 6 6 6-6" /></Svg>
+export const ChevronLeft = (p: IconProps) => <Svg {...p}><path d="m15 18-6-6 6-6" /></Svg>
+export const ChevronRight = (p: IconProps) => <Svg {...p}><path d="m9 18 6-6-6-6" /></Svg>
+export const Star = (p: IconProps) => (
+  <Svg {...p} fill="currentColor" stroke="none">
+    <path d="M12 2l2.92 6.62 7.08.62-5.4 4.73 1.6 6.97L12 17.3l-6.2 3.64 1.6-6.97L2 9.24l7.08-.62L12 2z" />
+  </Svg>
+)
 export const ArrowRight = (p: IconProps) => <Svg {...p}><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></Svg>
 export const ArrowDown = (p: IconProps) => <Svg {...p}><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></Svg>
 export const Check = (p: IconProps) => <Svg {...p}><path d="M20 6 9 17l-5-5" /></Svg>
