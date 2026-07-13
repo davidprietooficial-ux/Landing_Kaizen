@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { TESTIMONIALS, TESTIMONIALS_BADGE } from '@/lib/config'
+import { CLIENTS, TESTIMONIALS, TESTIMONIALS_BADGE } from '@/lib/config'
 import { ChevronLeft, ChevronRight, Star } from './Icons'
 
 const N = TESTIMONIALS.length
@@ -9,6 +9,14 @@ const N = TESTIMONIALS.length
 // pasarse de los bordes → efecto de scroll infinito en ambas direcciones.
 const LOOP = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS]
 const GAP = 24 // debe coincidir con el gap del track en CSS
+
+// Retrato con respaldo: si la foto aún no está subida, muestra la inicial.
+function Avatar({ src, name }: { src: string; name: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) return <span className="t-card__ph" aria-hidden="true">{name.charAt(0)}</span>
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt="" loading="lazy" width={48} height={48} onError={() => setFailed(true)} />
+}
 
 export default function Testimonials() {
   const [idx, setIdx] = useState(N)
@@ -67,7 +75,7 @@ export default function Testimonials() {
               Lo que dicen nuestros <em>clientes</em>
             </h2>
           </div>
-          <div className="tstm__badge" aria-label={`Valoración ${TESTIMONIALS_BADGE.label}`}>
+          <div className="tstm__badge" aria-label={`Valoración: ${TESTIMONIALS_BADGE.label}`}>
             <span className="tstm__stars" aria-hidden="true">
               {Array.from({ length: TESTIMONIALS_BADGE.stars }, (_, i) => (
                 <Star key={i} size={20} />
@@ -89,19 +97,25 @@ export default function Testimonials() {
         >
           {LOOP.map((t, i) => (
             <figure className={`t-card${i < idx ? ' is-out' : ''}`} key={`${t.name}-${i}`} aria-hidden={i < N || i >= 2 * N || undefined}>
-              <svg className="t-card__quote" width="30" height="24" viewBox="0 0 30 24" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M0 24V12.4C0 5.4 4.4 1 11.2 0l1.2 3C7.9 4.5 5.7 7 5.5 10H12v14H0Zm18 0V12.4C18 5.4 22.4 1 29.2 0l1.2 3c-4.5 1.5-6.7 4-6.9 7H30v14H18Z"
-                />
-              </svg>
+              <div className="t-card__top">
+                <svg className="t-card__quote" width="30" height="24" viewBox="0 0 30 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M0 24V12.4C0 5.4 4.4 1 11.2 0l1.2 3C7.9 4.5 5.7 7 5.5 10H12v14H0Zm18 0V12.4C18 5.4 22.4 1 29.2 0l1.2 3c-4.5 1.5-6.7 4-6.9 7H30v14H18Z"
+                  />
+                </svg>
+                <span className="t-card__stars" aria-label={`${t.stars} de 5 estrellas`}>
+                  {Array.from({ length: 5 }, (_, s) => (
+                    <Star key={s} size={15} className={s < t.stars ? undefined : 'dim'} />
+                  ))}
+                </span>
+              </div>
               <blockquote>{t.quote}</blockquote>
               <figcaption className="t-card__author">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={t.photo} alt="" loading="lazy" width={48} height={48} />
+                <Avatar src={t.photo} name={t.name} />
                 <div>
                   <strong>{t.name}</strong>
-                  <span>→ {t.role}, {t.company}</span>
+                  {(t.role || t.company) && <span>{[t.role, t.company].filter(Boolean).join(', ')}</span>}
                 </div>
               </figcaption>
             </figure>
@@ -117,6 +131,27 @@ export default function Testimonials() {
           <ChevronRight size={20} />
         </button>
       </div>
+
+      {/* Cinta de marcas: scroll infinito automático con los chips blancos originales
+          (mismas proporciones que antes: `w` = ancho del chip, `h` = alto máx del logo) */}
+      {CLIENTS.length > 0 && (
+        <div className="logostrip" aria-label="Marcas con las que hemos trabajado">
+          <div className="logostrip__track">
+            {[...CLIENTS, ...CLIENTS].map((c, i) => (
+              <div
+                className={`client-logo${c.w ? ' client-logo--wide' : ''}`}
+                key={`${c.name}-${i}`}
+                title={c.name}
+                style={c.w ? { width: c.w } : undefined}
+                aria-hidden={i >= CLIENTS.length || undefined}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.src} alt={c.name} loading="lazy" style={c.h ? { maxHeight: c.h } : undefined} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   )
 }

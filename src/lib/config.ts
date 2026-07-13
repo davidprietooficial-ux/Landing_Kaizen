@@ -42,8 +42,8 @@ export const DAVID_LINKS = {
 // [[ TODO David: pegar el @ de Instagram de cada uno cuando los tengas ]]
 export const TEAM: { name: string; role: string; photo?: string; pos?: string; social?: string }[] = [
   { name: 'Juan C. Moreno', role: 'Editor, socio y marketer', photo: '/img/team-1.jpeg', social: 'https://www.instagram.com/juan.edita/' },
-  { name: 'Juan Guzmán', role: 'Filmmaker y editor', photo: '/img/team-2.jpg', pos: '50% 26%', social: 'https://www.instagram.com/juanfilmmaker377/' },
   { name: 'Jennifer Correa', role: 'Community Manager', photo: '/img/jennifer-retrato.jpeg', social: 'https://www.instagram.com/jennifercs07/' },
+  { name: 'Juan Guzmán', role: 'Filmmaker y editor', photo: '/img/team-2.jpg', pos: '50% 26%', social: 'https://www.instagram.com/juanfilmmaker377/' },
 ]
 
 // URL de Calendly de la llamada de cierre (vacío = muestra fallback con CTA a correo)
@@ -77,31 +77,22 @@ export const WORK_MARQUEE: { name: string; src: string }[] = [
   { name: 'Velorah', src: '/marquee/velorah.mp4' },
 ]
 
-// Testimonios (sección carrusel).
-// ⚠️ [[ TODO David ]] Son PLACEHOLDERS (nombres/quotes/avatares de demo, avatares de Pexels).
-// Reemplazar por testimonios reales de clientes (con su permiso) antes de publicar.
-// El badge (p. ej. plataforma de reseñas + nota) también es placeholder.
-export const TESTIMONIALS_BADGE = { stars: 5, label: 'Clutch 5/5' }
-export const TESTIMONIALS: { name: string; role: string; company: string; photo: string; quote: string }[] = [
+// Testimonios reales (con permiso del cliente).
+// Retratos: sube la foto CUADRADA (mín. 200×200) a /public/testimonials/ con el
+// nombre exacto que dice `photo`. Mientras no exista el archivo, la card muestra
+// un avatar dorado con la inicial del nombre — no se rompe nada.
+export const TESTIMONIALS_BADGE = { stars: 5, label: 'Rating' }
+export const TESTIMONIALS: { name: string; role?: string; company?: string; photo: string; quote: string; stars: number }[] = [
   {
-    name: 'Marcus Anderson', role: 'CEO', company: 'Data.storage', photo: '/testimonials/marcus.jpg',
-    quote: 'Con muy poca dirección de nuestra parte, el equipo entregó diseños que daban en el clavo una y otra vez. La landing quedó impecable y el proceso fue de cero fricción.',
+    name: 'Ricardo Reyes', role: 'Gerente general', company: 'Atlax Colombia', photo: '/testimonials/ricardo.jpeg', stars: 5,
+    quote: 'Trabajar con Kaizen ha sido una experiencia que supera cualquier expectativa: transmiten confianza desde el inicio por la calidad de sus equipos y profesionalismo, y su verdadero valor está en convertir una idea inicial en un mensaje claro, emotivo y de alto impacto. Más que producir videos, transforman ideas en historias que conectan de verdad — el resultado final siempre es mucho mejor de lo que uno imaginó.',
   },
+  // [[ TODO David: completar rol/empresa, estrellas y quote de Marco y la Dra., luego descomentar ]]
+  // { name: 'Marco', role: '', company: '', photo: '/testimonials/marco.jpg', stars: 5, quote: '' },
+  // { name: 'Dra.', role: '', company: '', photo: '/testimonials/dra.jpg', stars: 5, quote: '' },
   {
-    name: 'alexwu', role: 'Founder', company: 'Nexgate', photo: '/testimonials/alexwu.jpg',
-    quote: 'Kaizen lideró la creación de nuestra mejor web hasta la fecha. Entendieron el negocio a la primera y se nota en cada detalle del resultado.',
-  },
-  {
-    name: 'James Mitchell', role: 'VP Product', company: 'LaunchPad', photo: '/testimonials/james.jpg',
-    quote: 'Trabajar con Kaizen transformó la visión de nuestro producto. La web no solo se ve increíble: convierte visitas en clientes todos los días.',
-  },
-  {
-    name: 'Rachel Foster', role: 'Co-founder', company: 'Nexus Labs', photo: '/testimonials/rachel.jpg',
-    quote: 'La calidad del diseño superó nuestras expectativas. Rápidos, ordenados y con un estándar visual de otro nivel.',
-  },
-  {
-    name: 'David Zhang', role: 'Head of Design', company: 'Paradigm Labs', photo: '/testimonials/david.jpg',
-    quote: 'Trabajo increíble de principio a fin. Comunicación clara, entregas a tiempo y un resultado que habla por sí solo.',
+    name: 'Peluquería Origen', role: 'Negocio local', photo: '/testimonials/origen.jpeg', stars: 4,
+    quote: 'Trabajamos con Kaizen durante un par de meses, produciendo contenido para nuestra marca. Hubo comunicación constante durante todo el proceso y los resultados se reflejaron mejorando nuestra presencia digital. La disposición y el seguimiento fueron clave de principio a fin.',
   },
 ]
 

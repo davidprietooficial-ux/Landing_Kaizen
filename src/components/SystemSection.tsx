@@ -237,7 +237,8 @@ export default function SystemSection() {
           <div className="system__head">
             <span className="eyebrow system__kicker">Servicios · lo que hacemos</span>
             <h2 className="system__title">
-              Web, video y tráfico <span style={{ color: 'var(--gold)' }}>→</span> un sistema que vende.
+              Web, video y tráfico <span style={{ color: 'var(--gold)' }}>→</span>
+              <span className="system__title-l2">un sistema que vende.</span>
             </h2>
           </div>
 

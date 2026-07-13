@@ -55,10 +55,12 @@ export default function Founder() {
   return (
     <section ref={root} id="david" className="section">
       <div className="container founder__grid">
+        {/* En phone el kicker va ANTES de la foto (en desktop se oculta y se usa el del body) */}
+        <span className="eyebrow founder__kicker--mobile">Quién está detrás de esto</span>
         <div className="founder__photo">
           <div className="founder__mask">
             {ASSETS.hasDavidPhoto ? (
-              <Image src="/img/david-retrato.jpg" alt="David Seiko, fundador de Kaizen Studios" fill sizes="(max-width: 860px) 100vw, 40vw" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+              <Image src="/img/david-retrato.jpg" alt="David Seiko, fundador de Kaizen Studios" fill sizes="(max-width: 700px) 100vw, 40vw" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
             ) : (
               <div className="photo-ph">
                 <span className="ring"><Camera size={26} /></span>
@@ -69,7 +71,7 @@ export default function Founder() {
         </div>
 
         <div className="founder__body">
-          <span className="eyebrow founder__reveal">Quién está detrás de esto</span>
+          <span className="eyebrow founder__reveal founder__kicker--desktop">Quién está detrás de esto</span>
           <h2 className="founder__name founder__reveal">David Seiko</h2>
           <span className="founder__role founder__reveal">Fundador y director · Kaizen Studios</span>
 
@@ -114,40 +116,42 @@ export default function Founder() {
             un equipo creativo y técnico detrás — del primer frame del video al último píxel de la web.
           </p>
 
-          {TEAM.length > 0 && (
-            <div className="team founder__reveal">
-              <span className="mono team__kicker">El equipo detrás</span>
-              <div className="team__row">
-                {TEAM.map((m) => (
-                  <div className="team__member" key={m.role}>
-                    <span className="team__avatar">
-                      {m.photo ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={m.photo} alt={m.name} style={m.pos ? { objectPosition: m.pos } : undefined} />
-                      ) : (
-                        <Camera size={18} />
-                      )}
-                    </span>
-                    <div className="team__info">
-                      <strong>{m.name}</strong>
-                      <small>{m.role}</small>
-                    </div>
-                    {m.social ? (
-                      <a className="team__social" href={m.social} target="_blank" rel="noopener noreferrer" aria-label={`Red social de ${m.name}`}>
-                        <Instagram size={15} />
-                      </a>
-                    ) : (
-                      <span className="team__social team__social--empty" title="Red social · por agregar" aria-hidden="true">
-                        <Instagram size={15} />
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Equipo a ancho completo bajo la bio: 3 cards verticales (avatar → nombre → Instagram) */}
+      {TEAM.length > 0 && (
+        <div className="container team founder__team founder__reveal">
+          <span className="mono team__kicker">El equipo detrás</span>
+          <div className="team__row">
+            {TEAM.map((m) => (
+              <div className="team__member" key={m.name}>
+                <span className="team__avatar">
+                  {m.photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={m.photo} alt={m.name} style={m.pos ? { objectPosition: m.pos } : undefined} />
+                  ) : (
+                    <Camera size={18} />
+                  )}
+                </span>
+                <div className="team__info">
+                  <strong>{m.name}</strong>
+                  <small>{m.role}</small>
+                </div>
+                {m.social ? (
+                  <a className="team__social" href={m.social} target="_blank" rel="noopener noreferrer" aria-label={`Instagram de ${m.name}`}>
+                    <Instagram size={15} /> <span>Instagram</span>
+                  </a>
+                ) : (
+                  <span className="team__social team__social--empty" title="Red social · por agregar" aria-hidden="true">
+                    <Instagram size={15} /> <span>Instagram</span>
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   )
 }

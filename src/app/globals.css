@@ -283,7 +283,16 @@ section[id] { scroll-margin-top: 80px; }
 }
 /* animación de salida: la card que acaba de pasar se apaga y encoge */
 .t-card.is-out { opacity: .25; transform: scale(.95); }
+.t-card__top { display: flex; align-items: flex-start; justify-content: space-between; }
 .t-card__quote { color: var(--gold); flex: none; }
+.t-card__stars { display: inline-flex; gap: 2px; color: var(--gold); }
+.t-card__stars .dim { color: var(--border2); }
+.t-card__ph {
+  width: 48px; height: 48px; border-radius: 50%; flex: none;
+  border: 1px solid var(--gold-dim); background: var(--bg3);
+  display: grid; place-items: center;
+  font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: var(--gold);
+}
 .t-card blockquote { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--text); }
 .t-card__author { display: flex; align-items: center; gap: .8rem; margin-top: auto; }
 .t-card__author img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
@@ -303,6 +312,21 @@ section[id] { scroll-margin-top: 80px; }
   .t-card { width: calc(100vw - 48px); border-radius: 32px; padding: 1.6rem 1.5rem; }
   .tstm__nav { justify-content: center; }
 }
+/* cinta de marcas bajo los testimonios: scroll infinito con bordes desvanecidos */
+.logostrip {
+  overflow: hidden; margin-top: 3.5rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.logostrip__track {
+  display: flex; align-items: center; gap: 16px; width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+  padding: .5rem 0;
+}
+/* dentro de la cinta, los chips blancos no se estiran: ancho fijo (o el `w` custom inline)
+   y TODOS con la misma altura (la del chip de la Secretaría) para una cinta homogénea */
+.logostrip .client-logo { flex: none; width: 180px; max-width: none; height: 122px; }
+@media (prefers-reduced-motion: reduce) { .logostrip__track { animation: none; } }
 
 /* Cue "¿Quiénes somos?": mismo look que el del hero, pero en flujo normal bajo el track */
 .marquee__cue {
@@ -361,7 +385,11 @@ section[id] { scroll-margin-top: 80px; }
 
 /* ───────────────────────── system (sección 3 — pinned) ───────────────────────── */
 .system { background: var(--bg); }
-.system__pin { position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
+/* padding-top: el contenido pineado nunca queda debajo del header fijo */
+.system__pin {
+  position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden;
+  padding: calc(var(--header-h) + 12px) 0 24px;
+}
 .system__layout {
   position: relative; z-index: 2; width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
   display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; row-gap: 0; align-items: center;
@@ -395,6 +423,7 @@ section[id] { scroll-margin-top: 80px; }
 .system__steps { position: relative; }
 .system__kicker { margin-bottom: 1rem; }
 .system__title { font-size: clamp(1.8rem, 3.4vw, 2.7rem); margin-bottom: 2rem; }
+.system__title-l2 { display: block; } /* "un sistema que vende." siempre en su propia línea */
 .steps { position: relative; display: grid; gap: 0; padding-left: 2px; }
 .step {
   position: relative; padding: 16px 0 16px 30px; border-left: 1px solid var(--border2);
@@ -538,6 +567,36 @@ section[id] { scroll-margin-top: 80px; }
 .team__social--empty { opacity: .35; }
 @media (max-width: 600px) { .team__row { grid-template-columns: 1fr; } }
 
+/* Equipo bajo la bio (layout del boceto): fila de 3 cards verticales y centradas.
+   Retrato en cuadrado 1:1 grande — ocupa el ancho de la card menos el padding,
+   así crece/encoge porcentualmente con el viewport. */
+.founder__team { margin-top: 3rem; }
+.founder__team .team__row { grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); }
+.founder__team .team__member {
+  flex-direction: column; text-align: center; gap: 14px; padding: clamp(18px, 2.4vw, 30px);
+}
+.founder__team .team__avatar {
+  width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 14px;
+}
+.founder__team .team__member strong { font-size: clamp(1rem, 1.4vw, 1.2rem); }
+.founder__team .team__member small { font-size: clamp(.8rem, 1vw, .92rem); }
+.founder__team .team__social {
+  margin-left: 0; width: auto; height: auto; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px;
+  font-size: .78rem; color: var(--text);
+}
+.founder__team .team__social:hover { color: var(--gold2); }
+/* phone: se mantienen las 3 columnas (cards compactas) — a ancho completo la foto se pixela */
+@media (max-width: 700px) {
+  .founder__team .team__row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .founder__team .team__member { padding: 12px 8px; gap: 8px; }
+  .founder__team .team__member strong { font-size: .8rem; }
+  .founder__team .team__member small { font-size: .66rem; }
+  /* chip de Instagram solo con ícono para que quepa en la card angosta */
+  .founder__team .team__social { padding: 6px 10px; }
+  .founder__team .team__social span { display: none; }
+}
+
 .founder__links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.8rem; }
 .chip {
   display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
@@ -546,7 +605,23 @@ section[id] { scroll-margin-top: 80px; }
 }
 .chip:hover { border-color: var(--gold); color: var(--gold2); }
 .chip[aria-disabled="true"] { opacity: .4; pointer-events: none; }
-@media (max-width: 860px) { .founder__grid { grid-template-columns: 1fr; } .mv { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .mv { grid-template-columns: 1fr; } }
+/* el founder solo se apila en phone: en tablet mantiene la distribución de PC (foto + bio) */
+.founder__kicker--mobile { display: none; }
+/* tablet: foto más protagonista + bio resumida (el párrafo corto de phone) para
+   que las dos columnas queden balanceadas y la foto no se vea perdida */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .founder__grid { grid-template-columns: 1.05fr 1fr; }
+  /* .founder__body extra: gana a la regla base `display:none` que vive más abajo en el archivo */
+  .founder__body .founder__p--full { display: none; }
+  .founder__body .founder__p--mobile { display: block; }
+}
+@media (max-width: 700px) {
+  .founder__grid { grid-template-columns: 1fr; }
+  /* orden phone: título → foto → todo lo demás */
+  .founder__kicker--mobile { display: block; }
+  .founder__kicker--desktop { display: none; }
+}
 
 /* ───────────────────────── schedule (sección 6) ───────────────────────── */
 .schedule { background: linear-gradient(180deg, var(--bg), var(--bg2)); }
