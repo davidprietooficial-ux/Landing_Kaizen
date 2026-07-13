@@ -75,7 +75,7 @@ export default function Testimonials() {
               Lo que dicen nuestros <em>clientes</em>
             </h2>
           </div>
-          <div className="tstm__badge" aria-label={`Valoración: ${TESTIMONIALS_BADGE.label}`}>
+          <div className="tstm__badge">
             <span className="tstm__stars" aria-hidden="true">
               {Array.from({ length: TESTIMONIALS_BADGE.stars }, (_, i) => (
                 <Star key={i} size={20} />
@@ -104,7 +104,7 @@ export default function Testimonials() {
                     d="M0 24V12.4C0 5.4 4.4 1 11.2 0l1.2 3C7.9 4.5 5.7 7 5.5 10H12v14H0Zm18 0V12.4C18 5.4 22.4 1 29.2 0l1.2 3c-4.5 1.5-6.7 4-6.9 7H30v14H18Z"
                   />
                 </svg>
-                <span className="t-card__stars" aria-label={`${t.stars} de 5 estrellas`}>
+                <span className="t-card__stars" role="img" aria-label={`${t.stars} de 5 estrellas`}>
                   {Array.from({ length: 5 }, (_, s) => (
                     <Star key={s} size={15} className={s < t.stars ? undefined : 'dim'} />
                   ))}
@@ -146,7 +146,7 @@ export default function Testimonials() {
                 aria-hidden={i >= CLIENTS.length || undefined}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.src} alt={c.name} loading="lazy" style={c.h ? { maxHeight: c.h } : undefined} />
+                <img src={c.src} alt={c.name} loading="lazy" width={c.iw} height={c.ih} style={c.h ? { maxHeight: c.h } : undefined} />
               </div>
             ))}
           </div>

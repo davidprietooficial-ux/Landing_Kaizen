@@ -249,7 +249,7 @@ export default function SystemSection() {
                 <div className={`scene${i === 0 ? ' is-active' : ''}`} key={STEPS[i].cap}>
                   {ASSETS.hasStageArt ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={STEPS[i].art} alt="" loading="lazy" decoding="async" />
+                    <img src={STEPS[i].art} alt="" loading="lazy" decoding="async" width={800} height={800} />
                   ) : (
                     <Scene />
                   )}

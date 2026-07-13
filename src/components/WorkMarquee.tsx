@@ -17,7 +17,7 @@ export default function WorkMarquee() {
           <div className="marquee__item" key={`${w.name}-${i}`} aria-hidden={i >= WORK_MARQUEE.length || undefined}>
             {/\.(png|jpe?g|webp|avif)$/i.test(w.src) ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={w.src} alt="" loading="lazy" />
+              <img src={w.src} alt="" loading="lazy" width={w.iw} height={w.ih} />
             ) : (
               <LazyVideo src={w.src} />
             )}

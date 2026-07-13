@@ -29,6 +29,8 @@ export default function Hero() {
 
   return (
     <section ref={root} id="top" className="hero" aria-label="Inicio">
+      {/* React lo eleva al <head>: el póster (elemento LCP) empieza a bajar de inmediato */}
+      <link rel="preload" as="image" href="/video/hero-poster.webp" fetchPriority="high" />
       <div className="hero__media">
         {ASSETS.hasShowreel ? (
           // poster: LCP instantáneo mientras descarga el video
