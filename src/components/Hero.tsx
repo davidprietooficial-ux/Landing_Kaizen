@@ -31,7 +31,8 @@ export default function Hero() {
     <section ref={root} id="top" className="hero" aria-label="Inicio">
       <div className="hero__media">
         {ASSETS.hasShowreel ? (
-          <video autoPlay muted loop playsInline preload="auto">
+          // poster: LCP instantáneo mientras descarga el video
+          <video autoPlay muted loop playsInline preload="auto" poster="/video/hero-poster.webp">
             <source src="/video/new-background.mp4" type="video/mp4" />
           </video>
         ) : (

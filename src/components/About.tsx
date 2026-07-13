@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { Camera, Layers, Repeat, Sparkle } from './Icons'
+import LazyVideo from './LazyVideo'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -118,10 +119,10 @@ export default function About() {
 
         {/* Video full-width (ocupa ambas columnas, no afecta la composición de texto/ventajas). */}
         <div className="about__media">
-          <video autoPlay muted loop playsInline preload="metadata" aria-label="Kaizen Studios en acción">
+          <LazyVideo aria-label="Kaizen Studios en acción">
             <source src="/video/about.webm" type="video/webm" />
             <source src="/video/about.mp4" type="video/mp4" />
-          </video>
+          </LazyVideo>
         </div>
       </div>
     </section>

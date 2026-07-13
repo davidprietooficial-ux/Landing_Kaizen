@@ -2,6 +2,7 @@
 
 import { scrollToId } from '@/lib/scroll'
 import { ChevronDown } from './Icons'
+import LazyVideo from './LazyVideo'
 import { WORK_MARQUEE } from '@/lib/config'
 
 // Carrusel infinito de webs construidas. El track contiene el set duplicado (x2)
@@ -18,7 +19,7 @@ export default function WorkMarquee() {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={w.src} alt="" loading="lazy" />
             ) : (
-              <video src={w.src} autoPlay muted loop playsInline preload="metadata" />
+              <LazyVideo src={w.src} />
             )}
           </div>
         ))}

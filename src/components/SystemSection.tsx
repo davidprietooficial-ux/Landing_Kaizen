@@ -11,9 +11,9 @@ gsap.registerPlugin(ScrollTrigger)
 // Cada servicio tiene su escena visual (a la izquierda) y su texto (a la derecha).
 // `art`: icono 3D real (se usa si ASSETS.hasStageArt = true); si no, cae al SVG line-art.
 const STEPS = [
-  { cap: 'Web', art: '/stages/06-web.png', t: 'Desarrollo web', d: 'Landing pages a medida — nada de plantillas: veloces, medibles y diseñadas para convertir visitas en clientes.' },
-  { cap: 'Audiovisual', art: '/stages/02-grabacion.png', t: 'Producción audiovisual de calidad', d: 'Video con estándar de cine para tu web y tus canales: dirección, cámara y luz que elevan tu marca.' },
-  { cap: 'Tráfico', art: '/stages/07-trafico.png', t: 'Tráfico y pauta', d: 'Estrategia y campañas que ponen tu web frente a las personas correctas, todos los días.' },
+  { cap: 'Web', art: '/stages/06-web.webp', t: 'Desarrollo web', d: 'Landing pages a medida — nada de plantillas: veloces, medibles y diseñadas para convertir visitas en clientes.' },
+  { cap: 'Audiovisual', art: '/stages/02-grabacion.webp', t: 'Producción audiovisual de calidad', d: 'Video con estándar de cine para tu web y tus canales: dirección, cámara y luz que elevan tu marca.' },
+  { cap: 'Tráfico', art: '/stages/07-trafico.webp', t: 'Tráfico y pauta', d: 'Estrategia y campañas que ponen tu web frente a las personas correctas, todos los días.' },
 ]
 
 /* ── Escenas (line-art dorado sobre el fondo oscuro) ── */
@@ -248,7 +248,7 @@ export default function SystemSection() {
                 <div className={`scene${i === 0 ? ' is-active' : ''}`} key={STEPS[i].cap}>
                   {ASSETS.hasStageArt ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={STEPS[i].art} alt="" />
+                    <img src={STEPS[i].art} alt="" loading="lazy" decoding="async" />
                   ) : (
                     <Scene />
                   )}
