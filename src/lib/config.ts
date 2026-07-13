@@ -83,7 +83,8 @@ export const WORK_MARQUEE: { name: string; src: string; iw?: number; ih?: number
 // Retratos: sube la foto CUADRADA (mín. 200×200) a /public/testimonials/ con el
 // nombre exacto que dice `photo`. Mientras no exista el archivo, la card muestra
 // un avatar dorado con la inicial del nombre — no se rompe nada.
-export const TESTIMONIALS_BADGE = { stars: 5, label: 'Rating' }
+// El badge calcula solo el promedio de `stars` de todos los testimonios (estrellas + número).
+export const TESTIMONIALS_BADGE = { label: 'Rating' }
 export const TESTIMONIALS: { name: string; role?: string; company?: string; photo: string; quote: string; stars: number }[] = [
   {
     name: 'Ricardo Reyes', role: 'Gerente general', company: 'Atlax Colombia', photo: '/testimonials/ricardo-96.webp', stars: 5,

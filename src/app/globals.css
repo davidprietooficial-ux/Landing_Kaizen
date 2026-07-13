@@ -270,6 +270,11 @@ section[id] { scroll-margin-top: 80px; }
 .tstm__badge { display: inline-flex; align-items: center; gap: .7rem; padding-bottom: .4rem; }
 .tstm__badge .mono { font-size: .8rem; letter-spacing: .12em; }
 .tstm__stars { display: inline-flex; gap: 2px; color: var(--gold); }
+/* estrella con relleno parcial (promedios como 4.5) */
+.pstar { position: relative; display: inline-block; width: 20px; height: 20px; }
+.pstar__bg { color: var(--border2); display: block; }
+.pstar__fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; color: var(--gold); }
+.pstar__fill svg { display: block; }
 /* El track arranca alineado con el borde del container y se desborda a la derecha */
 .tstm__viewport { overflow: hidden; padding-left: max(24px, calc((100vw - var(--maxw)) / 2 + 24px)); }
 .tstm__track { display: flex; gap: 24px; width: max-content; }

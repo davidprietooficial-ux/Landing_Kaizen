@@ -10,6 +10,24 @@ const N = TESTIMONIALS.length
 const LOOP = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS]
 const GAP = 24 // debe coincidir con el gap del track en CSS
 
+// Promedio real de todas las calificaciones, a 1 decimal (p. ej. 4.5).
+const AVG = Math.round((TESTIMONIALS.reduce((s, t) => s + t.stars, 0) / N) * 10) / 10
+
+// Estrella con relleno parcial: la dorada se recorta al % que corresponda
+// sobre una base apagada → puede mostrar 4.5, 4.7, etc.
+function PartialStar({ fill }: { fill: number }) {
+  return (
+    <span className="pstar" aria-hidden="true">
+      <Star size={20} className="pstar__bg" />
+      {fill > 0 && (
+        <span className="pstar__fill" style={{ width: `${fill * 100}%` }}>
+          <Star size={20} />
+        </span>
+      )}
+    </span>
+  )
+}
+
 // Retrato con respaldo: si la foto aún no está subida, muestra la inicial.
 function Avatar({ src, name }: { src: string; name: string }) {
   const [failed, setFailed] = useState(false)
@@ -76,12 +94,12 @@ export default function Testimonials() {
             </h2>
           </div>
           <div className="tstm__badge">
-            <span className="tstm__stars" aria-hidden="true">
-              {Array.from({ length: TESTIMONIALS_BADGE.stars }, (_, i) => (
-                <Star key={i} size={20} />
+            <span className="tstm__stars" role="img" aria-label={`Promedio: ${AVG} de 5 estrellas`}>
+              {Array.from({ length: 5 }, (_, i) => (
+                <PartialStar key={i} fill={Math.max(0, Math.min(1, AVG - i))} />
               ))}
             </span>
-            <span className="mono">{TESTIMONIALS_BADGE.label}</span>
+            <span className="mono">{TESTIMONIALS_BADGE.label} {AVG.toLocaleString('es-CO')}/5</span>
           </div>
         </div>
       </div>
