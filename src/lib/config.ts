@@ -72,7 +72,7 @@ export const CLIENTS: { name: string; src: string; h?: number; w?: number }[] = 
 // Reemplazar por capturas/grabaciones de las webs propias cuando existan.
 export const WORK_MARQUEE: { name: string; src: string }[] = [
   { name: 'Aethera', src: '/marquee/aethera.mp4' },
-  { name: 'Asme', src: '/marquee/asme.mp4' },
+  { name: 'Asme', src: '/marquee/asme.png' },
   { name: 'Nexora', src: '/marquee/nexora.mp4' },
   { name: 'Velorah', src: '/marquee/velorah.mp4' },
 ]

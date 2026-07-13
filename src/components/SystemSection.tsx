@@ -8,14 +8,12 @@ import { ASSETS } from '@/lib/config'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Cada etapa tiene su escena visual (a la izquierda) y su texto (a la derecha).
+// Cada servicio tiene su escena visual (a la izquierda) y su texto (a la derecha).
 // `art`: icono 3D real (se usa si ASSETS.hasStageArt = true); si no, cae al SVG line-art.
 const STEPS = [
-  { cap: 'Logística', art: '/stages/01-logistica.png', t: 'Logística y preparación', d: 'Antes de grabar, ya está todo resuelto: objetivo, guion, locación y cronograma.' },
-  { cap: 'Grabación', art: '/stages/02-grabacion.png', t: 'Grabación', d: 'El día de rodaje capturamos tu mejor versión con dirección, cámaras y luz de cine.' },
-  { cap: 'Postproducción', art: '/stages/03-postproduccion.png', t: 'Postproducción', d: 'Edición, color de cine, audio profesional y todos los formatos que tu marca necesita.' },
-  { cap: 'Revisión', art: '/stages/04-revision.png', t: 'Revisión y optimización', d: 'Revisamos cada detalle y optimizamos hasta que quede impecable. Incluye una ronda de cambios.' },
-  { cap: 'Entrega', art: '/stages/05-entrega.png', t: 'Entrega final', d: 'Te entregamos todo organizado + guía de publicación, listo para distribuir.' },
+  { cap: 'Web', art: '/stages/06-web.png', t: 'Desarrollo web', d: 'Landing pages a medida — nada de plantillas: veloces, medibles y diseñadas para convertir visitas en clientes.' },
+  { cap: 'Audiovisual', art: '/stages/02-grabacion.png', t: 'Producción audiovisual de calidad', d: 'Video con estándar de cine para tu web y tus canales: dirección, cámara y luz que elevan tu marca.' },
+  { cap: 'Tráfico', art: '/stages/07-trafico.png', t: 'Tráfico y pauta', d: 'Estrategia y campañas que ponen tu web frente a las personas correctas, todos los días.' },
 ]
 
 /* ── Escenas (line-art dorado sobre el fondo oscuro) ── */
@@ -161,7 +159,11 @@ function SceneDelivery() {
   )
 }
 
-const SCENES = [SceneLogistics, SceneCamera, SceneEdit, SceneReview, SceneDelivery]
+// Fallback line-art alineado con los 3 servicios (monitor=web, cámara=audiovisual, tiles=tráfico).
+// SceneLogistics y SceneReview quedan sin usar mientras la sección sea de servicios.
+const SCENES = [SceneEdit, SceneCamera, SceneDelivery]
+void SceneLogistics
+void SceneReview
 
 export default function SystemSection() {
   const root = useRef<HTMLElement>(null)
@@ -210,7 +212,8 @@ export default function SystemSection() {
           const st = ScrollTrigger.create({
             trigger: root.current!,
             start: 'top top',
-            end: () => '+=' + window.innerHeight * (isMobile ? 4 : 3.6),
+            // con 3 pasos (antes 5) el recorrido de pin se acorta proporcionalmente
+            end: () => '+=' + window.innerHeight * (isMobile ? 2.6 : 2.2),
             pin: '.system__pin',
             scrub: 0.5,
             anticipatePin: 1,
@@ -232,15 +235,15 @@ export default function SystemSection() {
       <div className="system__pin">
         <div className="system__layout">
           <div className="system__head">
-            <span className="eyebrow system__kicker">El sistema · cómo trabajamos</span>
+            <span className="eyebrow system__kicker">Servicios · lo que hacemos</span>
             <h2 className="system__title">
-              Una grabación <span style={{ color: 'var(--gold)' }}>→</span> un sistema de contenido.
+              Web, video y tráfico <span style={{ color: 'var(--gold)' }}>→</span> un sistema que vende.
             </h2>
           </div>
 
           <div className="system__canvas-wrap">
             <div className="system__halo" />
-            <div className="system__stage" role="img" aria-label="Cada etapa del sistema Kaizen, de la logística a la entrega">
+            <div className="system__stage" role="img" aria-label="Servicios de Kaizen Studios: desarrollo web, producción audiovisual y tráfico">
               {SCENES.map((Scene, i) => (
                 <div className={`scene${i === 0 ? ' is-active' : ''}`} key={STEPS[i].cap}>
                   {ASSETS.hasStageArt ? (

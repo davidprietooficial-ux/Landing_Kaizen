@@ -3,8 +3,8 @@ import Hero from '@/components/Hero'
 import WorkMarquee from '@/components/WorkMarquee'
 import About from '@/components/About'
 import Testimonials from '@/components/Testimonials'
-// Apagadas por ahora (descomenta import + JSX para reactivar):
-// import SystemSection from '@/components/SystemSection'
+import SystemSection from '@/components/SystemSection' // reciclada como "Servicios"
+// Apagada por ahora (descomenta import + JSX para reactivar):
 // import WhyUs from '@/components/WhyUs'
 import Founder from '@/components/Founder'
 import Schedule from '@/components/Schedule'
@@ -34,7 +34,7 @@ export default function Home() {
         <WorkMarquee />
         <About />
         <Testimonials />
-        {/* <SystemSection /> */}
+        <SystemSection />
         {/* <WhyUs /> */}
         <Founder />
         <Schedule />

@@ -14,7 +14,12 @@ export default function WorkMarquee() {
       <div className="marquee__track">
         {items.map((w, i) => (
           <div className="marquee__item" key={`${w.name}-${i}`} aria-hidden={i >= WORK_MARQUEE.length || undefined}>
-            <video src={w.src} autoPlay muted loop playsInline preload="metadata" />
+            {/\.(png|jpe?g|webp|avif)$/i.test(w.src) ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={w.src} alt="" loading="lazy" />
+            ) : (
+              <video src={w.src} autoPlay muted loop playsInline preload="metadata" />
+            )}
           </div>
         ))}
       </div>
