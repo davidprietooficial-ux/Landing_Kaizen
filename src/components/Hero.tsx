@@ -45,6 +45,12 @@ export default function Hero() {
       </div>
 
       <div className="hero__content">
+        <div className="lz-logo hero-anim" aria-label="Kaizen">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="lz-logo__mark" src="/logo/logo-kaizen.png" alt="" width={212} height={212} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="lz-logo__reflejo" src="/logo/logo-kaizen.png" alt="" aria-hidden width={212} height={212} />
+        </div>
         <span className="mono hero-anim">{SITE.name}</span>
         <h1 className="hero__title hero-anim">
           <span className="lt">Webs que venden.</span>

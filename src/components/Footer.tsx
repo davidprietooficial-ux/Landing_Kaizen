@@ -18,6 +18,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
+            {/* isotipo en versión plana (sin reflejo) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="lz-logo--flat" src="/logo/logo-kaizen.png" alt="" width={212} height={212} />
             <div className="iso">
               <Logo size={20} />
               <span className="iso__studios">STUDIOS</span>

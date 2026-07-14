@@ -758,6 +758,7 @@ section[id] { scroll-margin-top: 80px; }
 @media (max-width: 760px) {
   .footer__grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
   .footer__brand .iso { justify-content: center; }
+  .footer__brand .lz-logo--flat { margin-left: auto; margin-right: auto; }
   .footer__brand p { margin-left: auto; margin-right: auto; }
   .footer__socials { align-items: center; }
   .footer__col a { margin-left: auto; margin-right: auto; }
@@ -788,6 +789,8 @@ section[id] { scroll-margin-top: 80px; }
   /* hero a pantalla completa: respeta el header arriba y la flecha abajo.
      Más padding arriba que abajo = el bloque central queda un poco más abajo del centro. */
   .hero { padding: calc(var(--header-h) + 38px) 0 72px; }
+  .lz-logo { width: 64px; height: 64px; }
+  .lz-logo__mark, .lz-logo__reflejo { border-radius: 13px; }
   .hero__title { margin: .9rem 0 1rem; font-size: clamp(1.9rem, 7.6vw, 2.45rem); }
   /* CTAs en columna y más compactos */
   .hero__actions { margin-top: 1.25rem; gap: .65rem; flex-direction: column; align-items: center; }
@@ -805,4 +808,42 @@ section[id] { scroll-margin-top: 80px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ── Isotipo dorado con reflejo tipo espejo de agua ── */
+.lz-logo {
+  position: relative;
+  width: 88px;   /* tamaño del logo: cambia estos dos valores juntos */
+  height: 88px;
+  margin: 0 auto 1.25rem;
+}
+.lz-logo__mark,
+.lz-logo__reflejo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px; /* si agrandas el logo, sube esto en proporción (~21% del ancho) */
+}
+.lz-logo__mark {
+  box-shadow: 0 10px 30px rgba(200, 164, 90, 0.35); /* resplandor dorado */
+}
+/* El reflejo está volteado con scaleY(-1) y la máscara se voltea con él:
+   por eso el gradiente va "to top", para que lo visible quede PEGADO al
+   logo y se desvanezca hacia abajo (al revés queda una mancha suelta). */
+.lz-logo__reflejo {
+  top: 100%;
+  margin-top: 4px;
+  transform: scaleY(-1);
+  opacity: 0.22;
+  filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 55%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 55%);
+}
+/* Versión plana del isotipo (sin reflejo) — p. ej. footer */
+.lz-logo--flat {
+  width: 48px; height: 48px; border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(200, 164, 90, .3);
+  margin-bottom: 14px;
 }
