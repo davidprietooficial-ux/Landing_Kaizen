@@ -1,6 +1,5 @@
 import { SITE, CONTACT, SOCIAL } from '@/lib/config'
 import { Instagram, Youtube, /* Linkedin, */ Mail } from './Icons'
-import Logo from './Logo'
 
 const SOCIALS = [
   // --- LinkedIn oculto temporalmente (descomenta para reactivar) ---
@@ -18,13 +17,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            {/* isotipo en versión plana (sin reflejo) */}
+            {/* isotipo en versión plana (sin reflejo) — sin lockup de texto */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="lz-logo--flat" src="/logo/logo-kaizen.png" alt="" width={212} height={212} />
-            <div className="iso">
-              <Logo size={20} />
-              <span className="iso__studios">STUDIOS</span>
-            </div>
+            <img className="lz-logo--flat" src="/logo/logo-kaizen.png" alt="Kaizen Studios" width={212} height={212} />
             <p>{SITE.tagline} Calidad de cine en cada pieza, sistematizado.</p>
           </div>
 
