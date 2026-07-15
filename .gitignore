@@ -34,6 +34,14 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# MCP: contiene el token del Private Integration de GHL — NUNCA subir
+.mcp.json
+
+# pnpm: el proyecto usa npm. Estos archivos hacen que el build (Hostinger/Vercel)
+# detecte pnpm por error y rompa la consistencia (p.ej. el override de postcss).
+/pnpm-lock.yaml
+/pnpm-workspace.yaml
+
 # vercel
 .vercel
 
@@ -46,3 +54,4 @@ next-env.d.ts
 /public/img/david-retrato.png
 /public/img/agenda-popup.png
 /public/img/agenda.png
+/public/img/jennifer-retrato.jpeg
