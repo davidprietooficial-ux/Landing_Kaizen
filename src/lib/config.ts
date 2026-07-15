@@ -19,7 +19,7 @@ export const SITE = {
 
 // Solo correo como canal de contacto por ahora (teléfono/WhatsApp desactivados).
 export const CONTACT = {
-  email: 'kaisenpoststudio@gmail.com',
+  email: 'hola@kaizenvisualstudio.com',
 }
 
 // Redes de Kaizen Studios (deja '' lo que no exista)
@@ -46,7 +46,16 @@ export const TEAM: { name: string; role: string; photo?: string; pos?: string; s
   { name: 'Juan Guzmán', role: 'Filmmaker y editor', photo: '/img/team-2.webp', pos: '50% 26%', social: 'https://www.instagram.com/juanfilmmaker377/' },
 ]
 
-// URL de Calendly de la llamada de cierre (vacío = muestra fallback con CTA a correo)
+// Formulario de captación EMBEBIDO desde GoHighLevel (iframe).
+// Pega aquí la URL "widget/form/…" del embed de GHL. Vacío = placeholder reservado.
+// GHL maneja todo dentro del iframe: preguntas, calificación y agenda (calendario GHL).
+// ⚠️ De prueba por ahora — reemplazar por el formulario definitivo cuando esté listo.
+export const GHL_FORM_EMBED = 'https://app.kaizenvisualstudio.com/widget/form/Dl5L7VkN1rwXgLdHKkDC'
+// Script oficial de GHL que auto-ajusta el alto del iframe (mismo dominio que el embed).
+export const GHL_FORM_SCRIPT = 'https://app.kaizenvisualstudio.com/js/form_embed.js'
+
+// URL de Calendly (legado). Ya no se usa en la landing: la agenda vive dentro del
+// formulario de GHL. Se deja por referencia; se puede borrar cuando GHL esté activo.
 export const CALENDLY_URL = 'https://calendly.com/kaisenpoststudio/30min'
 
 // Métricas reales. value: null muestra "—" + "por confirmar". No inventar.

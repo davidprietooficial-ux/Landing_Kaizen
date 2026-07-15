@@ -665,6 +665,18 @@ section[id] { scroll-margin-top: 80px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 
+/* Formulario embebido de GoHighLevel (o su placeholder mientras se conecta) */
+.ghl-embed { margin-top: 1.4rem; }
+.ghl-embed iframe { display: block; width: 100%; height: 745px; min-height: 745px; border: 0; border-radius: 12px; background: var(--bg); }
+.ghl-embed--placeholder {
+  display: grid; place-items: center; align-content: center; gap: 10px; text-align: center;
+  min-height: 420px; padding: 32px 24px; border: 1px dashed var(--border2); border-radius: 12px;
+  background: repeating-linear-gradient(45deg, var(--bg2), var(--bg2) 12px, var(--bg) 12px, var(--bg) 24px);
+}
+.ghl-embed--placeholder .mono { color: var(--gold); font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+.ghl-embed--placeholder p { color: var(--muted); font-size: .9rem; line-height: 1.55; max-width: 34ch; }
+.ghl-embed--placeholder code { font-family: var(--mono); color: var(--text); background: var(--bg3); padding: 1px 5px; border-radius: 4px; font-size: .82em; }
+
 .schedule__banner {
   display: flex; align-items: center; gap: 10px; margin-top: 14px;
   padding: 12px 16px; border: 1px solid var(--gold-dim); border-radius: 10px;
