@@ -47,10 +47,10 @@ export const TEAM: { name: string; role: string; photo?: string; pos?: string; s
 ]
 
 // Formulario de captación EMBEBIDO desde GoHighLevel (iframe).
-// Pega aquí la URL "widget/form/…" del embed de GHL. Vacío = placeholder reservado.
+// Es una Encuesta (Survey), no un Form: es el único tipo de GHL con pasos
+// multi-página nativos. Pega aquí la URL "widget/survey/…" del embed. Vacío = placeholder reservado.
 // GHL maneja todo dentro del iframe: preguntas, calificación y agenda (calendario GHL).
-// ⚠️ De prueba por ahora — reemplazar por el formulario definitivo cuando esté listo.
-export const GHL_FORM_EMBED = 'https://app.kaizenvisualstudio.com/widget/form/Dl5L7VkN1rwXgLdHKkDC'
+export const GHL_FORM_EMBED = 'https://app.kaizenvisualstudio.com/widget/survey/TTvaI20tPR7vZJzTEn2E'
 // Script oficial de GHL que auto-ajusta el alto del iframe (mismo dominio que el embed).
 export const GHL_FORM_SCRIPT = 'https://app.kaizenvisualstudio.com/js/form_embed.js'
 

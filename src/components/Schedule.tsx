@@ -2,7 +2,8 @@ import Script from 'next/script'
 import { GHL_FORM_EMBED, GHL_FORM_SCRIPT } from '@/lib/config'
 import { Check, Lock } from './Icons'
 
-// Id del formulario = último segmento de la URL del embed (lo usa el script de GHL para el auto-resize).
+// Id de la encuesta = último segmento de la URL del embed. El script de auto-resize
+// de GHL empareja el iframe por este id (sin prefijo "inline-": eso es solo para Forms).
 const GHL_FORM_ID = GHL_FORM_EMBED ? GHL_FORM_EMBED.split('?')[0].split('/').pop() : ''
 
 const POINTS = [
@@ -22,7 +23,8 @@ export default function Schedule() {
             <h2 style={{ fontSize: 'clamp(2rem,4vw,2.9rem)', margin: '1rem 0 .6rem' }}>¡Agenda tu llamada!</h2>
 
             <p className="lead">
-              30 minutos donde sales con un plan claro para conseguir más clientes y podemos empezar a trabajar juntos.
+              No trabajamos con todo el mundo, y eso es bueno para ti. Cuéntanos de tu negocio y, si encajamos,
+              agendamos tu llamada al instante.
             </p>
 
             {/* Imagen: render 3D dorado (calendario + reloj) flotando sobre el fondo. */}
@@ -50,21 +52,13 @@ export default function Schedule() {
               El formulario, la calificación y la agenda viven DENTRO de este iframe,
               todo generado y gestionado en GHL. Aquí solo reservamos el espacio. */}
           <div className="qualify-card">
-            <h3 className="qualify-card__title">Reserva tu plaza</h3>
-            <p className="qualify-card__sub">
-              No trabajamos con todo el mundo, y eso es bueno para ti. Cuéntanos de tu negocio y, si encajamos,
-              agendamos tu llamada al instante.
-            </p>
-
             {GHL_FORM_EMBED ? (
               <div className="ghl-embed">
                 <iframe
                   src={GHL_FORM_EMBED}
                   title="Formulario de contacto · Kaizen Studios"
-                  id={`inline-${GHL_FORM_ID}`}
-                  data-layout="{'id':'INLINE'}"
-                  data-form-id={GHL_FORM_ID}
-                  data-form-name="Kaizen · Agendar"
+                  id={GHL_FORM_ID}
+                  scrolling="no"
                   loading="lazy"
                 />
                 {GHL_FORM_SCRIPT && <Script src={GHL_FORM_SCRIPT} strategy="lazyOnload" />}
