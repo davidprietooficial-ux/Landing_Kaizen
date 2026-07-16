@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { setLenis } from '@/lib/scroll'
+import { setLenis, scrollToId } from '@/lib/scroll'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -21,6 +21,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true })
     setLenis(lenis)
     lenis.on('scroll', ScrollTrigger.update)
+
+    // Lenis toma el control del scroll antes de que el navegador salte al ancla
+    // nativo — sin esto, aterrizar en ej. "/#agendar" desde otra página deja la
+    // vista arriba del todo, ignorando el hash.
+    const hash = window.location.hash.slice(1)
+    if (hash) scrollToId(hash)
 
     const raf = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(raf)
