@@ -630,7 +630,10 @@ section[id] { scroll-margin-top: 80px; }
 
 /* ───────────────────────── schedule (sección 6) ───────────────────────── */
 .schedule { background: linear-gradient(180deg, var(--bg), var(--bg2)); }
-.schedule__grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(28px, 5vw, 56px); align-items: stretch; }
+/* align-items: start (no stretch) — la tarjeta del formulario ya no se infla hasta
+   igualar la altura de la izquierda (imagen + puntos); toma solo la altura real
+   de la encuesta, que ahora es mucho más corta por venir paginada en pasos. */
+.schedule__grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
 .schedule__left { display: flex; flex-direction: column; }
 .schedule__points { display: grid; gap: 12px; margin-top: 1.6rem; list-style: none; }
 /* Banner del calendario: SIN caja — el render flota sobre el fondo, como "El sistema".
@@ -656,18 +659,25 @@ section[id] { scroll-margin-top: 80px; }
 .schedule__points .ic { color: var(--gold); flex: none; margin-top: 3px; }
 
 .qualify-card {
-  border: 1px solid var(--border2); border-radius: 16px; padding: clamp(20px, 3vw, 30px);
-  background: linear-gradient(180deg, var(--bg2), var(--bg));
+  border: 1px solid var(--border2); border-radius: 16px; padding: clamp(6px, 1vw, 10px);
+  /* Plano y del mismo tono que el iframe de GHL: cualquier degradado deja un
+     escalón visible contra el formulario, que es #0c0c0a sólido. */
+  background: var(--bg);
 }
-.qualify-card__title { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; }
-.qualify-card__sub { color: var(--muted); font-size: .92rem; margin-top: 6px; line-height: 1.5; }
 .qualify-form { display: grid; gap: 14px; margin-top: 1.4rem; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 
-/* Formulario embebido de GoHighLevel (o su placeholder mientras se conecta) */
-.ghl-embed { margin-top: 1.4rem; }
-.ghl-embed iframe { display: block; width: 100%; height: 745px; min-height: 745px; border: 0; border-radius: 12px; background: var(--bg); }
+/* Formulario embebido de GoHighLevel (o su placeholder mientras se conecta).
+   Sin margin-top: ya no hay título/subtítulo arriba que separar — el padding
+   de .qualify-card es todo el aire que necesita. */
+.ghl-embed { margin-top: 0; }
+/* height: solo el primer pintado, antes de que corra el script de auto-resize de GHL
+   (fija un style.height inline por postMessage con cada cambio de paso, y ese gana
+   sobre esta propiedad). min-height casi a cero a propósito: el script NO toca
+   min-height, así que si lo dejamos alto le pone un piso a pasos cortos y deja
+   hueco vacío debajo del contenido real — justo lo que pasaba con 320px. */
+.ghl-embed iframe { display: block; width: 100%; height: 480px; min-height: 60px; border: 0; border-radius: 12px; background: var(--bg); transition: height .25s ease; }
 .ghl-embed--placeholder {
   display: grid; place-items: center; align-content: center; gap: 10px; text-align: center;
   min-height: 420px; padding: 32px 24px; border: 1px dashed var(--border2); border-radius: 12px;
