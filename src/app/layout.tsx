@@ -43,6 +43,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es" className={`${syne.variable} ${dmSans.variable} ${dmMono.variable}`}>
       <head>
+        {/* El formulario embebido de GHL tarda en aparecer porque el navegador recién
+            arranca el DNS+TLS con app.kaizenvisualstudio.com cuando el iframe entra al
+            viewport. Con preconnect, esa conexión ya está lista de antemano. */}
+        <link rel="preconnect" href="https://app.kaizenvisualstudio.com" />
+        <link rel="dns-prefetch" href="https://app.kaizenvisualstudio.com" />
         {/* Sin JS: revela el contenido animado para que nada quede invisible */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
