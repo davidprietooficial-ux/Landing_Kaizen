@@ -671,13 +671,26 @@ section[id] { scroll-margin-top: 80px; }
 /* Formulario embebido de GoHighLevel (o su placeholder mientras se conecta).
    Sin margin-top: ya no hay título/subtítulo arriba que separar — el padding
    de .qualify-card es todo el aire que necesita. */
-.ghl-embed { margin-top: 0; }
-/* height: solo el primer pintado, antes de que corra el script de auto-resize de GHL
-   (fija un style.height inline por postMessage con cada cambio de paso, y ese gana
-   sobre esta propiedad). min-height casi a cero a propósito: el script NO toca
-   min-height, así que si lo dejamos alto le pone un piso a pasos cortos y deja
-   hueco vacío debajo del contenido real — justo lo que pasaba con 320px. */
-.ghl-embed iframe { display: block; width: 100%; height: 480px; min-height: 60px; border: 0; border-radius: 12px; background: var(--bg); transition: height .25s ease; }
+.ghl-embed { position: relative; margin-top: 0; }
+/* Altura SIEMPRE reservada. La visibilidad del formulario NO puede depender del
+   script de auto-resize de GHL: en conexiones lentas su postMessage llega tarde
+   o se pierde y el iframe se quedaba en el min-height (~60px) = caja vacía → lead
+   perdido. Este piso garantiza un formulario usable pase lo que pase; el script
+   solo CRECE el iframe para pasos más altos (su style.height inline gana sobre
+   `height`, pero nunca baja de `min-height`). Un poco de aire bajo un paso corto
+   es preferible a un formulario invisible. Ajusta estos px si sobra/falta alto.
+   Fondo transparente: mientras GHL carga se ve el esqueleto de abajo; al pintar
+   su propio fondo, GHL lo tapa (sin depender de JS). */
+.ghl-embed iframe { position: relative; z-index: 1; display: block; width: 100%; height: 560px; min-height: 560px; border: 0; border-radius: 12px; background: transparent; transition: height .25s ease; }
+@media (max-width: 640px) { .ghl-embed iframe { height: 680px; min-height: 680px; } }
+/* Esqueleto detrás del iframe: estado de carga + respaldo si GHL nunca llega. */
+.ghl-embed__skeleton { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; align-content: center; gap: 14px; padding: 24px; text-align: center; border-radius: 12px; background: var(--bg); }
+.ghl-embed__spinner { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--border2); border-top-color: var(--gold); animation: ghl-spin .8s linear infinite; }
+.ghl-embed__skeleton .mono { color: var(--muted2); font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+.ghl-embed__fallback { color: var(--muted); font-size: .82rem; text-decoration: underline; text-underline-offset: 3px; }
+.ghl-embed__fallback:hover { color: var(--gold); }
+@keyframes ghl-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ghl-embed__spinner { animation: none; } }
 .ghl-embed--placeholder {
   display: grid; place-items: center; align-content: center; gap: 10px; text-align: center;
   min-height: 420px; padding: 32px 24px; border: 1px dashed var(--border2); border-radius: 12px;

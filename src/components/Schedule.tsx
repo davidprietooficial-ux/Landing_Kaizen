@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { GHL_FORM_EMBED, GHL_FORM_SCRIPT } from '@/lib/config'
+import { GHL_FORM_EMBED, GHL_FORM_SCRIPT, CONTACT } from '@/lib/config'
 import { Check, Lock } from './Icons'
 
 // Id de la encuesta = último segmento de la URL del embed. El script de auto-resize
@@ -54,18 +54,26 @@ export default function Schedule() {
           <div className="qualify-card">
             {GHL_FORM_EMBED ? (
               <div className="ghl-embed">
-                {/* SIN loading="lazy": el iframe se carga de inmediato. Es el elemento
-                    de conversión y, diferido, competía con el script de auto-resize y
-                    dejaba el iframe a la altura fija del CSS (encuesta recortada/en blanco). */}
+                {/* Esqueleto DETRÁS del iframe: se ve mientras GHL carga y queda como
+                    respaldo si nunca llega. No depende de JS ni del timing del resize:
+                    el iframe es transparente hasta que GHL pinta su fondo y lo tapa. */}
+                <div className="ghl-embed__skeleton" aria-hidden="true">
+                  <span className="ghl-embed__spinner" />
+                  <span className="mono">Cargando formulario…</span>
+                  <a className="ghl-embed__fallback" href={`mailto:${CONTACT.email}`}>
+                    ¿Tarda demasiado? Escríbenos a {CONTACT.email}
+                  </a>
+                </div>
+                {/* SIN loading="lazy" (es el elemento de conversión: carga ya) y CON una
+                    altura fija de respaldo en CSS: la visibilidad NO depende del resize.
+                    El script de GHL solo crece el iframe para pasos más altos. */}
                 <iframe
                   src={GHL_FORM_EMBED}
                   title="Formulario de contacto · Kaizen Studios"
                   id={GHL_FORM_ID}
-                  scrolling="no"
                 />
                 {/* afterInteractive (no lazyOnload): el listener de postMessage que ajusta
-                    la altura debe existir ANTES de que el iframe reporte su tamaño. Con
-                    lazyOnload arrancaba tarde y a veces perdía ese mensaje → "no carga". */}
+                    la altura debe existir ANTES de que el iframe reporte su tamaño. */}
                 {GHL_FORM_SCRIPT && <Script src={GHL_FORM_SCRIPT} strategy="afterInteractive" />}
               </div>
             ) : (
