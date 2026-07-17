@@ -36,7 +36,7 @@ export const HERO = {
    * ícono de play. Recomendado: showreel de 30–45s.
    */
   video: {
-    src: 'https://www.youtube.com/embed/t6QTVMrfO9U',
+    src: 'https://assets.cdn.filesafe.space/zZP894o7LdjyqMTOS0m1/media/6a59ab7c9c9b37b5fd6290c1.mp4',
     poster: '',
     titulo: 'Showreel — 30 a 45s',
   },
