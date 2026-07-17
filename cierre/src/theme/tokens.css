@@ -1,0 +1,66 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   TOKENS DE MARCA — Kaizen Studios
+   Fuente de verdad: Kaizen_Brand_Guidelines_v1.html (v1.0, Jun 2026).
+   No introducir colores ni fuentes fuera de este archivo.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Fondos (modo oscuro = interno + lienzo de presentacion) */
+  --bg: #0c0c0a;
+  --bg2: #131311;
+  --bg3: #1c1c19;
+  --bg4: #222220;
+
+  /* Oro — unico acento presente en ambos modos */
+  --gold: #c8a45a;
+  --gold2: #e8c97a;
+  --gold-dim: #7a5a28;
+
+  /* Estados semanticos (no decorativos) */
+  --teal: #2ec4a0;
+  --teal-dim: #1a7060;
+  --coral: #e06b4a;
+  --coral-dim: #8a3820;
+  --purple: #a080e0;
+  --purple-dim: #5040a0;
+  --red: #e04040;
+  --red-dim: #802020;
+  --green: #50c080;
+  --green-dim: #207040;
+
+  /* Texto */
+  --text: #eae6da;
+  --muted: #7a7670;
+  --muted2: #5a5650;
+
+  /* Bordes */
+  --border: rgba(255, 255, 255, 0.06);
+  --border2: rgba(255, 255, 255, 0.12);
+
+  /* Tipografia */
+  --serif: 'Syne', sans-serif; /* titulos 600-800 */
+  --sans: 'DM Sans', sans-serif; /* cuerpo 300-500 */
+  --mono: 'DM Mono', monospace; /* tags/numeros, uppercase + tracking */
+
+  --radius: 8px;
+
+  /* ── Modo claro (Concept Proposal / documentos de cliente) ──
+     Se aplican via [data-mode="light"]. Tokens del manual de marca. */
+  --light-bg: #fafaf8;
+  --light-bg2: #f2f0eb;
+  --light-gold: #8a6520;
+  --light-text: #1a1a17;
+  --light-muted: #6a6660;
+}
+
+/* Cuando un contenedor entra en modo claro (capa C), remapea los tokens base. */
+[data-mode='light'] {
+  --bg: var(--light-bg);
+  --bg2: var(--light-bg2);
+  --bg3: #ffffff;
+  --gold: var(--light-gold);
+  --text: var(--light-text);
+  --muted: var(--light-muted);
+  --border: rgba(0, 0, 0, 0.08);
+  --border2: rgba(0, 0, 0, 0.12);
+}

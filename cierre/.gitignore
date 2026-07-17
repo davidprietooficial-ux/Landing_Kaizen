@@ -1,0 +1,43 @@
+# ── Dependencias / build ──
+node_modules
+dist
+dist-ssr
+*.local
+
+# ── Variables de entorno (NUNCA subir secretos) ──
+.env
+.env.*
+!.env.example
+
+# ── Claves, certificados y credenciales ──
+*.key
+*.pem
+*.p12
+*.pfx
+*.cert
+*.crt
+credentials*.json
+service-account*.json
+gcp-*.json
+*secret*.json
+*-key.json
+
+# ── Despliegue ──
+.vercel
+.netlify
+
+# ── Sistema / logs ──
+.DS_Store
+*.log
+npm-debug.log*
+
+# ── Videos pesados ──
+#    Los originales pesados ya NO viven en el proyecto: están en
+#    ../RESPALDO-videos-pesados/ (fuera del repo, respaldar en disco/Drive).
+#    Aquí solo se admiten previews livianos (<5 MB) en public/marquee/;
+#    los videos completos van en YouTube y se enlazan desde content.ts.
+public/casos/
+public/ejemplos/*.mp4
+public/ejemplos/*.mov
+.env*
+!.env.example

@@ -1,0 +1,1467 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   LIENZO — capa A. Modo oscuro cinematografico. Solo tokens de marca.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.lienzo {
+  --lz-max: 1080px;
+  --lz-pad: clamp(1.25rem, 5vw, 4rem);
+  width: 100%;
+}
+
+/* Tipografia base de titulos del lienzo */
+.lz-h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  max-width: 18ch;
+}
+
+.lz-eyebrow,
+.lz-slabel {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+}
+
+.lz-slabel {
+  display: block;
+  margin-bottom: 1.1rem;
+  color: var(--muted);
+}
+
+.lz-lead {
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  color: var(--muted);
+  max-width: 56ch;
+  margin-top: 1.1rem;
+  line-height: 1.65;
+}
+
+.lz-nota {
+  font-size: 0.9rem;
+  color: var(--muted2);
+  font-style: italic;
+  margin-top: 2rem;
+  max-width: 60ch;
+}
+
+/* ── Seccion generica ── */
+.lz-sec {
+  max-width: var(--lz-max);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 11vh, 9rem) var(--lz-pad);
+}
+
+.lz-sec--alt {
+  max-width: none;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
+  border-block: 1px solid var(--border);
+}
+.lz-sec--alt > * {
+  max-width: var(--lz-max);
+  margin-inline: auto;
+}
+
+/* ── S0 · Hero ── */
+.lz-hero {
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  /* Padding vertical mas corto que el horizontal: sube el logo y deja ver el final. */
+  padding: clamp(1.4rem, 4vh, 2.8rem) var(--lz-pad);
+  overflow: hidden;
+}
+.lz-hero__inner {
+  position: relative;
+  z-index: 2;
+  /* Fluido: ocupa el 90% del ancho de la ventana, dejando ~5% de margen a cada
+     lado en cualquier tamaño de pantalla (sin medidas fijas en px). */
+  width: 90vw;
+  max-width: 90vw;
+}
+
+/* ── Logomark: cuadrado dorado con K + reflejo tipo agua ── */
+.lz-logo {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 1rem;
+}
+/* Isotipo dorado (public/logo-kaizen.png): imagen + reflejo invertido. */
+.lz-logo__mark,
+.lz-logo__reflejo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.lz-logo__mark {
+  box-shadow: 0 10px 30px rgba(200, 164, 90, 0.35);
+}
+/* Reflejo invertido debajo, difuminado y desvanecido.
+   OJO: el elemento está volteado con scaleY(-1) y la máscara se voltea con él,
+   así que el gradiente va "to top" para que lo visible quede PEGADO al logo
+   y se desvanezca hacia abajo (no al revés). */
+.lz-logo__reflejo {
+  top: 100%;
+  margin-top: 4px;
+  transform: scaleY(-1);
+  opacity: 0.22;
+  filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 55%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 55%);
+}
+.lz-hero__gancho {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4.6vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-top: 1.6rem;
+  text-wrap: balance;
+  /* Palabras siempre enteras (sin guiones a mitad de palabra); solo parte
+     una palabra como ultimo recurso si no cabe, nunca se corta el texto. */
+  overflow-wrap: break-word;
+  hyphens: manual;
+  background: linear-gradient(180deg, var(--text) 30%, var(--gold) 160%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lz-hero__descriptor {
+  margin: 1.8rem auto 0;
+  /* Mas ancho para que no quede comprimido; ch escala con el texto = responsivo. */
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  line-height: 1.55;
+}
+
+/* ── Bloque de dos columnas: texto a la izquierda, video a la derecha ── */
+.lz-hero__split {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  /* Margen horizontal: separa el bloque texto+video de los bordes de la pantalla. */
+  margin-inline: clamp(0.5rem, 3vw, 3rem);
+  /* Vertical: mas respiro, escala con el alto de pantalla (vh) para llenar mejor. */
+  margin-block: clamp(3.5rem, 9vh, 6.5rem) clamp(2rem, 5vh, 4rem);
+  text-align: left;
+}
+.lz-hero__col-texto {
+  flex: 1 1 0;
+  min-width: 0; /* permite que el texto envuelva sin desbordar la columna */
+}
+.lz-hero__col-texto .lz-hero__gancho {
+  margin-top: 0;
+}
+.lz-hero__col-texto .lz-hero__descriptor {
+  margin: 1.4rem 0 0; /* alineado a la izquierda, llena el ancho de la columna */
+  max-width: none;
+}
+.lz-hero__reunion {
+  margin: 1.4rem auto 0;
+  max-width: 46ch;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+/* Resplandor dorado cinematografico detras del hero */
+.lz-hero__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(60% 50% at 50% 38%, rgba(200, 164, 90, 0.16), transparent 70%),
+    radial-gradient(40% 30% at 50% 100%, rgba(200, 164, 90, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── CTA ── */
+.lz-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 2.4rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bg);
+  background: var(--gold);
+  border-radius: var(--radius);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.lz-cta:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+}
+.lz-cta--ghost {
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--border2);
+}
+.lz-cta--ghost:hover {
+  background: rgba(200, 164, 90, 0.08);
+  border-color: var(--gold-dim);
+}
+.lz-cta--disabled {
+  color: var(--muted);
+  cursor: default;
+  border-style: dashed;
+}
+.lz-cta--disabled:hover {
+  background: transparent;
+  border-color: var(--border2);
+}
+.lz-cta__pronto {
+  font-size: 0.7rem;
+  color: var(--muted2);
+}
+
+/* ── S1 · Proceso ── */
+/* Flex centrado (no grid): las filas incompletas quedan CENTRADAS — nunca un
+   paso suelto pegado a la izquierda. El ancho de card se fija por breakpoint. */
+.lz-pasos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+/* Escritorio: los 5 pasos en una sola fila. */
+.lz-pasos > .lz-paso {
+  flex: 0 1 calc((100% - 4 * 1.2rem) / 5);
+}
+/* Tablet: 3 arriba + 2 abajo, todos del mismo ancho (más anchos) y centrados. */
+@media (max-width: 1024px) {
+  .lz-pasos > .lz-paso {
+    flex-basis: calc((100% - 2 * 1.2rem) / 3);
+  }
+}
+/* Móvil: 2 por fila; el impar queda centrado. */
+@media (max-width: 620px) {
+  .lz-pasos > .lz-paso {
+    flex-basis: calc((100% - 1.2rem) / 2);
+    min-width: 150px;
+  }
+}
+.lz-paso {
+  padding: 1.8rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-top: 2px solid var(--gold-dim);
+}
+.lz-paso__n {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+/* Arte 3D sobre cada paso (PNG transparente) o emoji grande de respaldo. */
+.lz-paso__art {
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+.lz-paso__img {
+  max-height: 96px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(200, 164, 90, 0.25));
+}
+.lz-paso__emoji-big {
+  font-size: 3.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+}
+.lz-paso__t {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0.7rem 0 0.6rem;
+  color: var(--text);
+  /* Palabras largas ("construcción") se parten con guion antes que desbordar. */
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.lz-paso__d {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Proceso ("Como trabajamos"): mismos margenes que "Lo que incluye" — la seccion
+   ocupa todo el ancho y su contenido se topa a --lz-max (1080) centrado (el padding
+   queda por fuera, no come ancho). Esto ademas hace que el titulo .lz-h2 use el
+   ancho completo igual que alla (su tope 18ch queda anulado por #proceso > *). */
+#proceso {
+  max-width: none;
+}
+#proceso > * {
+  max-width: var(--lz-max);
+  margin-inline: auto;
+}
+
+/* ── S2 · Promesa ── */
+.lz-promesa__cab {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.lz-promesa__cab--si {
+  color: var(--green);
+  /* auto en los lados: se alinea con la columna centrada (titulo/parrafo/grid),
+     antes el 0 la empujaba fuera del margen izquierdo. */
+  margin: 2.6rem auto 1.1rem;
+}
+.lz-promesa__cab--no {
+  color: var(--coral);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Garantías: 4 por fila en escritorio; en pantallas menores se reacomodan solas
+   (el min-width hace de punto de quiebre) y las filas incompletas quedan
+   CENTRADAS con el mismo ancho que las demás — nunca pegadas a la izquierda. */
+.lz-garantias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.lz-garantias > .lz-gar {
+  flex: 0 1 calc((100% - 3 * 1rem) / 4);
+  min-width: min(220px, 100%);
+}
+.lz-gar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* permite que la tarjeta se encoja sin empujar el grid fuera */
+  padding: 1.4rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--green);
+  border-radius: var(--radius);
+}
+.lz-gar__check {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(80, 192, 128, 0.14);
+  color: var(--green);
+  font-size: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+.lz-gar__texto {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.lz-gar__impacto {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.5;
+  flex: 1;
+}
+.lz-gar__fuente {
+  align-self: flex-start;
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  border-radius: 4px;
+  padding: 0.12rem 0.4rem;
+  transition: background 0.16s ease;
+}
+.lz-gar__fuente:hover {
+  background: rgba(200, 164, 90, 0.12);
+}
+
+/* Cierre: "no garantizamos" (compacto) unido al bloque "por qué importa" */
+.lz-cierre {
+  margin-top: 2.4rem;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.lz-nogar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 1.4rem;
+  padding: 1.1rem 1.6rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  border-left: 2px solid var(--coral-dim);
+}
+.lz-nogar__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+.lz-nogar__item {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.lz-nogar__item::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  color: var(--coral);
+  font-size: 0.72rem;
+}
+
+/* Bloque "por qué importa" — argumento de venta de la consistencia */
+.lz-porque {
+  padding: 1.8rem 2rem;
+  background: linear-gradient(135deg, rgba(200, 164, 90, 0.1), rgba(200, 164, 90, 0.02));
+}
+.lz-porque__t {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--gold2);
+  margin-bottom: 0.7rem;
+}
+.lz-porque__d {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 70ch;
+}
+
+/* ── S3 · Casos ── */
+.lz-casos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 3rem 0 2.4rem;
+}
+.lz-caso {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.lz-caso:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+}
+.lz-caso__img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+}
+.lz-caso__img--vacio {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg3),
+    var(--bg3) 12px,
+    var(--bg2) 12px,
+    var(--bg2) 24px
+  );
+}
+.lz-caso__ph {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+.lz-caso__tag {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(12, 12, 10, 0.7);
+  padding: 0.3rem 0.55rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.lz-caso__body {
+  padding: 1.4rem;
+}
+.lz-caso__cliente {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lz-caso__t {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0.5rem 0 0.5rem;
+  color: var(--text);
+}
+.lz-caso__r {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ── S4 · Catálogo ── */
+.lz-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* botones centrados dentro de la columna */
+  gap: 0.6rem;
+  /* auto a los lados: alinea la barra con el titulo y los paquetes (columna 1080). */
+  margin: 2.4rem auto 2rem;
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  background: linear-gradient(180deg, var(--bg2) 70%, transparent);
+  z-index: 5;
+}
+/* Sub-pestañas (categorías de add-ons): sin sticky, más compactas y en
+   NARANJA — se lee claramente que son un sub-nivel del dorado principal. */
+.lz-tabs--sub {
+  position: static;
+  margin: 0 auto 1.6rem;
+  padding: 0;
+  background: none;
+}
+.lz-tabs--sub .lz-tab {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.9rem;
+}
+.lz-tabs--sub .lz-tab--on {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--bg);
+}
+/* Servicio "Próximamente": visible pero inaccesible. */
+.lz-tab--off,
+.lz-tab--off:hover {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.lz-tab__pronto {
+  margin-left: 0.45rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+/* Oferta de un servicio principal: una tarjeta, un solo pago. */
+.lz-oferta {
+  max-width: 760px;
+  margin: 1.6rem auto 0;
+  padding: 1.9rem 2rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold-dim);
+  border-radius: var(--radius);
+}
+.lz-oferta__t {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 0 0 0.9rem;
+  color: var(--text);
+}
+/* Columnas de precio lado a lado (servicio | mantenimiento / solo tráfico). */
+.lz-oferta__precios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1.2rem;
+}
+.lz-oferta__col {
+  padding: 1rem 1.2rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.lz-oferta__clabel {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.4rem;
+}
+.lz-oferta__precio {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+.lz-oferta__mant {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+.lz-oferta__lista {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.3rem 0 0;
+  padding: 0;
+}
+.lz-oferta__lista li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.lz-oferta__lista li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  color: var(--gold);
+}
+.lz-oferta__entrega {
+  margin: 1.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.lz-oferta__nota {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+/* Apartado explicativo al pie (ej. instalación vs mantenimiento). */
+.lz-oferta__apartado {
+  margin: 1.3rem 0 0;
+  padding: 1rem 1.2rem;
+  background: var(--bg2);
+  border-left: 2px solid var(--gold-dim);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+.lz-tab {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+.lz-tab:hover {
+  color: var(--text);
+  border-color: var(--gold-dim);
+}
+.lz-tab--on {
+  color: var(--bg);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.lz-grupo {
+  margin-top: 2.6rem;
+}
+.lz-grupo__cab {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+.lz-grupo__t {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+.lz-grupo__nota {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.lz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+.lz-srv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+.lz-srv:hover {
+  transform: translateY(-3px);
+  border-color: var(--border2);
+}
+.lz-srv--destacado {
+  border-color: var(--gold-dim);
+  background: linear-gradient(180deg, var(--bg3), var(--bg2));
+}
+.lz-srv__badge {
+  position: absolute;
+  top: -0.7rem;
+  right: 1rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 0.28rem 0.6rem;
+  border-radius: 4px;
+}
+.lz-srv__badge--premium {
+  background: var(--purple);
+  color: var(--text);
+}
+.lz-srv__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.lz-srv__t {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+.lz-srv__pack {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+.lz-srv__d {
+  flex: 1;
+  margin: 0.7rem 0 1.2rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.lz-srv__pie {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.lz-srv__precio {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--text);
+}
+.lz-srv__precio em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lz-srv__ahorro {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  text-align: right;
+}
+
+/* ── Pie ── */
+.lz-pie {
+  max-width: var(--lz-max);
+  margin: 0 auto;
+  padding: 4rem var(--lz-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+/* Isotipo en el pie (reemplaza el wordmark de texto). */
+.lz-pie__logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  box-shadow: 0 8px 26px rgba(200, 164, 90, 0.3);
+  margin-bottom: 0.4rem;
+}
+.lz-pie__firma {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lz-pie__nota {
+  font-size: 0.8rem;
+  color: var(--muted2);
+  max-width: 50ch;
+}
+
+/* ── Video slot (hero, casos, ejemplos) ── */
+.lz-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+.lz-video--vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg3),
+    var(--bg3) 14px,
+    var(--bg2) 14px,
+    var(--bg2) 28px
+  );
+}
+/* Fachada de YouTube: miniatura + botón de play propio (sin interfaz de YouTube). */
+.lz-video--yt {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  appearance: none;
+}
+.lz-video--yt:hover .lz-video__play,
+.lz-video--yt:focus-visible .lz-video__play {
+  transform: scale(1.1);
+}
+.lz-video__play {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 1.2rem;
+  padding-left: 4px;
+  box-shadow: 0 6px 24px rgba(200, 164, 90, 0.35);
+  transition: transform 0.16s ease;
+}
+.lz-video__label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Carrusel infinito de webs (bloque 1 de "Lo que hemos hecho") ──
+   El track lleva el set duplicado y anima de 0 a -50%: al terminar un ciclo el
+   segundo set queda donde empezó el primero → loop sin salto. La duración es
+   POR CICLO: si agregas más cards, sube los segundos para mantener velocidad. */
+.lz-marquee {
+  overflow: hidden;
+  /* Full-bleed: se sale del ancho de la sección hasta los bordes de la ventana. */
+  margin: 0.4rem calc(50% - 50vw) 3.2rem;
+}
+.lz-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: lz-marquee-scroll 60s linear infinite;
+}
+.lz-marquee__item {
+  flex: none;
+  height: min(380px, 48svh);
+  margin: 0 0.75rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+.lz-marquee__item video,
+.lz-marquee__item img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: cover;
+}
+@keyframes lz-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (max-width: 768px) {
+  .lz-marquee__item {
+    height: min(240px, 40svh);
+  }
+  .lz-marquee__track {
+    animation-duration: 20s;
+  }
+}
+/* Accesibilidad: usuarios que piden menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .lz-marquee__track {
+    animation: none;
+  }
+}
+
+/* ── Carrusel manual de videos (bloque 2 de "Lo que hemos hecho") ──
+   Mismo look que el carrusel de webs: full-bleed, misma altura, borde y
+   sombra por card. Scroll con snap al centro; las flechas (centradas abajo)
+   desplazan un video por clic y lo dejan centrado. Los shorts (9:16)
+   conviven con los horizontales (16:9) a la misma altura. */
+.lz-vcar {
+  /* Full-bleed: se sale del ancho de la sección hasta los bordes de la ventana. */
+  margin: 0.4rem calc(50% - 50vw) 3.2rem;
+}
+.lz-vcar__viewport {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Sin padding lateral: el bucle (3 copias del set) elimina los "huecos". */
+  padding: 0.2rem 0 0.6rem;
+  scrollbar-width: none;
+}
+.lz-vcar__viewport::-webkit-scrollbar {
+  display: none;
+}
+.lz-vcar__item {
+  flex: none;
+  height: min(380px, 48svh);
+  scroll-snap-align: center;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+.lz-vcar__item .lz-video {
+  height: 100%;
+  width: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0;
+}
+.lz-vcar__item--vert .lz-video {
+  aspect-ratio: 9 / 16;
+}
+.lz-vcar__nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+.lz-vcar__nav button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--gold);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    transform 0.16s ease;
+}
+.lz-vcar__nav button:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+  .lz-vcar__item {
+    height: min(240px, 40svh);
+  }
+}
+.lz-hero__video {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 640px;
+  margin: 0;
+}
+
+/* ── Banner de categoría (catálogo) — imagen completa, sin recorte ── */
+.lz-banner {
+  position: relative;
+  margin: 0.5rem auto 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg);
+}
+.lz-banner__img {
+  display: block;
+  width: 100%;
+  height: auto; /* sin recorte: muestra la imagen completa */
+}
+.lz-banner__vacio {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 6;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg3),
+    var(--bg3) 16px,
+    var(--bg2) 16px,
+    var(--bg2) 32px
+  );
+}
+/* Panel derecho: banda vertical a toda la altura, angosta, con el título */
+.lz-banner__panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+.lz-banner__claim {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: clamp(190px, 30%, 320px);
+  padding: 1.4rem clamp(1.2rem, 2.5vw, 1.9rem);
+  /* Capa más transparente: deja ver la imagen por detrás; el desenfoque mantiene
+     el texto legible. */
+  background: rgba(6, 6, 5, 0.4);
+  backdrop-filter: blur(8px);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  line-height: 1.18;
+  color: #ffffff;
+  text-align: right;
+  text-wrap: balance; /* evita palabras solitarias al final de línea */
+}
+.lz-banner__ph {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+
+/* ── Botones clicables (reset sobre tarjetas) ── */
+.lz-srv--btn,
+.lz-caso--btn,
+.lz-paso--btn {
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  color: inherit;
+  appearance: none;
+}
+.lz-paso--btn {
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+.lz-paso--btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-dim);
+}
+.lz-paso--btn:hover .lz-srv__ver,
+.lz-paso--btn:focus-visible .lz-srv__ver {
+  opacity: 1;
+}
+.lz-caso--btn {
+  padding: 0;
+}
+.lz-srv__ver {
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+.lz-srv--btn:hover .lz-srv__ver,
+.lz-srv--btn:focus-visible .lz-srv__ver {
+  opacity: 1;
+}
+.lz-caso__ver {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.lz-caso--btn:hover .lz-caso__ver,
+.lz-caso--btn:focus-visible .lz-caso__ver {
+  opacity: 1;
+}
+
+/* ── Modal / pop-up ── */
+.lz-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(6, 6, 5, 0.78);
+  backdrop-filter: blur(6px);
+  animation: lz-fade 0.18s ease;
+}
+@keyframes lz-fade {
+  from {
+    opacity: 0;
+  }
+}
+.lz-modal__caja {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.lz-modal__caja--ancho {
+  max-width: 920px;
+}
+.lz-modal__cerrar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+.lz-modal__cerrar:hover {
+  background: var(--bg4);
+}
+.lz-modal__t {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0.7rem 0 0.8rem;
+}
+
+/* Pop-up de servicio: info izquierda + ejemplo derecha */
+.lz-mserv {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+}
+.lz-mserv__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+.lz-mserv__sub {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 1.2rem 0 0.7rem;
+}
+.lz-mserv__lista,
+.lz-mserv__proceso {
+  display: grid;
+  gap: 0.6rem;
+  padding-left: 0;
+  list-style: none;
+}
+.lz-mserv__lista li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.lz-mserv__lista li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 0.85rem;
+}
+.lz-mserv__proceso {
+  counter-reset: paso;
+}
+.lz-mserv__proceso li {
+  position: relative;
+  padding-left: 1.9rem;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  counter-increment: paso;
+}
+.lz-mserv__proceso li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 1.3rem;
+  height: 1.3rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+}
+.lz-mserv__precio {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+.lz-mserv__precio em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lz-mserv__ejemplo {
+  align-self: start;
+  position: sticky;
+  top: 0;
+}
+
+/* Pop-up de paso (cómo trabajamos): título emotivo + valor por perfil */
+.lz-mpaso__n {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lz-mpaso__intro {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 0.4rem;
+}
+.lz-mpaso__valor {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+.lz-mpaso__valor li {
+  padding: 0.9rem 1rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--gold-dim);
+}
+.lz-mpaso__perfil {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.lz-mpaso__texto {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+/* "De qué te salvas": lista con ✕ coral (los items reusan .lz-nogar__item). */
+.lz-mpaso__evitas {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+/* El enlace del referente (reusa .lz-gar__fuente) va tras las listas. */
+.lz-mpaso .lz-gar__fuente {
+  display: inline-block;
+  margin-top: 1.1rem;
+}
+
+/* Pop-up de caso: video grande + texto */
+.lz-mcaso {
+  display: grid;
+  gap: 1.6rem;
+}
+.lz-mcaso__detalle {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-top: 0.8rem;
+  max-width: 68ch;
+}
+/* En el modal, el tag va en flujo normal (en la tarjeta sí es flotante). */
+.lz-mcaso__body .lz-caso__tag {
+  position: static;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+/* Caso con video VERTICAL (9:16): texto a la izquierda, video a la derecha en
+   escritorio. El video conserva su forma vertical, sin recorte. */
+.lz-mcaso--vert {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 1.8rem;
+}
+.lz-mcaso--vert .lz-mcaso__body {
+  flex: 1;
+  min-width: 0;
+}
+.lz-mcaso--vert .lz-video {
+  flex-shrink: 0;
+  width: clamp(220px, 34%, 300px);
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+/* En pantallas chicas: el texto va primero (arriba) y el video debajo. */
+@media (max-width: 700px) {
+  .lz-mcaso--vert {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .lz-mcaso--vert .lz-video {
+    width: min(72%, 280px);
+    margin-inline: auto;
+  }
+}
+
+/* ── Responsive ── */
+/* (Las garantias ya son fluidas via auto-fit; no necesitan punto de quiebre.) */
+/* Hero: bajo cierto ancho las dos columnas se apilan y vuelven a centrarse.
+   A 900px ya apila (antes de que la columna quede tan angosta que parta palabras). */
+@media (max-width: 900px) {
+  .lz-hero__split {
+    flex-direction: column;
+    text-align: center;
+  }
+  .lz-hero__col-texto .lz-hero__descriptor {
+    margin-inline: auto;
+    max-width: 60ch;
+  }
+  .lz-hero__video {
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 860px) {
+  .lz-casos {
+    grid-template-columns: 1fr;
+  }
+  .lz-mserv {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+  .lz-mserv__ejemplo {
+    position: static;
+  }
+  .lz-modal__caja {
+    padding: 1.4rem;
+  }
+}
