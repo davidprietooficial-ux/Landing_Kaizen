@@ -13,6 +13,11 @@
 
 import type { Categoria } from '../data/catalog'
 
+// Prefijo hacia /public. Vite lo fija según `base` en vite.config.ts: '/' en
+// dev, '/cierre/' en producción (la landing sirve esta app bajo ese subpath) —
+// sin esto, las rutas absolutas "/archivo.png" ignoran el subpath y dan 404.
+export const PUBLIC = import.meta.env.BASE_URL
+
 // ── S0 · Portada / Hero ──────────────────────────────────────────────────────
 export const HERO = {
   marca: 'Kaizen Studios',
@@ -84,7 +89,7 @@ export const PROCESO: {
       emoji: '🗺️',
       titulo: 'Arranque y plan',
       detalle: 'Onboarding y concept proposal: objetivo, mensaje, guion y plan de trabajo aprobado por ti.',
-      img: '/proceso/01-logistica.png',
+      img: `${PUBLIC}proceso/01-logistica.png`,
       tituloModal: '🗺️ Definimos el plan; tú solo lo apruebas',
       intro:
         'Después de la firma viene el onboarding: una reunión de concept proposal donde aterrizamos objetivo, mensaje, guion y cómo será tu web. Sales sabiendo exactamente qué haremos, cuándo, y qué necesitamos de ti.',
@@ -104,7 +109,7 @@ export const PROCESO: {
       emoji: '🎥',
       titulo: 'Grabación',
       detalle: 'Una sola jornada de rodaje con dirección, cámara y luz de cine. De aquí sale todo el material.',
-      img: '/proceso/02-grabacion.png',
+      img: `${PUBLIC}proceso/02-grabacion.png`,
       tituloModal: '🎥 El día de grabación, sin estrés y sin improvisar',
       intro:
         'Llegamos con todo listo. Tú te enfocas en estar bien frente a cámara; nosotros, en que cada toma sea de cine. De esta jornada sale el material de tu web y de tus anuncios.',
@@ -124,7 +129,7 @@ export const PROCESO: {
       emoji: '💻',
       titulo: 'Edición y construcción de tu web',
       detalle: 'Editamos con estándar de cine y construimos tu landing a medida — nada de plantillas.',
-      img: '/proceso/06-web.png',
+      img: `${PUBLIC}proceso/06-web.png`,
       tituloModal: '💻 Tu web cobra vida, con video de cine integrado',
       intro:
         'Mientras el material pasa por edición, color y audio profesional, construimos tu landing con la misma tecnología de las startups más exigentes (Next.js/React): veloz, medible y diseñada para convertir.',
@@ -148,7 +153,7 @@ export const PROCESO: {
       emoji: '🔍',
       titulo: 'Revisión y entrega',
       detalle: 'Control de calidad y entrega: tu web lista 24 horas después de la grabación.',
-      img: '/proceso/04-revision.png',
+      img: `${PUBLIC}proceso/04-revision.png`,
       tituloModal: '🔍 Entregada en 24 horas; al aire tras tu visto bueno',
       intro:
         'A las 24 horas de la grabación te entregamos la web lista para revisar — dominio, hosting y correo funcionando. Lo que sigue lo hacemos juntos: revisiones y ajustes (dos rondas incluidas) y tu respuesta oportuna. Con un visto bueno ágil, queda al aire enseguida.',
@@ -168,7 +173,7 @@ export const PROCESO: {
       emoji: '📣',
       titulo: 'Tráfico y soporte',
       detalle: 'Lanzamos la pauta en Meta, reportamos resultados y mantenemos tu web al día.',
-      img: '/proceso/07-trafico.png',
+      img: `${PUBLIC}proceso/07-trafico.png`,
       tituloModal: '📣 Sistema en marcha: tráfico, reportes y mantenimiento',
       intro:
         'Con la web al aire activamos las campañas en Meta (las verificaciones de la plataforma toman hasta 2 semanas) y las optimizamos de forma continua. Y tu web no se queda sola: el mantenimiento la mantiene siempre al día.',
@@ -277,10 +282,10 @@ export const TRABAJOS_WEB = {
    * las webs reales cuando existan.
    */
   items: [
-    { nombre: 'Aethera', src: '/marquee/aethera.mp4' },
-    { nombre: 'Asme', src: '/marquee/asme.webp', iw: 1000, ih: 560 },
-    { nombre: 'Nexora', src: '/marquee/nexora.mp4' },
-    { nombre: 'Velorah', src: '/marquee/velorah.mp4' },
+    { nombre: 'Aethera', src: `${PUBLIC}marquee/aethera.mp4` },
+    { nombre: 'Asme', src: `${PUBLIC}marquee/asme.webp`, iw: 1000, ih: 560 },
+    { nombre: 'Nexora', src: `${PUBLIC}marquee/nexora.mp4` },
+    { nombre: 'Velorah', src: `${PUBLIC}marquee/velorah.mp4` },
   ] as { nombre: string; src: string; iw?: number; ih?: number }[],
 }
 
@@ -301,7 +306,7 @@ export const VIDEOS_PRODUCIDOS = {
     { url: 'https://www.youtube.com/embed/NXnG9fBh1k8', tag: 'Testimonial' },
     { url: 'https://youtube.com/shorts/kZGOqWh0x7c', tag: 'Reel branded' },
     { url: 'https://youtube.com/shorts/Bu0BMjd-KKA', tag: 'Recap de evento' },
-    { url: '/ejemplos/fotografia.jpeg', tag: 'Fotografía de evento' },
+    { url: `${PUBLIC}ejemplos/fotografia.jpeg`, tag: 'Fotografía de evento' },
   ] as { url: string; tag: string }[],
 }
 
@@ -343,7 +348,7 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
   {
     id: 'entrada-digital',
     label: 'Entrada Digital',
-    img: '/catalogo/entrada-digital.webp',
+    img: `${PUBLIC}catalogo/entrada-digital.webp`,
     claim: 'Tu web a medida con video de cine, lista para vender.',
     disponible: true,
     precios: [
@@ -368,7 +373,7 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
   {
     id: 'sistema-clientes',
     label: 'Sistema de Clientes',
-    img: '/catalogo/sistema-clientes.webp',
+    img: `${PUBLIC}catalogo/sistema-clientes.webp`,
     claim: 'Web + video + tráfico: el sistema completo vendiendo por ti.',
     disponible: true,
     precios: [
@@ -409,9 +414,9 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
 // `img`: banner de la categoría (public/catalogo/). Vacío = sin banner.
 // (Inmobiliario salió del lienzo con el modelo 2.0; sus items siguen en catalog.ts.)
 export const CATEGORIAS: { id: Categoria; label: string; img: string; claim: string }[] = [
-  { id: 'redes', label: 'Redes', img: '/catalogo/redes.webp', claim: 'Tu marca, publicando con calidad de cine cada semana.' },
-  { id: 'eventos', label: 'Eventos', img: '/catalogo/evento.webp', claim: 'Que tu evento se sienta tan grande como fue.' },
-  { id: 'corporativo', label: 'Corporativo', img: '/catalogo/corporativo.webp', claim: 'La cara profesional de tu empresa, en video.' },
+  { id: 'redes', label: 'Redes', img: `${PUBLIC}catalogo/redes.webp`, claim: 'Tu marca, publicando con calidad de cine cada semana.' },
+  { id: 'eventos', label: 'Eventos', img: `${PUBLIC}catalogo/evento.webp`, claim: 'Que tu evento se sienta tan grande como fue.' },
+  { id: 'corporativo', label: 'Corporativo', img: `${PUBLIC}catalogo/corporativo.webp`, claim: 'La cara profesional de tu empresa, en video.' },
 ]
 
 /**

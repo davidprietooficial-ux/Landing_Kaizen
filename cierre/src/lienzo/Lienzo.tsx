@@ -30,6 +30,7 @@ import {
   PIE,
   PROCESO,
   PROMESA,
+  PUBLIC,
   TRABAJOS_WEB,
   VIDEOS_PRODUCIDOS,
   detalleDe,
@@ -205,8 +206,8 @@ function Hero() {
     <section className="lz-hero" id="inicio">
       <div className="lz-hero__inner">
         <div className="lz-logo" aria-label="Kaizen">
-          <img className="lz-logo__mark" src="/logo-kaizen.png" alt="" />
-          <img className="lz-logo__reflejo" src="/logo-kaizen.png" alt="" aria-hidden />
+          <img className="lz-logo__mark" src={`${PUBLIC}logo-kaizen.png`} alt="" />
+          <img className="lz-logo__reflejo" src={`${PUBLIC}logo-kaizen.png`} alt="" aria-hidden />
         </div>
         <span className="lz-eyebrow">{HERO.marca}</span>
 
@@ -689,7 +690,7 @@ function Catalogo() {
 function Pie() {
   return (
     <footer className="lz-pie">
-      <img className="lz-pie__logo" src="/logo-kaizen.png" alt="" />
+      <img className="lz-pie__logo" src={`${PUBLIC}logo-kaizen.png`} alt="" />
       <span className="lz-pie__firma">{PIE.marca}</span>
       <span className="lz-pie__nota">{PIE.nota}</span>
     </footer>
