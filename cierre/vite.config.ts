@@ -7,8 +7,10 @@ import { kaizenApiPlugin } from './server/api-plugin.mjs'
 
 // El build de `npm run build` sigue siendo estatico (dist/). El backend de cierre
 // solo funciona corriendo `npm run dev` (la herramienta se usa en local, asi se lanza).
-// base:'./' -> rutas relativas, para que funcione tambien abriendo dist/ sin servidor raiz.
+// base:'/cierre/' -> rutas absolutas: la landing (Next.js) sirve esta app bajo
+// /cierre vía rewrite (ver next.config.ts), y con rutas relativas los assets se
+// rompían según si la URL traía barra final o no.
 export default defineConfig({
   plugins: [react(), kaizenApiPlugin()],
-  base: './',
+  base: '/cierre/',
 })
