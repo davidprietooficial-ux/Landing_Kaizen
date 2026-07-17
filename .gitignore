@@ -37,6 +37,9 @@ yarn-error.log*
 # MCP: contiene el token del Private Integration de GHL — NUNCA subir
 .mcp.json
 
+# llave SSH de diagnóstico contra el hosting de Hostinger — NUNCA subir
+.claude/ssh/
+
 # pnpm: el proyecto usa npm. Estos archivos hacen que el build (Hostinger/Vercel)
 # detecte pnpm por error y rompa la consistencia (p.ej. el override de postcss).
 /pnpm-lock.yaml
