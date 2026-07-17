@@ -54,14 +54,19 @@ export default function Schedule() {
           <div className="qualify-card">
             {GHL_FORM_EMBED ? (
               <div className="ghl-embed">
+                {/* SIN loading="lazy": el iframe se carga de inmediato. Es el elemento
+                    de conversión y, diferido, competía con el script de auto-resize y
+                    dejaba el iframe a la altura fija del CSS (encuesta recortada/en blanco). */}
                 <iframe
                   src={GHL_FORM_EMBED}
                   title="Formulario de contacto · Kaizen Studios"
                   id={GHL_FORM_ID}
                   scrolling="no"
-                  loading="lazy"
                 />
-                {GHL_FORM_SCRIPT && <Script src={GHL_FORM_SCRIPT} strategy="lazyOnload" />}
+                {/* afterInteractive (no lazyOnload): el listener de postMessage que ajusta
+                    la altura debe existir ANTES de que el iframe reporte su tamaño. Con
+                    lazyOnload arrancaba tarde y a veces perdía ese mensaje → "no carga". */}
+                {GHL_FORM_SCRIPT && <Script src={GHL_FORM_SCRIPT} strategy="afterInteractive" />}
               </div>
             ) : (
               <div className="ghl-embed ghl-embed--placeholder">
