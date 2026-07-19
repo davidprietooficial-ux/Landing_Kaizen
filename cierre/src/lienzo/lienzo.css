@@ -362,16 +362,10 @@
   border-top: 2px solid var(--green);
   border-radius: var(--radius);
 }
-.lz-gar__check {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(80, 192, 128, 0.14);
-  color: var(--green);
-  font-size: 0.8rem;
-  margin-bottom: 0.9rem;
+.lz-gar__emoji {
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-bottom: 0.85rem;
 }
 .lz-gar__texto {
   font-weight: 600;
@@ -594,6 +588,36 @@
   border-left: 2px solid var(--gold-dim);
   border-radius: var(--radius);
 }
+/* Oferta con preview: precios + "lo que incluye" en una sola columna debajo. */
+.lz-oferta--con-preview { max-width: 900px; }
+.lz-oferta__preview { margin: 0; }
+.lz-oferta__preview img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+/* Un solo preview (ej. Entrada Digital): banner centrado arriba del precio. */
+.lz-oferta__preview--sola { max-width: 520px; margin: 0.4rem auto 1.6rem; }
+
+/* 2 previews (ej. Sistema de Clientes): en el HTML van entrelazadas con su
+   precio (imagen → precio → imagen → precio) — ese es el orden natural en
+   mobile, así siempre se entiende qué precio es de qué preview. En desktop,
+   `order` agrupa las 2 imágenes arriba y los precios (en fila) debajo. */
+.lz-oferta__combo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin: 0.4rem 0 1.6rem;
+}
+.lz-combo__preview-a { order: 1; }
+.lz-combo__price-a { order: 2; }
+.lz-combo__preview-b { order: 3; }
+.lz-combo__price-b { order: 4; }
+.lz-oferta__combo > .lz-oferta__col--full { order: 5; }
+@media (min-width: 761px) {
+  .lz-oferta__combo { grid-template-columns: 1fr 1fr; }
+  .lz-combo__preview-b { order: 2; }
+  .lz-combo__price-a { order: 3; }
+}
 .lz-oferta__t {
   font-family: var(--serif);
   font-weight: 600;
@@ -613,6 +637,19 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
+/* Tarjeta "suelta" (ej. mantenimiento): ocupa las 2 columnas, en fila y más
+   compacta — evita el hueco vacío que deja al quedar sola en su renglón. */
+.lz-oferta__col--full {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.9rem;
+  padding: 0.7rem 1.1rem;
+}
+.lz-oferta__col--full .lz-oferta__clabel { margin-bottom: 0; }
+.lz-oferta__col--full .lz-oferta__precio { font-size: 1.15rem; }
+.lz-oferta__col--full .lz-oferta__mant { margin-top: 0; flex-basis: 100%; }
 .lz-oferta__clabel {
   display: block;
   font-family: var(--mono);
@@ -658,26 +695,125 @@
   color: var(--gold);
 }
 .lz-oferta__entrega {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   margin: 1.3rem 0 0;
-  font-size: 0.9rem;
-  color: var(--text);
+  padding: 0.65rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(200, 164, 90, 0.12);
+  border: 1px solid var(--gold-dim);
+  box-shadow: 0 4px 22px rgba(200, 164, 90, 0.14);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  text-align: center;
+  white-space: pre-line;
 }
 .lz-oferta__nota {
   margin: 0.5rem 0 0;
   font-size: 0.82rem;
+  color: var(--red);
+}
+/* Apartado explicativo al pie (anuncios + términos de contrato): en rojo como aviso. */
+.lz-oferta__apartado {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.3rem 0 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--bg2);
+  border-left: 2px solid var(--red);
+  border-radius: var(--radius);
+}
+.lz-oferta__apartado li {
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: var(--muted);
 }
-/* Apartado explicativo al pie (ej. instalación vs mantenimiento). */
-.lz-oferta__apartado {
-  margin: 1.3rem 0 0;
-  padding: 1rem 1.2rem;
-  background: var(--bg2);
-  border-left: 2px solid var(--gold-dim);
+
+/* ── Redes · calculadora de YouTube: la calculadora a la izq, lo que
+   incluye el servicio a la der. La tarifa por minuto no se muestra, solo
+   el total (evita anclar la conversación en el precio unitario). ── */
+.lz-ytcalc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  max-width: 900px;
+  padding: 1.4rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--text);
+  align-items: start;
 }
+@media (max-width: 700px) {
+  .lz-ytcalc { grid-template-columns: 1fr; }
+}
+.lz-ytcalc__calc { display: grid; gap: 1rem; }
+.lz-ytcalc__modos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.lz-ytcalc__modo {
+  padding: 0.7rem 0.8rem; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--bg2);
+  color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.lz-ytcalc__modo--on { border-color: var(--gold); background: rgba(200, 164, 90, 0.1); color: var(--gold); }
+.lz-ytcalc__campo { display: grid; gap: 0.35rem; font-size: 0.85rem; color: var(--muted); }
+.lz-ytcalc__campo em { font-style: normal; color: var(--gold); font-weight: 700; }
+.lz-ytcalc__graba-t { color: var(--text); font-weight: 600; }
+.lz-ytcalc__campo input {
+  padding: 0.7rem 0.8rem; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--bg2); color: var(--text);
+  font-size: 1rem; font-family: var(--mono);
+}
+.lz-ytcalc__total {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-top: 0.9rem; border-top: 1px solid var(--border);
+}
+.lz-ytcalc__total span { color: var(--muted); font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; }
+.lz-ytcalc__total strong { font-size: 1.6rem; color: var(--gold); }
+.lz-ytcalc__req { margin: 0; font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.lz-ytcalc__incluye { display: grid; gap: 0.6rem; align-content: start; }
+.lz-ytcalc__incluye ul { list-style: none; display: grid; gap: 0.5rem; margin: 0; padding: 0; }
+.lz-ytcalc__incluye li { position: relative; padding-left: 1.2rem; font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+.lz-ytcalc__incluye li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); }
+
+/* ── Redes · card "bajo cotización" (Podcast Luxury): abre popup con detalle
+   y CTA que baja al cotizador — no capta datos en la card. ── */
+.lz-cotiza__cta {
+  margin-top: 1.4rem;
+  padding: 0.7rem 1.1rem; border-radius: var(--radius);
+  border: 1px solid var(--gold-dim); background: rgba(200, 164, 90, 0.1);
+  color: var(--gold); font-weight: 700; font-size: 0.9rem; cursor: pointer;
+}
+
+/* ── Toggle de moneda (COP/USD) flotante ── */
+.lz-money {
+  position: fixed; top: 14px; right: 14px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; border-radius: 100px;
+  border: 1px solid var(--gold-dim); background: rgba(12, 12, 10, 0.82);
+  backdrop-filter: blur(8px);
+  color: var(--muted); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.lz-money--on { color: var(--gold); font-weight: 700; }
+.lz-money__sep { opacity: 0.5; }
+
+/* ── Eventos · casilla "entrega en caliente" ── */
+.lz-caliente {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin: 0 0 1.4rem; padding: 0.7rem 1rem; border-radius: var(--radius);
+  border: 1px solid var(--gold-dim); background: rgba(200, 164, 90, 0.07);
+  color: var(--text); font-size: 0.9rem; cursor: pointer;
+}
+/* Debajo de los paquetes de eventos, a lo ancho de las 3 columnas del grid. */
+.lz-caliente--ancho { display: flex; width: 100%; justify-content: center; margin: 1.4rem 0 0; }
+.lz-caliente input { width: 17px; height: 17px; accent-color: var(--gold); cursor: pointer; }
+.lz-caliente em { font-style: normal; color: var(--gold); font-weight: 700; }
+.lz-srv__ahorro--caliente { color: var(--gold) !important; }
+
 .lz-tab {
   font-family: var(--mono);
   font-size: 0.78rem;
@@ -728,8 +864,14 @@
 
 .lz-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
+}
+@media (max-width: 860px) {
+  .lz-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .lz-grid { grid-template-columns: 1fr; }
 }
 .lz-srv {
   position: relative;
@@ -799,7 +941,7 @@
 }
 .lz-srv__pie {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 0.6rem;
   border-top: 1px solid var(--border);
@@ -819,12 +961,22 @@
   text-transform: uppercase;
   color: var(--muted);
 }
+/* Con descuento: precio original tachado arriba, precio final, ahorro abajo. */
+.lz-srv__preciobox { display: grid; gap: 0.15rem; }
+.lz-srv__preciobox .lz-srv__antes { font-size: 0.8rem; }
+.lz-srv__preciobox .lz-srv__ahorro { text-align: left; }
 .lz-srv__ahorro {
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   color: var(--green);
   text-align: right;
+}
+/* Precio original tachado: contexto de qué es el "ahorro" (vs. comprar sueltos). */
+.lz-srv__antes {
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-right: 0.3rem;
 }
 
 /* ── Pie ── */
@@ -884,8 +1036,9 @@
     var(--bg2) 28px
   );
 }
-/* Fachada de YouTube: miniatura + botón de play propio (sin interfaz de YouTube). */
-.lz-video--yt {
+/* Fachada de video (YouTube o mp4 local): miniatura + botón de play propio,
+   sin interfaz nativa hasta que se hace clic. */
+.lz-video--facade {
   display: grid;
   place-items: center;
   padding: 0;
@@ -894,8 +1047,8 @@
   cursor: pointer;
   appearance: none;
 }
-.lz-video--yt:hover .lz-video__play,
-.lz-video--yt:focus-visible .lz-video__play {
+.lz-video--facade:hover .lz-video__play,
+.lz-video--facade:focus-visible .lz-video__play {
   transform: scale(1.1);
 }
 .lz-video__play {
@@ -1255,8 +1408,7 @@
   color: var(--gold);
   margin: 1.2rem 0 0.7rem;
 }
-.lz-mserv__lista,
-.lz-mserv__proceso {
+.lz-mserv__lista {
   display: grid;
   gap: 0.6rem;
   padding-left: 0;
@@ -1276,57 +1428,36 @@
   color: var(--green);
   font-size: 0.85rem;
 }
-.lz-mserv__proceso {
-  counter-reset: paso;
-}
-.lz-mserv__proceso li {
-  position: relative;
-  padding-left: 1.9rem;
-  color: var(--text);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  counter-increment: paso;
-}
-.lz-mserv__proceso li::before {
-  content: counter(paso);
-  position: absolute;
-  left: 0;
-  top: -1px;
-  width: 1.3rem;
-  height: 1.3rem;
-  display: grid;
-  place-items: center;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--gold);
-  border: 1px solid var(--gold-dim);
-  border-radius: 50%;
-}
+/* Línea final de precio: sin IVA, sin "desde". Con descuento: tachado + ahorro. */
 .lz-mserv__precio {
   display: flex;
   align-items: baseline;
-  gap: 0.8rem;
+  gap: 0.7rem;
   flex-wrap: wrap;
-  margin-top: 1.6rem;
-  padding-top: 1.2rem;
+  margin-top: 1.2rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--border);
+}
+.lz-mserv__precio strong {
   font-family: var(--serif);
   font-weight: 700;
   font-size: 1.6rem;
   color: var(--text);
 }
-.lz-mserv__precio em {
-  font-family: var(--mono);
-  font-style: normal;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 .lz-mserv__ejemplo {
   align-self: start;
   position: sticky;
   top: 0;
+}
+/* Ejemplo vertical (shorts): más alto (9:16) en vez del 16:9 por defecto —
+   mismo patrón que .lz-vcar__item--vert en el carrusel de arriba. */
+.lz-mserv__ejemplo--vert .lz-video {
+  aspect-ratio: 9 / 16;
+}
+/* Podcast Luxury: imagen ultra-premium en vez de video de ejemplo. */
+.lz-mserv__ejemplo--luxury img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--gold-dim); border-radius: var(--radius);
 }
 
 /* Pop-up de paso (cómo trabajamos): título emotivo + valor por perfil */
@@ -1464,4 +1595,22 @@
   .lz-modal__caja {
     padding: 1.4rem;
   }
+}
+
+/* ── Cotizador GHL (Etapa 4D): iframe real o placeholder mientras se conecta ── */
+.lz-ghl-embed { max-width: 720px; margin: 1.6rem auto 0; }
+.lz-ghl-embed iframe {
+  display: block; width: 100%; height: 640px; min-height: 640px;
+  border: 0; border-radius: var(--radius); background: transparent;
+}
+.lz-ghl-embed--placeholder {
+  display: grid; place-items: center; align-content: center; gap: 10px; text-align: center;
+  min-height: 320px; padding: 2.2rem 1.6rem;
+  border: 1px dashed var(--border2); border-radius: var(--radius);
+  background: repeating-linear-gradient(45deg, var(--bg2), var(--bg2) 12px, var(--bg) 12px, var(--bg) 24px);
+}
+.lz-ghl-embed--placeholder .lz-mserv__desc { max-width: 40ch; margin: 0; }
+.lz-ghl-embed--placeholder code {
+  font-family: var(--mono); color: var(--text); background: var(--bg3);
+  padding: 1px 5px; border-radius: 4px; font-size: 0.82em;
 }

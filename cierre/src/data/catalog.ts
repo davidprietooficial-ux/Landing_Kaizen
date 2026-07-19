@@ -38,6 +38,9 @@ export interface ItemCatalogo {
   aLaMedida?: boolean
   /** Para modalidad 'solo-edicion': condicion del material que aporta el cliente. */
   requisitoMaterial?: string
+  /** Solo REDES: subgrupo del catálogo por tipo de contenido (reels / podcast /
+   *  youtube). El lienzo agrupa Redes por esto en vez de por modalidad. */
+  subtipo?: 'reels' | 'podcast' | 'youtube'
 }
 
 /** Add-on transversal que se suma sobre el proyecto. */
@@ -298,15 +301,39 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
     modalidad: 'completo',
   },
   // PAQUETES de servicio (multi-pieza)
+  // ── REELS (3 niveles: 4 / 8 / 12) ──
   {
-    id: 'red-pack-4-reels',
+    id: 'red-reels-esencial',
     categoria: 'redes',
-    nombre: 'Pack 4 reels (1 jornada)',
-    descripcion: 'Una jornada de grabación → 4 reels distintos. Cascada de contenido: un mes de reels en un día.',
+    nombre: 'Reels Esencial · 4 reels',
+    descripcion: 'Una jornada de grabación → 4 reels distintos, listos para publicar. Un mes de contenido en un día.',
     costoReal: 1_092_000,
+    anclaje: 'simple',
+    esPaquete: true,
+    modalidad: 'completo',
+    subtipo: 'reels',
+  },
+  {
+    id: 'red-reels-pro',
+    categoria: 'redes',
+    nombre: 'Reels Pro · 8 reels',
+    descripcion: 'Una jornada de grabación → 8 reels distintos. Más volumen y mejor precio por pieza.',
+    costoReal: 1_450_000,
     anclaje: 'recomendado',
     esPaquete: true,
     modalidad: 'completo',
+    subtipo: 'reels',
+  },
+  {
+    id: 'red-reels-luxury',
+    categoria: 'redes',
+    nombre: 'Reels Luxury · 12 reels',
+    descripcion: 'Una jornada de grabación → 12 reels distintos. El máximo de contenido por jornada.',
+    costoReal: 1_950_000,
+    anclaje: 'premium',
+    esPaquete: true,
+    modalidad: 'completo',
+    subtipo: 'reels',
   },
   {
     id: 'red-podcast-full',
@@ -348,56 +375,28 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
     esPaquete: false,
     modalidad: 'completo',
   },
+  // ── PODCAST (esencial / pro; el luxury va "bajo cotización" en el lienzo) ──
   {
-    id: 'red-pack-4-podcasts',
+    id: 'red-podcast-esencial',
     categoria: 'redes',
-    nombre: 'Pack 4 podcasts (1 jornada)',
-    descripcion: 'Graba un mes de podcast en un día: jornada multicámara → 4 episodios editados.',
-    costoReal: 2_184_000,
-    anclaje: 'recomendado',
-    esPaquete: true,
-    modalidad: 'completo',
-  },
-  {
-    id: 'red-yt-pack-2',
-    categoria: 'redes',
-    nombre: 'Pack 2 videos YouTube /mes',
-    descripcion: 'Producción mensual de 2 videos de YouTube (grabación + edición sencilla). YouTube es más exigente, por eso 2/mes; 4 es posible bajo cotización.',
-    costoReal: 1_764_000,
-    anclaje: 'recomendado',
-    esPaquete: true,
-    modalidad: 'completo',
-  },
-  {
-    id: 'red-retainer-esencial',
-    categoria: 'redes',
-    nombre: 'Retainer Redes ESENCIAL /mes',
-    descripcion: '1 jornada de grabación · 8 reels · 15 fotos · kit de distribución. Mensual.',
-    costoReal: 2_268_000,
+    nombre: 'Podcast Esencial · 2 episodios',
+    descripcion: '2 podcasts en multicámara + 4 reels (edición sencilla, 2 por episodio).',
+    costoReal: 1_700_000,
     anclaje: 'simple',
     esPaquete: true,
     modalidad: 'completo',
+    subtipo: 'podcast',
   },
   {
-    id: 'red-retainer-pro',
+    id: 'red-podcast-pro',
     categoria: 'redes',
-    nombre: 'Retainer Redes PRO /mes',
-    descripcion: '1 jornada · 12 reels · 1 reel branded · 20 fotos · kit + calendario editorial. Mensual.',
-    costoReal: 3_276_000,
-    anclaje: 'premium',
+    nombre: 'Podcast Pro · 4 episodios',
+    descripcion: '4 podcasts en multicámara + 8 reels con edición PRO (2 por episodio).',
+    costoReal: 2_700_000,
+    anclaje: 'recomendado',
     esPaquete: true,
     modalidad: 'completo',
-  },
-  {
-    id: 'red-retainer-edicion',
-    categoria: 'redes',
-    nombre: 'Retainer edición 12 reels/mes',
-    descripcion: 'Edición continua de 12 reels mensuales (material del cliente), flujo ordenado vía hub + reportes. Antes "B2B".',
-    costoReal: 2_016_000,
-    anclaje: null,
-    esPaquete: true,
-    modalidad: 'solo-edicion',
-    requisitoMaterial: REQ_CALIDAD,
+    subtipo: 'podcast',
   },
 
   // ─── INMOBILIARIO (secundario) ───────────────────────────────────────────────
@@ -493,7 +492,7 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
     id: 'cor-pitch',
     categoria: 'corporativo',
     nombre: 'Video pitch / marca',
-    descripcion: 'Video institucional o de marca (≤15 min): 1 día de grabación + 1 día de edición.',
+    descripcion: 'Video de marca: sesión de 4 horas de grabación → entregable de máximo 10 min, editado con estándar de cine.',
     costoReal: 1_428_000,
     anclaje: null,
     esPaquete: false,
@@ -503,7 +502,7 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
     id: 'cor-video-largo',
     categoria: 'corporativo',
     nombre: 'Video largo / institucional',
-    descripcion: 'Video institucional extenso (1–2 días de producción). Mismo estándar que el video pitch, con mayor alcance.',
+    descripcion: 'Video institucional extenso: sesión de 8 horas de grabación → entregable de máximo 15 min. Mismo estándar de cine, mayor alcance.',
     costoReal: 1_512_000,
     anclaje: null,
     esPaquete: false,
@@ -522,7 +521,14 @@ function precioObjetivo(costoReal: number): number {
 /** Precios fijados a mano (sobreescriben la derivacion). Hoy solo el Pack 4
  *  reels, que al 20% costaria mas que 4 reels sueltos; se deja como ahorro. */
 const PRECIOS_FIJOS: Record<string, number> = {
-  'red-pack-4-reels': 1_290_000,
+  // Reels (Kaizen 2.0 "cero": precios fijos, sin regirse por el modelo de costo).
+  // Pro y Luxury llevan el −20% acordado con David.
+  'red-reels-esencial': 1_290_000,
+  'red-reels-pro': 1_800_000,
+  'red-reels-luxury': 2_490_000,
+  // Podcast (Esencial y Pro; Pro con −20%). Luxury va bajo cotización, no lleva precio.
+  'red-podcast-esencial': 2_300_000,
+  'red-podcast-pro': 3_600_000,
 }
 
 export const CATALOGO: ItemCatalogo[] = CATALOGO_BASE.map((i) => ({

@@ -37,7 +37,7 @@ export const HERO = {
    */
   video: {
     src: 'https://assets.cdn.filesafe.space/zZP894o7LdjyqMTOS0m1/media/6a59ab7c9c9b37b5fd6290c1.mp4',
-    poster: '',
+    poster: `${PUBLIC}miniatura-video-hero.webp`,
     titulo: 'Showreel — 30 a 45s',
   },
 }
@@ -132,7 +132,7 @@ export const PROCESO: {
       img: `${PUBLIC}proceso/06-web.png`,
       tituloModal: '💻 Tu web cobra vida, con video de cine integrado',
       intro:
-        'Mientras el material pasa por edición, color y audio profesional, construimos tu landing con la misma tecnología de las startups más exigentes (Next.js/React): veloz, medible y diseñada para convertir.',
+        'Mientras el material pasa por edición, color y audio profesional, construimos tu landing con tecnología web moderna (HTML, CSS, Tailwind + JavaScript): veloz, medible e interactiva, diseñada para convertir.',
       valor: [
         { perfil: '🌐 Web', texto: 'Cada sección empuja a la acción — captar, calificar y agendar — con dominio, hosting y correo incluidos.' },
         { perfil: '🎬 Video', texto: 'Edición con estándar de cine: color, audio y motion integrados en la web — se siente de cine, no de plantilla.' },
@@ -176,7 +176,7 @@ export const PROCESO: {
       img: `${PUBLIC}proceso/07-trafico.png`,
       tituloModal: '📣 Sistema en marcha: tráfico, reportes y mantenimiento',
       intro:
-        'Con la web al aire activamos las campañas en Meta (las verificaciones de la plataforma toman hasta 2 semanas) y las optimizamos de forma continua. Y tu web no se queda sola: el mantenimiento la mantiene siempre al día.',
+        'Con la web al aire activamos las campañas en Meta —en 24h si cumples los requisitos de la plataforma; si no, hasta 1 semana— y las optimizamos de forma continua. Y tu web no se queda sola: el mantenimiento la mantiene siempre al día.',
       valor: [
         { perfil: '📣 Tráfico', texto: 'Campañas en Meta creadas y gestionadas por nosotros, con la cuenta a tu nombre (cumpliendo los prerrequisitos).' },
         { perfil: '📊 Reportes', texto: 'Sabes qué funciona y qué estamos ajustando, con datos y no con humo.' },
@@ -202,48 +202,55 @@ export const PROMESA = {
   // un enlace clicable al artículo oficial para mostrárselo al cliente.
   garantizamos: [
     {
-      texto:
-        'Una web 100% a medida — nada de plantillas — con la misma tecnología de las startups más exigentes (Next.js/React).',
-      impacto: 'Veloz, medible y tuya: un activo propio, no un perfil alquilado al algoritmo.',
+      emoji: '🌐',
+      texto: 'Web 100% a medida en HTML/CSS/Tailwind — nada de plantillas.',
+      impacto: 'Moderna, veloz e interactiva; un activo tuyo, no un perfil alquilado.',
     },
     {
-      texto: 'Cada sección de la web diseñada para convertir: capta, califica y agenda por ti, 24/7.',
-      impacto:
-        'Tu web no es una tarjeta de presentación: es tu vendedor más importante, vendiendo mientras duermes.',
+      emoji: '🎯',
+      texto: 'Cada sección diseñada para convertir.',
+      impacto: 'Capta, califica y agenda por ti, 24/7.',
     },
     {
-      texto: 'Video y motion con estándar de cine, integrados en la web y listos para tus canales.',
-      impacto: 'Se ve premium y proyecta confianza: el primer filtro de decisión de tu cliente es visual.',
+      emoji: '🎬',
+      texto: 'Video y motion con estándar de cine.',
+      impacto: 'El primer filtro de decisión de tu cliente es visual.',
     },
     {
-      texto:
-        'Campañas de pauta en Meta con estrategia, seguimiento y optimización continua — y la cuenta a tu nombre (cumpliendo los prerrequisitos de la plataforma).',
-      impacto: 'Tu marca frente a las personas correctas, todos los días. Tráfico que tú controlas, no el feed.',
+      emoji: '📣',
+      texto: 'Pauta en Meta, con la cuenta a tu nombre.',
+      impacto: 'Tráfico que tú controlas, no el feed.',
     },
     {
-      texto:
-        'Tu web entregada para revisión 24 horas después de la grabación. La pauta, activa en hasta 2 semanas (verificaciones de Meta).',
-      impacto:
-        'Mientras otros entregan en meses, tu sistema arranca en días — al aire tan pronto des el visto bueno a las revisiones.',
+      emoji: '✨',
+      texto: 'Anuncios con IA premium, no genéricos.',
+      impacto: 'Alta calidad que se ve como tu marca, no como plantilla.',
     },
     {
-      texto: 'Diseño web, audiovisual y tráfico bajo una sola firma, con procesos de estudio.',
-      impacto:
-        'Lo que normalmente contratas por separado, funcionando como un solo sistema — sin fricciones entre proveedores.',
+      emoji: '⚡',
+      texto: 'Web en 24h; pauta en 24h o hasta 1 semana.',
+      impacto: 'En 24h si cumples requisitos; si no, máximo una semana.',
     },
     {
-      texto: 'Consistencia visual de marca en la web, el video y la pauta.',
-      impacto: 'Una marca consistente puede aumentar los ingresos hasta 33% (estudio Lucidpress).',
+      emoji: '🧩',
+      texto: 'Web + video + tráfico bajo una sola firma.',
+      impacto: 'Un solo sistema, sin fricción entre proveedores.',
+    },
+    {
+      emoji: '🎨',
+      texto: 'Consistencia de marca en web, video y pauta.',
+      impacto: 'Una marca consistente sube ingresos hasta 33%.',
       fuente: {
         label: 'Ver estudio',
         url: 'https://www.prnewswire.com/news-releases/study-finds-companies-with-consistent-branding-can-see-up-to-33-increase-in-revenue-300967219.html',
       },
     },
     {
-      texto: 'Dos rondas de ajustes incluidas — en la web y en cada pieza audiovisual.',
-      impacto: 'Pules el resultado sin costos sorpresa. ¿Necesitas más? Rondas adicionales a bajo costo.',
+      emoji: '🔁',
+      texto: 'Dos rondas de ajustes incluidas.',
+      impacto: 'Pules el resultado sin costos sorpresa.',
     },
-  ] as { texto: string; impacto: string; fuente?: { label: string; url: string } }[],
+  ] as { emoji: string; texto: string; impacto: string; fuente?: { label: string; url: string } }[],
   noGarantizamos: [
     'Cifras de ventas o leads — no vendemos humo: construimos el sistema y lo optimizamos.',
     'Community management ni publicación por ti (se ofrece como servicio aparte).',
@@ -304,6 +311,7 @@ export const VIDEOS_PRODUCIDOS = {
     { url: 'https://www.youtube.com/embed/BMfuZTMlRVQ', tag: 'After movie' },
     { url: 'https://www.youtube.com/embed/_juWZCitCIs', tag: 'Video corporativo' },
     { url: 'https://www.youtube.com/embed/NXnG9fBh1k8', tag: 'Testimonial' },
+    { url: 'https://www.youtube.com/embed/Kko4LhtC4Bc', tag: 'Podcast' },
     { url: 'https://youtube.com/shorts/kZGOqWh0x7c', tag: 'Reel branded' },
     { url: 'https://youtube.com/shorts/Bu0BMjd-KKA', tag: 'Recap de evento' },
     { url: `${PUBLIC}ejemplos/fotografia.jpeg`, tag: 'Fotografía de evento' },
@@ -319,11 +327,18 @@ export const CATALOGO_TITULO = 'El catálogo'
 export const CATALOGO_INTRO =
   'Tres formas de arrancar — cada servicio es una oferta completa, con un solo pago — y los add-ons para ampliar tu sistema. Precios sin IVA.'
 
-/** Una columna de precio de la tarjeta de servicio (1 o 2 por servicio). */
+/** Una columna de precio de la tarjeta de servicio (1 o más por servicio). */
 export interface ColumnaPrecio {
   label: string
-  valor: string
+  /** Monto en COP (número): lo formatea el toggle de moneda (COP/USD por TRM). */
+  cop: number
+  /** Sufijo tras el precio (ej. "/ año", "/ mes"). Vacío = precio único. */
+  sufijo?: string
   detalle?: string
+  /** true = ocupa las 2 columnas del grid de precios, en versión compacta.
+   *  Para la 3ª tarjeta "suelta" (ej. mantenimiento) que si no deja un hueco
+   *  vacío al lado en un grid de 2 columnas. */
+  full?: boolean
 }
 
 export interface ServicioPrincipal {
@@ -332,6 +347,12 @@ export interface ServicioPrincipal {
   /** Banner del servicio (public/catalogo/). Vacío = marcador "por agregar". */
   img: string
   claim: string
+  /** Preview de la web. Vacío = sin preview. Si además hay `previewPauta`, el
+   *  lienzo las entrelaza con sus precios (imagen → precio → imagen → precio)
+   *  para que en mobile se entienda qué precio corresponde a qué preview. */
+  preview?: string
+  /** Preview extra (ej. la pauta). Vacío = no se muestra. */
+  previewPauta?: string
   /** false = "Próximamente": la pestaña se ve pero no se puede abrir. */
   disponible: boolean
   /** Columnas de precio, lado a lado (ej. servicio | mantenimiento). */
@@ -340,7 +361,8 @@ export interface ServicioPrincipal {
   incluye: string[]
   nota?: string
   /** Apartado explicativo al pie de la tarjeta (ej. qué es el mantenimiento). */
-  apartado?: string
+  /** Bullets del apartado explicativo al pie (ej. anuncios + términos de contrato). */
+  apartado?: string[]
 }
 
 /** Los 3 servicios principales (doc "Kaizen 2.0 — Servicios y Paquetes"). */
@@ -350,24 +372,27 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
     label: 'Entrada Digital',
     img: `${PUBLIC}catalogo/entrada-digital.webp`,
     claim: 'Tu web a medida con video de cine, lista para vender.',
+    preview: `${PUBLIC}previews/preview-entrada.webp`,
     disponible: true,
     precios: [
       {
         label: 'Entrada Digital',
-        valor: '$3.000.000 / año',
+        cop: 3_000_000,
+        sufijo: '/ año',
         detalle: 'Landing + producción audiovisual, todo incluido.',
       },
       {
-        label: 'Mantenimiento',
-        valor: '$300.000 / mes',
-        detalle: '2 actualizaciones al mes, por un año.',
+        label: 'Renovación / mantenimiento',
+        cop: 300_000,
+        sufijo: '/ año',
+        detalle: 'Renovación anual (a partir del 2º año) para mantener tu web al día. Precio de 2026; sube cada año. Requiere haber tomado la creación.',
       },
     ],
-    entrega: '⚡ Entrega: 24 horas después de la grabación.',
+    entrega: '⚡ Entrega:\n24 horas después de la grabación.',
     incluye: [
-      'Landing 100% a medida — nada de plantillas.',
-      'Dominio, hosting y correo incluidos y configurados.',
-      'Producción audiovisual con estándar de cine, integrada en la web.',
+      '🎯 Landing 100% a medida — nada de plantillas.',
+      '🌐 Dominio, hosting y correo incluidos y configurados.',
+      '🎬 Producción audiovisual con estándar de cine, integrada en la web.',
     ],
   },
   {
@@ -375,29 +400,40 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
     label: 'Sistema de Clientes',
     img: `${PUBLIC}catalogo/sistema-clientes.webp`,
     claim: 'Web + video + tráfico: el sistema completo vendiendo por ti.',
+    preview: `${PUBLIC}previews/preview-sistema.webp`,
+    previewPauta: `${PUBLIC}previews/preview-pauta.webp`,
     disponible: true,
     precios: [
       {
-        label: 'Página + tráfico',
-        valor: '$5.000.000',
-        detalle: 'Cuando entras al sistema completo: tu landing + las campañas montadas.',
+        label: 'Landing + Pauta',
+        cop: 5_000_000,
+        detalle: 'Sistema completo: tu landing a medida + las campañas montadas.',
       },
       {
-        label: 'Solo tráfico · mantenimiento',
-        valor: '$2.000.000 / mes',
-        detalle: 'Si ya tienes la página o el sistema está andando.',
+        label: 'Pauta',
+        cop: 3_000_000,
+        detalle: 'Instalación del sistema si ya tienes página: montamos el tráfico sobre tu web actual.',
+      },
+      {
+        label: 'Mantenimiento (mes)',
+        cop: 2_000_000,
+        sufijo: '/ mes',
+        detalle: 'En cualquiera de los dos casos, para mantener el sistema vendiendo.',
+        full: true,
       },
     ],
-    entrega: '⚡ Entrega: 24 horas después de la grabación (cumpliendo requisitos).',
+    entrega: '⚡ Entrega:\n24 horas después de la grabación (cumpliendo requisitos).',
     incluye: [
-      'Landing a medida + video con estándar de cine.',
-      '5 a 6 anuncios producidos y campañas en Meta gestionadas por nosotros.',
-      'Reportes de resultados: sabes qué funciona y qué ajustamos.',
-      'Cuenta publicitaria a tu nombre (cumpliendo los prerrequisitos de Meta).',
+      '🎬 Landing a medida + video con estándar de cine.',
+      '📣 5 a 6 anuncios producidos y campañas en Meta gestionadas por nosotros.',
+      '📊 Reportes de resultados: sabes qué funciona y qué ajustamos.',
+      '🧾 Cuenta publicitaria a tu nombre (cumpliendo los prerrequisitos de Meta).',
     ],
     nota: 'La inversión en pauta se paga aparte a Meta (mínima sugerida: $3.000.000/mes).',
-    apartado:
-      '🔧 Sobre el mantenimiento: no es lo mismo que la instalación. Los $5.000.000 son construir tu landing y montar el tráfico. El mantenimiento ($2.000.000/mes) es mantener el sistema vendiendo: cada mes seguimos produciendo tus 5 a 6 anuncios, gestionamos las campañas y te enviamos reportes — todo funcionando perfecto.',
+    apartado: [
+      '📣 Los anuncios los producimos y gestionamos nosotros — con IA premium, no genéricos — y la cuenta publicitaria va a tu nombre.',
+      '🗓️ El primer mes lo puedes cancelar sin recargos (solo pagas ese mes); de ahí en adelante, el servicio es por mínimo 3 meses de contrato.',
+    ],
   },
   {
     id: 'sistema-comercial',
@@ -433,13 +469,12 @@ export const GRUPOS_VISIBLES: Record<Categoria, readonly string[]> = {
 
 // ── Detalle de cada servicio (pop-up) ────────────────────────────────────────
 //
-//  Entregables y proceso se DERIVAN de la modalidad para no escribir 42 bloques a
-//  mano, y se pueden afinar por item en DETALLE_OVERRIDES. El "bloque de ejemplo"
-//  (video) se setea por item con un enlace de YouTube — vacío = marcador.
+//  Entregables se DERIVAN de la modalidad para no escribir 42 bloques a mano, y
+//  se pueden afinar por item en DETALLE_OVERRIDES. El "bloque de ejemplo" (video)
+//  se setea por item con un enlace de YouTube — vacío = marcador.
 
 export interface DetalleServicio {
   entregables?: string[]
-  proceso?: string[]
   /** Enlace de YouTube o ruta local (public/...) del ejemplo. Vacío = marcador. */
   ejemplo?: string
 }
@@ -467,13 +502,6 @@ const ENTREGABLES_POR_MODALIDAD: Record<string, string[]> = {
   ],
 }
 
-const PROCESO_POR_MODALIDAD: Record<string, string[]> = {
-  'solo-grabacion': ['Brief y plan de toma', 'Grabación en locación', 'Selección y entrega del material'],
-  'solo-edicion': ['Recibimos tu material', 'Edición, color y audio', 'Revisión y entrega final'],
-  completo: ['Brief creativo', 'Grabación', 'Edición en cine', 'Revisión y entrega'],
-  paquete: ['Brief y guion', 'Jornada de grabación', 'Edición de todas las piezas', 'Entrega + guía de publicación'],
-}
-
 /**
  * Afinamientos por item. El `ejemplo` es el video por TIPO de pieza, reutilizado
  * cada vez que aparece ese tipo (servicio suelto o paquete). Vacío = marcador.
@@ -485,6 +513,7 @@ const YT_CORPORATIVO = 'https://www.youtube.com/embed/_juWZCitCIs'
 const YT_TESTIMONIAL = 'https://www.youtube.com/embed/NXnG9fBh1k8'
 const YT_REEL_BRANDED = 'https://youtube.com/shorts/kZGOqWh0x7c'
 const YT_RECAP_EVENTO = 'https://youtube.com/shorts/Bu0BMjd-KKA'
+const YT_PODCAST = 'https://www.youtube.com/embed/Kko4LhtC4Bc'
 
 export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
   // ── Eventos ──
@@ -493,20 +522,88 @@ export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
   'evt-cobertura-8h-compleja': { ejemplo: YT_AFTER_MOVIE },
   'evt-recap': { ejemplo: YT_RECAP_EVENTO },
   'evt-after-movie': { ejemplo: YT_AFTER_MOVIE },
-  'evt-media-jornada': { ejemplo: YT_AFTER_MOVIE },
-  'evt-completo': { ejemplo: YT_AFTER_MOVIE },
-  'evt-premium': { ejemplo: YT_AFTER_MOVIE },
-  // ── Redes ──
+  'evt-media-jornada': {
+    ejemplo: YT_AFTER_MOVIE,
+    entregables: [
+      'Cobertura de 4 horas con 2 filmmakers y equipo profesional — no incluye dron',
+      'After movie editado (hasta 3 min)',
+      '3 reels verticales del mismo material',
+      'Opcionales (cotizar aparte): dron, tercer filmmaker/sonidista, fotografía del evento',
+    ],
+  },
+  'evt-completo': {
+    ejemplo: YT_AFTER_MOVIE,
+    entregables: [
+      'Cobertura de 8 horas con 2 filmmakers y equipo profesional — no incluye dron',
+      'After movie editado (hasta 3 min)',
+      '3 reels verticales del mismo material',
+      'Opcionales (cotizar aparte): dron, tercer filmmaker/sonidista, fotografía del evento',
+    ],
+  },
+  'evt-premium': {
+    ejemplo: YT_AFTER_MOVIE,
+    entregables: [
+      'Cobertura de 8 horas con 2 filmmakers y equipo profesional — no incluye dron',
+      'After movie editado (hasta 3 min)',
+      '5 reels verticales del mismo material',
+      '30 fotos editadas en alta resolución',
+      '1 testimonial (60–90s + corte vertical)',
+      'Opcional (cotizar aparte): dron',
+    ],
+  },
+  // ── Redes · Reels ──
   'red-reel-grab-1': { ejemplo: YT_REEL_BRANDED },
   'red-reel-grab-varios': { ejemplo: YT_REEL_BRANDED },
   'red-reel-edicion': { ejemplo: YT_REEL_BRANDED },
   'red-reel-edicion-compleja': { ejemplo: YT_REEL_BRANDED },
   'red-reel-sencillo': { ejemplo: YT_REEL_BRANDED },
   'red-reel-branded': { ejemplo: YT_REEL_BRANDED },
-  'red-pack-4-reels': { ejemplo: YT_REEL_BRANDED },
-  'red-retainer-esencial': { ejemplo: YT_REEL_BRANDED },
-  'red-retainer-pro': { ejemplo: YT_REEL_BRANDED },
-  'red-retainer-edicion': { ejemplo: YT_REEL_BRANDED },
+  'red-reels-esencial': {
+    ejemplo: YT_REEL_BRANDED,
+    entregables: [
+      '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
+      'Edición profesional: color grading, audio normalizado y ritmo dinámico',
+      '4 reels verticales, listos para publicar',
+      'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
+    ],
+  },
+  'red-reels-pro': {
+    ejemplo: YT_REEL_BRANDED,
+    entregables: [
+      '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
+      'Edición profesional: color grading, audio normalizado y ritmo dinámico',
+      '8 reels verticales, listos para publicar',
+      'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
+    ],
+  },
+  'red-reels-luxury': {
+    ejemplo: YT_REEL_BRANDED,
+    entregables: [
+      '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
+      'Edición profesional: color grading, audio normalizado y ritmo dinámico',
+      '12 reels verticales, listos para publicar',
+      'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
+    ],
+  },
+  // ── Redes · Podcast (mismo popup general que Eventos/Corporativo) ──
+  'red-podcast-esencial': {
+    ejemplo: YT_PODCAST,
+    entregables: [
+      '2 episodios de podcast, grabación multicámara (equipo + set + audio profesional)',
+      '4 reels con edición sencilla (2 por episodio) — cortes simples y color ligero',
+      'Entrega en video + audio, listos para Spotify / YouTube / Apple Podcasts',
+      'No incluye: logística de invitados, motion graphics avanzado',
+    ],
+  },
+  'red-podcast-pro': {
+    ejemplo: YT_PODCAST,
+    entregables: [
+      '4 episodios de podcast, grabación multicámara (equipo + set + audio profesional)',
+      '8 reels con edición PRO (2 por episodio): motion graphics, color grading avanzado y diseño de sonido',
+      'Entrega en video + audio, listos para Spotify / YouTube / Apple Podcasts',
+      'No incluye: logística de invitados (ver Podcast Luxury)',
+    ],
+  },
   // ── Inmobiliario (categoría fuera de la UI; sin ejemplo online aún) ──
   // 'inm-reel-edicion': { ejemplo: '/ejemplos/inmobiliario-tour.mp4' },
   // 'inm-reel-edicion-compleja': { ejemplo: '/ejemplos/inmobiliario-tour.mp4' },
@@ -514,12 +611,32 @@ export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
   // 'inm-reel-tour': { ejemplo: '/ejemplos/inmobiliario-tour.mp4' },
   // 'inm-recorrido': { ejemplo: '/ejemplos/inmobiliario-film.mp4' },
   // ── Corporativo ──
-  'cor-testimonial': { ejemplo: YT_TESTIMONIAL },
-  'cor-pitch': { ejemplo: YT_CORPORATIVO },
-  'cor-video-largo': { ejemplo: YT_CORPORATIVO },
+  'cor-testimonial': {
+    ejemplo: YT_TESTIMONIAL,
+    entregables: [
+      'Sesión con set, luz y sonido controlados (equipo + 1 filmmaker)',
+      'Testimonio editado de 60–90s + corte vertical',
+    ],
+  },
+  'cor-pitch': {
+    ejemplo: YT_CORPORATIVO,
+    entregables: [
+      'Sesión de grabación de 4 horas (equipo + personal) — no incluye dron',
+      'Edición profesional con estándar de cine',
+      'Entregable de hasta 10 minutos',
+    ],
+  },
+  'cor-video-largo': {
+    ejemplo: YT_CORPORATIVO,
+    entregables: [
+      'Sesión de grabación de 8 horas (equipo + personal) — no incluye dron',
+      'Edición profesional con estándar de cine',
+      'Entregable de hasta 15 minutos',
+    ],
+  },
 }
 
-/** Devuelve entregables + proceso + ejemplo de un item (deriva o usa override). */
+/** Devuelve entregables + ejemplo de un item (deriva de la modalidad o usa override). */
 export function detalleDe(item: {
   id: string
   esPaquete: boolean
@@ -529,7 +646,6 @@ export function detalleDe(item: {
   const ov = DETALLE_OVERRIDES[item.id] ?? {}
   return {
     entregables: ov.entregables ?? ENTREGABLES_POR_MODALIDAD[clave] ?? ENTREGABLES_POR_MODALIDAD.completo,
-    proceso: ov.proceso ?? PROCESO_POR_MODALIDAD[clave] ?? PROCESO_POR_MODALIDAD.completo,
     ejemplo: ov.ejemplo ?? '',
   }
 }
@@ -575,9 +691,8 @@ export const GRUPOS_CATALOGO = [
  * Solo se muestra "Ahorras $X" donde hay una equivalencia limpia y honesta.
  */
 export const PACK_AHORRO: Record<string, { sueltoId: string; cantidad: number }> = {
-  'red-pack-4-reels': { sueltoId: 'red-reel-sencillo', cantidad: 4 },
-  'red-pack-4-podcasts': { sueltoId: 'red-podcast-full', cantidad: 4 },
-  'red-yt-pack-2': { sueltoId: 'red-yt-completo-simple', cantidad: 2 },
+  'red-reels-pro': { sueltoId: 'red-reel-sencillo', cantidad: 8 },
+  'red-reels-luxury': { sueltoId: 'red-reel-sencillo', cantidad: 12 },
 }
 
 // ── Pie ──────────────────────────────────────────────────────────────────────
@@ -586,3 +701,12 @@ export const PIE = {
   marca: 'Kaizen Studios',
   nota: 'Los precios del catálogo no incluyen IVA — el total con IVA lo ves en la cotización.',
 }
+
+// ── Cotizador (Etapa 4D) ──────────────────────────────────────────────────────
+// El cotizador en vivo de React (Capa A/B) se reemplaza por un formulario/
+// encuesta de GoHighLevel con pasarela de pago integrada (ver prompts de
+// construcción). Mismo patrón que GHL_FORM_EMBED en la landing principal:
+// vacío = placeholder reservado; pega aquí la URL del embed cuando exista.
+export const GHL_COTIZADOR_EMBED = ''
+// Script de auto-resize de GHL (mismo dominio del embed). Vacío si el embed lo está.
+export const GHL_COTIZADOR_SCRIPT = ''
