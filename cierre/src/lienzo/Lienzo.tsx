@@ -981,6 +981,10 @@ function YoutubeCalc() {
             <li key={i}>{x}</li>
           ))}
         </ul>
+        <p className="lz-ytcalc__aviso">
+          ⚠️ Cálculo aproximado: nunca es el precio final — depende de la complejidad real del
+          proyecto y otros factores, que se confirman en la cotización.
+        </p>
       </div>
     </div>
   )

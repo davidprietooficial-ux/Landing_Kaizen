@@ -812,6 +812,24 @@
 }
 .lz-ytcalc__total span { color: var(--muted); font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; }
 .lz-ytcalc__total strong { font-size: 1.6rem; color: var(--gold); }
+/* Mismo tratamiento "boxed" que .lz-oferta__entrega, pero en coral: es una
+   advertencia, no un dato positivo, así que no comparte el dorado. */
+.lz-ytcalc__aviso {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.65rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(224, 107, 74, 0.12);
+  border: 1px solid var(--coral-dim);
+  box-shadow: 0 4px 22px rgba(224, 107, 74, 0.14);
+  color: var(--coral);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+}
 .lz-ytcalc__req { margin: 0; font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 .lz-ytcalc__incluye { display: grid; gap: 0.6rem; align-content: start; }
 .lz-ytcalc__incluye ul { list-style: none; display: grid; gap: 0.5rem; margin: 0; padding: 0; }
