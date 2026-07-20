@@ -363,6 +363,9 @@ export interface ServicioPrincipal {
   /** Apartado explicativo al pie de la tarjeta (ej. qué es el mantenimiento). */
   /** Bullets del apartado explicativo al pie (ej. anuncios + términos de contrato). */
   apartado?: string[]
+  /** Requisitos para pautar (antigüedad de cuenta, historial, verificación...).
+   *  Si existe, se muestra un botón "Ver requisitos" que abre un pop-up. */
+  requisitos?: string[]
 }
 
 /** Los 3 servicios principales (doc "Kaizen 2.0 — Servicios y Paquetes"). */
@@ -425,7 +428,7 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
     entrega: '⚡ Entrega:\n24 horas después de la grabación (cumpliendo requisitos).',
     incluye: [
       '🎬 Landing a medida + video con estándar de cine.',
-      '📣 5 a 6 anuncios producidos y campañas en Meta gestionadas por nosotros.',
+      '📣 3 a 5 ads producidos y campañas en Meta gestionadas por nosotros.',
       '📊 Reportes de resultados: sabes qué funciona y qué ajustamos.',
       '🧾 Cuenta publicitaria a tu nombre (cumpliendo los prerrequisitos de Meta).',
     ],
@@ -433,6 +436,18 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
     apartado: [
       '📣 Los anuncios los producimos y gestionamos nosotros — con IA premium, no genéricos — y la cuenta publicitaria va a tu nombre.',
       '🗓️ El primer mes lo puedes cancelar sin recargos (solo pagas ese mes); de ahí en adelante, el servicio es por mínimo 3 meses de contrato.',
+    ],
+    requisitos: [
+      '📅 Antigüedad de la página/cuenta: más de 6 meses.',
+      '📝 Historial mínimo: al menos 10 publicaciones orgánicas y 10 pautas (campañas pagas) corridas antes.',
+      '🕒 Actividad reciente: la última publicación no debe tener más de 2 meses.',
+      '✅ Business Manager ya aprobado, con el negocio verificado (Business Verification).',
+      '📘 Página de Facebook + cuenta de Instagram profesional, vinculadas entre sí.',
+      '💳 Método de pago activo en la cuenta publicitaria.',
+      '🎯 Meta Pixel / Conversions API instalado en la landing, con los eventos de conversión configurados y verificados.',
+      '🔒 Política de privacidad y términos visibles en la landing.',
+      '⚠️ Si el nicho es sensible (salud, finanzas, alcohol, etc.), cumplir las políticas de contenido especial de Meta.',
+      '🔑 Acceso: preferimos que nos compartan las credenciales (evita bloqueos y baneos); también podemos conectarnos como socio en el Business Manager — se define según lo que prefiera el cliente.',
     ],
   },
   {
@@ -707,6 +722,6 @@ export const PIE = {
 // encuesta de GoHighLevel con pasarela de pago integrada (ver prompts de
 // construcción). Mismo patrón que GHL_FORM_EMBED en la landing principal:
 // vacío = placeholder reservado; pega aquí la URL del embed cuando exista.
-export const GHL_COTIZADOR_EMBED = ''
+export const GHL_COTIZADOR_EMBED = 'https://app.kaizenvisualstudio.com/widget/survey/nUfdY8mjv5qqPuZLcjxs'
 // Script de auto-resize de GHL (mismo dominio del embed). Vacío si el embed lo está.
-export const GHL_COTIZADOR_SCRIPT = ''
+export const GHL_COTIZADOR_SCRIPT = 'https://app.kaizenvisualstudio.com/js/form_embed.js'

@@ -706,6 +706,22 @@ function ColPrecio({ p, className = '' }: { p: ColumnaPrecio; className?: string
   )
 }
 
+function RequisitosModalContenido({ s }: { s: ServicioPrincipal }) {
+  return (
+    <div className="lz-req">
+      <h3 className="lz-modal__t">Requisitos para pautar</h3>
+      <p className="lz-mserv__desc">
+        Para activar {s.label.toLowerCase()} con campañas en Meta, tu cuenta debe cumplir esto:
+      </p>
+      <ul className="lz-mserv__lista">
+        {s.requisitos!.map((x, i) => (
+          <li key={i}>{x}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 function OfertaServicio({ s }: { s: ServicioPrincipal }) {
   // Con 2 previews (ej. Sistema de Clientes): orden en el HTML = orden lógico
   // en mobile (imagen → su precio → imagen → su precio), sin media query.
@@ -714,6 +730,7 @@ function OfertaServicio({ s }: { s: ServicioPrincipal }) {
   const dosPreview = !!(s.preview && s.previewPauta)
   const pares = dosPreview ? s.precios.filter((p) => !p.full) : []
   const sueltos = dosPreview ? s.precios.filter((p) => p.full) : []
+  const [reqAbierto, setReqAbierto] = useState(false)
   return (
     <>
       <BannerCat img={s.img} label={s.label} claim={s.claim} />
@@ -754,7 +771,16 @@ function OfertaServicio({ s }: { s: ServicioPrincipal }) {
             ))}
           </ul>
           {s.nota && <p className="lz-oferta__nota">{s.nota}</p>}
-          <p className="lz-oferta__entrega">{s.entrega}</p>
+          {s.requisitos ? (
+            <div className="lz-oferta__fila">
+              <button type="button" className="lz-oferta__reqbtn" onClick={() => setReqAbierto(true)}>
+                📋 Ver requisitos →
+              </button>
+              <p className="lz-oferta__entrega">{s.entrega}</p>
+            </div>
+          ) : (
+            <p className="lz-oferta__entrega">{s.entrega}</p>
+          )}
           {s.apartado && (
             <ul className="lz-oferta__apartado">
               {s.apartado.map((x, i) => (
@@ -764,6 +790,11 @@ function OfertaServicio({ s }: { s: ServicioPrincipal }) {
           )}
         </div>
       </div>
+      {s.requisitos && (
+        <Modal abierto={reqAbierto} onCerrar={() => setReqAbierto(false)}>
+          <RequisitosModalContenido s={s} />
+        </Modal>
+      )}
     </>
   )
 }
@@ -835,9 +866,9 @@ const INCLUYE_YT: Record<'sencilla' | 'compleja', string[]> = {
  *  por jornada de 4h ($400.000 c/u) en vez de un % sobre la edición. */
 function YoutubeCalc() {
   const { fmt } = useMoney()
-  const TARIFA = { sencilla: 90_000, compleja: 130_000 }
+  const TARIFA = { sencilla: 72_000, compleja: 104_000 }
   const MINIMO = 5
-  const JORNADA_PRECIO = 400_000
+  const JORNADA_PRECIO = 320_000
   const [modo, setModo] = useState<'sencilla' | 'compleja'>('sencilla')
   const [min, setMin] = useState(MINIMO)
   const [jornadas, setJornadas] = useState(0)
@@ -1125,7 +1156,12 @@ function CotizadorGHL() {
       </p>
       {GHL_COTIZADOR_EMBED ? (
         <div className="lz-ghl-embed">
-          <iframe src={GHL_COTIZADOR_EMBED} title="Cotizador · Kaizen Studios" scrolling="no" />
+          <iframe
+            src={GHL_COTIZADOR_EMBED}
+            id={GHL_COTIZADOR_EMBED.split('/').pop()}
+            title="Cotizador · Kaizen Studios"
+            scrolling="no"
+          />
           {GHL_COTIZADOR_SCRIPT && <script src={GHL_COTIZADOR_SCRIPT} async />}
         </div>
       ) : (

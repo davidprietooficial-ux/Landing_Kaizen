@@ -694,6 +694,45 @@
   font-weight: 600;
   color: var(--gold);
 }
+/* Fila requisitos + entrega (ej. Sistema de Clientes): mismo ancho y peso
+   visual para las dos cajas. Apiladas en mobile, 2 columnas en desktop
+   (requisitos a la izq., entrega a la der.), igual que el patrón de .lz-oferta__combo. */
+.lz-oferta__fila {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  margin: 1.3rem 0 0;
+}
+.lz-oferta__fila .lz-oferta__entrega,
+.lz-oferta__fila .lz-oferta__reqbtn {
+  margin-top: 0;
+}
+@media (min-width: 761px) {
+  .lz-oferta__fila { grid-template-columns: 1fr 1fr; align-items: stretch; }
+}
+.lz-oferta__reqbtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 1.2rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px dashed var(--gold-dim);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+.lz-oferta__reqbtn:hover {
+  background: rgba(200, 164, 90, 0.08);
+  border-color: var(--gold);
+}
 .lz-oferta__entrega {
   display: block;
   width: 100%;
@@ -1385,6 +1424,11 @@
   line-height: 1.1;
   color: var(--text);
   margin: 0.7rem 0 0.8rem;
+}
+
+/* Pop-up de requisitos (Sistema de Clientes): una sola columna, ancho legible. */
+.lz-req {
+  max-width: 620px;
 }
 
 /* Pop-up de servicio: info izquierda + ejemplo derecha */
