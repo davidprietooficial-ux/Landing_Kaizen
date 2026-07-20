@@ -305,8 +305,8 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
   {
     id: 'red-reels-esencial',
     categoria: 'redes',
-    nombre: 'Reels Esencial · 4 reels',
-    descripcion: 'Una jornada de grabación → 4 reels distintos, listos para publicar. Un mes de contenido en un día.',
+    nombre: 'Contenido Orgánico Esencial · 4 piezas',
+    descripcion: 'Una jornada de grabación → 4 piezas de contenido (reel o carrusel, tú eliges), listas para publicar. Un mes de contenido en un día.',
     costoReal: 1_092_000,
     anclaje: 'simple',
     esPaquete: true,
@@ -316,8 +316,8 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
   {
     id: 'red-reels-pro',
     categoria: 'redes',
-    nombre: 'Reels Pro · 8 reels',
-    descripcion: 'Una jornada de grabación → 8 reels distintos. Más volumen y mejor precio por pieza.',
+    nombre: 'Contenido Orgánico Pro · 8 piezas',
+    descripcion: 'Una jornada de grabación → 8 piezas de contenido (reel o carrusel, tú eliges). Más volumen y mejor precio por pieza.',
     costoReal: 1_450_000,
     anclaje: 'recomendado',
     esPaquete: true,
@@ -327,8 +327,8 @@ const CATALOGO_BASE: Omit<ItemCatalogo, 'precio'>[] = [
   {
     id: 'red-reels-luxury',
     categoria: 'redes',
-    nombre: 'Reels Luxury · 12 reels',
-    descripcion: 'Una jornada de grabación → 12 reels distintos. El máximo de contenido por jornada.',
+    nombre: 'Contenido Orgánico Luxury · 12 piezas',
+    descripcion: 'Una jornada de grabación → 12 piezas de contenido (reel o carrusel, tú eliges). El máximo de contenido por jornada.',
     costoReal: 1_950_000,
     anclaje: 'premium',
     esPaquete: true,

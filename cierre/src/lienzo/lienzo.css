@@ -847,8 +847,11 @@
   border: 1px solid var(--gold-dim); background: rgba(200, 164, 90, 0.07);
   color: var(--text); font-size: 0.9rem; cursor: pointer;
 }
-/* Debajo de los paquetes de eventos, a lo ancho de las 3 columnas del grid. */
-.lz-caliente--ancho { display: flex; width: 100%; justify-content: center; margin: 1.4rem 0 0; }
+/* Debajo de los paquetes (eventos / redes), a lo ancho de las columnas del grid.
+   margin-inline: auto (no solo "0") — si no, el shorthand pisa el centrado
+   heredado de `.lz-sec--alt > *` y la casilla queda pegada al borde izquierdo
+   en vez de centrada bajo el grid. */
+.lz-caliente--ancho { display: flex; width: 100%; justify-content: center; margin: 1.4rem auto 0; }
 .lz-caliente input { width: 17px; height: 17px; accent-color: var(--gold); cursor: pointer; }
 .lz-caliente em { font-style: normal; color: var(--gold); font-weight: 700; }
 .lz-srv__ahorro--caliente { color: var(--gold) !important; }
@@ -930,6 +933,14 @@
   border-color: var(--gold-dim);
   background: linear-gradient(180deg, var(--bg3), var(--bg2));
 }
+/* Corporativo · "Servicios completos": recuadro de color por pieza (testimonial /
+   video pitch / video largo) para diferenciarlas a simple vista. */
+.lz-srv--acento-teal { border-color: var(--teal-dim); background: linear-gradient(180deg, rgba(46, 196, 160, 0.09), var(--bg2)); }
+.lz-srv--acento-teal:hover { border-color: var(--teal); }
+.lz-srv--acento-purple { border-color: var(--purple-dim); background: linear-gradient(180deg, rgba(160, 128, 224, 0.09), var(--bg2)); }
+.lz-srv--acento-purple:hover { border-color: var(--purple); }
+.lz-srv--acento-coral { border-color: var(--coral-dim); background: linear-gradient(180deg, rgba(224, 107, 74, 0.09), var(--bg2)); }
+.lz-srv--acento-coral:hover { border-color: var(--coral); }
 .lz-srv__badge {
   position: absolute;
   top: -0.7rem;
@@ -1641,11 +1652,19 @@
   }
 }
 
-/* ── Cotizador GHL (Etapa 4D): iframe real o placeholder mientras se conecta ── */
-.lz-ghl-embed { max-width: 720px; margin: 1.6rem auto 0; }
+/* ── Cotizador GHL (Etapa 4D): iframe real o placeholder mientras se conecta ──
+   max-width fluido (no un px fijo): crece con el contenedor hasta un techo
+   razonable en vez de topar siempre en el mismo valor. */
+.lz-ghl-embed { width: 100%; max-width: min(100%, 900px); margin: 1.6rem auto 0; }
 .lz-ghl-embed iframe {
   display: block; width: 100%; height: 640px; min-height: 640px;
   border: 0; border-radius: var(--radius); background: transparent;
+  /* Solo CRECE con el auto-resize de GHL; nunca baja de este piso — así el
+     formulario nunca queda invisible mientras el script carga o entre pasos. */
+  transition: height 0.25s ease;
+}
+@media (max-width: 640px) {
+  .lz-ghl-embed iframe { height: 760px; min-height: 760px; }
 }
 .lz-ghl-embed--placeholder {
   display: grid; place-items: center; align-content: center; gap: 10px; text-align: center;

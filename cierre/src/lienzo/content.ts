@@ -245,11 +245,6 @@ export const PROMESA = {
         url: 'https://www.prnewswire.com/news-releases/study-finds-companies-with-consistent-branding-can-see-up-to-33-increase-in-revenue-300967219.html',
       },
     },
-    {
-      emoji: '🔁',
-      texto: 'Dos rondas de ajustes incluidas.',
-      impacto: 'Pules el resultado sin costos sorpresa.',
-    },
   ] as { emoji: string; texto: string; impacto: string; fuente?: { label: string; url: string } }[],
   noGarantizamos: [
     'Cifras de ventas o leads — no vendemos humo: construimos el sistema y lo optimizamos.',
@@ -388,7 +383,7 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
         label: 'Renovación / mantenimiento',
         cop: 300_000,
         sufijo: '/ año',
-        detalle: 'Renovación anual (a partir del 2º año) para mantener tu web al día. Precio de 2026; sube cada año. Requiere haber tomado la creación.',
+        detalle: 'Renovación anual (a partir del 2º año): hosting + 1 actualización de la web al mes. No incluye el dominio. Precio de 2026; sube cada año. Requiere haber tomado la creación.',
       },
     ],
     entrega: '⚡ Entrega:\n24 horas después de la grabación.',
@@ -396,6 +391,10 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
       '🎯 Landing 100% a medida — nada de plantillas.',
       '🌐 Dominio, hosting y correo incluidos y configurados.',
       '🎬 Producción audiovisual con estándar de cine, integrada en la web.',
+    ],
+    apartado: [
+      '🌐 El dominio no está incluido en la renovación: se paga y se renueva aparte — su costo varía según el proveedor y la disponibilidad.',
+      '🔧 La actualización mensual se aplica bajo nuestro criterio: ejecutamos la que mejora el rendimiento o la percepción de tu marca de forma objetiva, no cambios estéticos o subjetivos sin impacto real.',
     ],
   },
   {
@@ -436,6 +435,7 @@ export const SERVICIOS_PRINCIPALES: ServicioPrincipal[] = [
     apartado: [
       '📣 Los anuncios los producimos y gestionamos nosotros — con IA premium, no genéricos — y la cuenta publicitaria va a tu nombre.',
       '🗓️ El primer mes lo puedes cancelar sin recargos (solo pagas ese mes); de ahí en adelante, el servicio es por mínimo 3 meses de contrato.',
+      '🔧 Los ajustes del mantenimiento se aplican bajo nuestro criterio: priorizamos los que mejoran el rendimiento o la percepción de tu marca de forma objetiva, no cambios estéticos o subjetivos sin impacto real.',
     ],
     requisitos: [
       '📅 Antigüedad de la página/cuenta: más de 6 meses.',
@@ -578,7 +578,7 @@ export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
     entregables: [
       '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
       'Edición profesional: color grading, audio normalizado y ritmo dinámico',
-      '4 reels verticales, listos para publicar',
+      '4 piezas de contenido — reel o carrusel, tú eliges —, listas para publicar',
       'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
     ],
   },
@@ -587,7 +587,7 @@ export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
     entregables: [
       '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
       'Edición profesional: color grading, audio normalizado y ritmo dinámico',
-      '8 reels verticales, listos para publicar',
+      '8 piezas de contenido — reel o carrusel, tú eliges —, listas para publicar',
       'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
     ],
   },
@@ -596,7 +596,7 @@ export const DETALLE_OVERRIDES: Record<string, DetalleServicio> = {
     entregables: [
       '1 jornada de grabación profesional (equipo + 2 filmmakers) — no incluye dron',
       'Edición profesional: color grading, audio normalizado y ritmo dinámico',
-      '12 reels verticales, listos para publicar',
+      '12 piezas de contenido — reel o carrusel, tú eliges —, listas para publicar',
       'Opcionales (cotizar aparte): dron, distribución multicanal, subtítulos',
     ],
   },

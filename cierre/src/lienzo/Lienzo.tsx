@@ -630,22 +630,38 @@ function ServicioModalContenido({ item }: { item: ItemCatalogo }) {
   )
 }
 
+/** Corporativo · "Servicios completos": acento de color por pieza (recuadro), para
+ *  diferenciar testimonial / video pitch / video largo a simple vista. */
+const ACENTO_SERVICIO: Record<string, string> = {
+  'cor-testimonial': 'lz-srv--acento-teal',
+  'cor-pitch': 'lz-srv--acento-purple',
+  'cor-video-largo': 'lz-srv--acento-coral',
+}
+
 function TarjetaServicio({
   item,
   onAbrir,
   factor = 1,
+  factorLabel = '🔥 en caliente',
 }: {
   item: ItemCatalogo
   onAbrir: () => void
-  /** Multiplicador de precio (ej. 1.4 con "entrega en caliente" en Eventos). */
+  /** Multiplicador de precio (ej. 1.4 con "entrega en caliente" en Eventos, 1.2 con
+   *  "Community Management" en Redes). */
   factor?: number
+  /** Etiqueta del badge que aparece cuando `factor !== 1`. */
+  factorLabel?: string
 }) {
   const { fmt } = useMoney()
   const ahorro = ahorroPaquete(item)
   const destacado = item.anclaje === 'recomendado' || item.anclaje === 'premium'
+  const acento = ACENTO_SERVICIO[item.id]
   const precio = Math.round((item.precio * factor) / 1000) * 1000
   return (
-    <button className={`lz-srv lz-srv--btn${destacado ? ' lz-srv--destacado' : ''}`} onClick={onAbrir}>
+    <button
+      className={`lz-srv lz-srv--btn${destacado ? ' lz-srv--destacado' : ''}${acento ? ` ${acento}` : ''}`}
+      onClick={onAbrir}
+    >
       {item.anclaje === 'recomendado' && <span className="lz-srv__badge">Recomendado</span>}
       {item.anclaje === 'premium' && <span className="lz-srv__badge lz-srv__badge--premium">Premium</span>}
       <div className="lz-srv__top">
@@ -662,7 +678,7 @@ function TarjetaServicio({
         ) : (
           <span className="lz-srv__precio">{fmt(precio)}</span>
         )}
-        {factor !== 1 && <span className="lz-srv__ahorro lz-srv__ahorro--caliente">🔥 en caliente</span>}
+        {factor !== 1 && <span className="lz-srv__ahorro lz-srv__ahorro--caliente">{factorLabel}</span>}
       </div>
       <span className="lz-srv__ver" aria-hidden>
         Ver detalle →
@@ -799,23 +815,47 @@ function OfertaServicio({ s }: { s: ServicioPrincipal }) {
   )
 }
 
-/** REDES: agrupación por tipo de contenido (Reels / Podcast / YouTube) en vez de
- *  por modalidad. YouTube es una calculadora; el Podcast Luxury va bajo cotización. */
+/** Casilla de Community Management, reutilizada tal cual el estilo de "entrega en
+ *  caliente" de Eventos: mismo look, mismo comportamiento (+% sobre el precio del
+ *  grupo mientras esté marcada). */
+function CommunityManagementToggle({ activo, onCambiar }: { activo: boolean; onCambiar: (v: boolean) => void }) {
+  return (
+    <label className="lz-caliente lz-caliente--ancho">
+      <input type="checkbox" checked={activo} onChange={(e) => onCambiar(e.target.checked)} />
+      <span>
+        📱 <strong>Incluir Community Management</strong> — <em>+20%</em>
+      </span>
+    </label>
+  )
+}
+
+/** REDES: agrupación por tipo de contenido (Contenido Orgánico / Podcast / YouTube)
+ *  en vez de por modalidad. YouTube es una calculadora; el Podcast Luxury va bajo
+ *  cotización. */
 function RedesGrupos({ items, onAbrir }: { items: ItemCatalogo[]; onAbrir: (i: ItemCatalogo) => void }) {
   const reels = items.filter((i) => i.subtipo === 'reels')
   const podcast = items.filter((i) => i.subtipo === 'podcast')
+  const [cmOrganico, setCmOrganico] = useState(false)
+  const [cmPodcast, setCmPodcast] = useState(false)
   return (
     <>
       <div className="lz-grupo">
         <div className="lz-grupo__cab">
-          <h3 className="lz-grupo__t"><span aria-hidden>📲</span> Reels</h3>
-          <span className="lz-grupo__nota">Cascada de contenido: un mes de reels en una jornada.</span>
+          <h3 className="lz-grupo__t"><span aria-hidden>📲</span> Contenido Orgánico</h3>
+          <span className="lz-grupo__nota">4, 8 o 12 piezas — reel o carrusel, tú eliges — en una sola jornada.</span>
         </div>
         <div className="lz-grid">
           {reels.map((i) => (
-            <TarjetaServicio key={i.id} item={i} onAbrir={() => onAbrir(i)} />
+            <TarjetaServicio
+              key={i.id}
+              item={i}
+              onAbrir={() => onAbrir(i)}
+              factor={cmOrganico ? 1.2 : 1}
+              factorLabel="📱 + community management"
+            />
           ))}
         </div>
+        <CommunityManagementToggle activo={cmOrganico} onCambiar={setCmOrganico} />
       </div>
 
       <div className="lz-grupo">
@@ -825,10 +865,17 @@ function RedesGrupos({ items, onAbrir }: { items: ItemCatalogo[]; onAbrir: (i: I
         </div>
         <div className="lz-grid">
           {podcast.map((i) => (
-            <TarjetaServicio key={i.id} item={i} onAbrir={() => onAbrir(i)} />
+            <TarjetaServicio
+              key={i.id}
+              item={i}
+              onAbrir={() => onAbrir(i)}
+              factor={cmPodcast ? 1.2 : 1}
+              factorLabel="📱 + community management"
+            />
           ))}
           <PodcastLuxuryCard />
         </div>
+        <CommunityManagementToggle activo={cmPodcast} onCambiar={setCmPodcast} />
       </div>
 
       <div className="lz-grupo">
@@ -1156,11 +1203,15 @@ function CotizadorGHL() {
       </p>
       {GHL_COTIZADOR_EMBED ? (
         <div className="lz-ghl-embed">
+          {/* SIN scrolling="no": si el postMessage de auto-resize de GHL llega tarde
+              (pasos con más campos, conexión lenta), el formulario NUNCA se corta —
+              el iframe muestra su propio scroll interno como respaldo mientras
+              crece. El script solo AGRANDA el iframe; nunca lo encoge por debajo
+              del piso fijado en CSS. */}
           <iframe
             src={GHL_COTIZADOR_EMBED}
             id={GHL_COTIZADOR_EMBED.split('/').pop()}
             title="Cotizador · Kaizen Studios"
-            scrolling="no"
           />
           {GHL_COTIZADOR_SCRIPT && <script src={GHL_COTIZADOR_SCRIPT} async />}
         </div>
