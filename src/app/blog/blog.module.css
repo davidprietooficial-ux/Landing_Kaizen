@@ -1,0 +1,116 @@
+/* /blog y /blog/[slug] — hoy BLOG_POSTS está vacío (ver src/lib/blog.ts), así
+   que lo único que se ve en /blog es el estado "todavía no hay nada". El grid
+   de tarjetas y la tipografía del artículo ya están listos para cuando haya
+   posts reales — no hace falta tocar CSS cuando se agreguen. */
+
+.hero {
+  padding-top: clamp(48px, 7vw, 80px);
+  padding-bottom: 0;
+}
+
+.h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  margin: 1rem 0 .9rem;
+  max-width: 18ch;
+}
+
+.lead {
+  max-width: 60ch;
+}
+
+/* ── estado vacío ── */
+.emptyState {
+  margin-top: 44px;
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--bg2), var(--bg));
+  max-width: 60ch;
+}
+
+.emptyState p {
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.65;
+}
+
+.emptyState p + p {
+  margin-top: .8rem;
+}
+
+.emptyStateActions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* ── grid de posts (solo cuando BLOG_POSTS.length > 0) ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--bg2), var(--bg));
+}
+
+.cardMeta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.cardTitle {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cardText {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* ── artículo individual (/blog/[slug]) ── */
+.articleHero {
+  padding-top: clamp(48px, 7vw, 80px);
+}
+
+.articleTitle {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 1rem 0 .8rem;
+}
+
+.articleMeta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 2.4rem;
+}
+
+.articleBody {
+  display: grid;
+  gap: 1.1rem;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  max-width: 68ch;
+}

@@ -80,6 +80,15 @@ export const Target = (p: IconProps) => (
 export const Lock = (p: IconProps) => (
   <Svg {...p}><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></Svg>
 )
+export const Search = (p: IconProps) => (
+  <Svg {...p}><circle cx="10.5" cy="10.5" r="6.5" /><path d="m20 20-4.5-4.5" /></Svg>
+)
+export const Menu = (p: IconProps) => (
+  <Svg {...p}><path d="M4 7h16M4 12h16M4 17h16" /></Svg>
+)
+export const X = (p: IconProps) => (
+  <Svg {...p}><path d="m6 6 12 12M18 6 6 18" /></Svg>
+)
 
 /* ── contacto / redes ── */
 export const Mail = (p: IconProps) => (

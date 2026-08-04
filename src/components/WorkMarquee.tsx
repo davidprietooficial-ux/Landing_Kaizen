@@ -25,8 +25,8 @@ export default function WorkMarquee() {
         ))}
       </div>
 
-      <button className="marquee__cue" onClick={() => scrollToId('quienes')} aria-label="¿Quiénes somos? Bajar a la siguiente sección">
-        ¿Quiénes somos?
+      <button className="marquee__cue" onClick={() => scrollToId('identifica')} aria-label="Lo que nos identifica — bajar a la siguiente sección">
+        Lo que nos identifica
         <span className="chev" aria-hidden="true">
           <ChevronDown size={18} />
         </span>

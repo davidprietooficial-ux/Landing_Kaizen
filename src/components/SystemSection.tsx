@@ -4,17 +4,15 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ASSETS } from '@/lib/config'
+import { ASSETS, SYSTEM_PHASES } from '@/lib/config'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Cada servicio tiene su escena visual (a la izquierda) y su texto (a la derecha).
-// `art`: icono 3D real (se usa si ASSETS.hasStageArt = true); si no, cae al SVG line-art.
-const STEPS = [
-  { cap: 'Web', art: '/stages/06-web.webp', t: 'Desarrollo web', d: 'Landing pages a medida — nada de plantillas: veloces, medibles y diseñadas para convertir visitas en clientes.' },
-  { cap: 'Audiovisual', art: '/stages/02-grabacion.webp', t: 'Producción audiovisual de calidad', d: 'Video con estándar de cine para tu web y tus canales: dirección, cámara y luz que elevan tu marca.' },
-  { cap: 'Tráfico', art: '/stages/07-trafico.webp', t: 'Tráfico y pauta', d: 'Estrategia y campañas que ponen tu web frente a las personas correctas, todos los días.' },
-]
+// Las 3 fases del sistema — texto real en SYSTEM_PHASES (src/lib/config.ts).
+// `art`: icono 3D real (se usa si ASSETS.hasStageArt Y la fase tiene `art`); si
+// no, cae al SVG line-art del mismo índice en SCENES. "Gestionar" no tiene foto
+// real todavía → siempre usa su SVG.
+const STEPS = SYSTEM_PHASES
 
 /* ── Escenas (line-art dorado sobre el fondo oscuro) ── */
 
@@ -159,10 +157,11 @@ function SceneDelivery() {
   )
 }
 
-// Fallback line-art alineado con los 3 servicios (monitor=web, cámara=audiovisual, tiles=tráfico).
-// SceneLogistics y SceneReview quedan sin usar mientras la sección sea de servicios.
-const SCENES = [SceneEdit, SceneCamera, SceneDelivery]
-void SceneLogistics
+// Fallback line-art alineado con las 3 fases: tiles=Atraer, monitor=Convertir,
+// dashboard+checklist=Gestionar (encaja con CRM/automatización). SceneCamera y
+// SceneReview quedan sin usar mientras la sección sea de fases del sistema.
+const SCENES = [SceneDelivery, SceneEdit, SceneLogistics]
+void SceneCamera
 void SceneReview
 
 export default function SystemSection() {
@@ -235,19 +234,22 @@ export default function SystemSection() {
       <div className="system__pin">
         <div className="system__layout">
           <div className="system__head">
-            <span className="eyebrow system__kicker">Servicios · lo que hacemos</span>
+            <span className="eyebrow system__kicker">El sistema · cómo funciona</span>
             <h2 className="system__title">
-              Web, video y tráfico <span style={{ color: 'var(--gold)' }}>→</span>
-              <span className="system__title-l2">un sistema que vende.</span>
+              Tu sistema digital <span style={{ color: 'var(--gold)' }}>definitivo.</span>
             </h2>
+            <p className="lead system__lead">
+              Tu negocio grabado con nivel de cine. Un flujo de clientes constante y predecible. Tu web —100% tuya—
+              convirtiendo prospectos en dinero real, todos los días.
+            </p>
           </div>
 
           <div className="system__canvas-wrap">
             <div className="system__halo" />
-            <div className="system__stage" role="img" aria-label="Servicios de Kaizen Studios: desarrollo web, producción audiovisual y tráfico">
+            <div className="system__stage" role="img" aria-label="El sistema de Kaizen Studios: atraer, convertir y gestionar">
               {SCENES.map((Scene, i) => (
                 <div className={`scene${i === 0 ? ' is-active' : ''}`} key={STEPS[i].cap}>
-                  {ASSETS.hasStageArt ? (
+                  {ASSETS.hasStageArt && STEPS[i].art ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={STEPS[i].art} alt="" loading="lazy" decoding="async" width={800} height={800} />
                   ) : (

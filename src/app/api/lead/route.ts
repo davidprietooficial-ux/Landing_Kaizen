@@ -1,10 +1,18 @@
 import type { NextRequest } from 'next/server'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Captura de leads del formulario "Agendar" → GoHighLevel.
+// Captura de leads → GoHighLevel. Alimenta 3 orígenes distintos, todos con la
+// misma forma de payload (`type` los distingue en GHL):
+//   - 'lead'       — QualifyForm.tsx (los 4 pasos de calificación)
+//   - 'newsletter' — Footer.tsx (solo email)
+//   - 'careers'    — sección "Trabaja con nosotros" en /quienes-somos
+//
 // El formulario hace POST aquí; nosotros reenviamos a un Inbound Webhook de GHL
 // (workflow trigger). La URL vive SOLO en el servidor (env var), nunca en el
-// navegador, para que nadie pueda spamear tu CRM directamente.
+// navegador, para que nadie pueda spamear tu CRM directamente. El cálculo de
+// `qualified` (y el motivo) ya viene hecho desde el cliente (QualifyForm) —
+// aquí solo se reenvía; las acciones (qué correo mandar, a qué workflow
+// entrar) las decide GHL del otro lado, no este endpoint.
 //
 // Si GHL_WEBHOOK_URL no está configurada todavía, NO rompemos el formulario:
 // el lead se registra en los logs (Vercel → Deployments → Functions) para no

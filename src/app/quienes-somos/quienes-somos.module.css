@@ -1,0 +1,49 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   /quienes-somos — solo lo que el sistema de diseño global no cubre.
+   El resto de la página reutiliza clases ya existentes en globals.css
+   (.section, .section-head, .lead, .founder__grid, .team, .mv, .field, etc.)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.intro {
+  padding-top: clamp(48px, 7vw, 80px);
+}
+
+.introNote {
+  margin-top: 1.4rem;
+  max-width: 720px;
+  padding: 14px 18px;
+  border-left: 2px solid var(--gold);
+  background: var(--bg2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.teamHead {
+  margin-bottom: 1.6rem;
+}
+
+.howHead {
+  margin-bottom: 1.6rem;
+}
+
+.formCard {
+  max-width: 640px;
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.cta {
+  text-align: center;
+}
+
+.cta p {
+  margin: 0.8rem auto 1.8rem;
+  max-width: 480px;
+}

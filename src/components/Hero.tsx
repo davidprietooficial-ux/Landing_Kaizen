@@ -53,8 +53,8 @@ export default function Hero() {
         </div>
         <span className="mono hero-anim">{SITE.name}</span>
         <h1 className="hero__title hero-anim">
-          <span className="lt">Webs que venden.</span>
-          <span className="lt">Tráfico que convierte.</span>
+          <span className="lt">Sin página propia,</span>
+          <span className="lt">no existes.</span>
         </h1>
         <p className="hero__desc hero-anim">
           <span className="hero__desc--full">{SITE.description}</span>

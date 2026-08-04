@@ -1,12 +1,9 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import WorkMarquee from '@/components/WorkMarquee'
-import About from '@/components/About'
+import Differentiator from '@/components/Differentiator'
+import SystemSection from '@/components/SystemSection'
 import Testimonials from '@/components/Testimonials'
-import SystemSection from '@/components/SystemSection' // reciclada como "Servicios"
-// Apagada por ahora (descomenta import + JSX para reactivar):
-// import WhyUs from '@/components/WhyUs'
-import Founder from '@/components/Founder'
 import Schedule from '@/components/Schedule'
 import Footer from '@/components/Footer'
 import { SITE, CONTACT, SOCIAL } from '@/lib/config'
@@ -32,11 +29,9 @@ export default function Home() {
       <main>
         <Hero />
         <WorkMarquee />
-        <About />
-        <Testimonials />
+        <Differentiator />
         <SystemSection />
-        {/* <WhyUs /> */}
-        <Founder />
+        <Testimonials />
         <Schedule />
       </main>
       <Footer />

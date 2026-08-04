@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -26,15 +25,6 @@ export default function Founder() {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (reduce) return
 
-      const photo = root.current!.querySelector<HTMLElement>('.founder__photo')
-      if (photo) {
-        gsap.from(photo, {
-          clipPath: 'inset(100% 0% 0% 0%)',
-          duration: 1.1,
-          ease: 'power4.out',
-          scrollTrigger: { trigger: photo, start: 'top 82%' },
-        })
-      }
       gsap.to('.founder__mask', {
         yPercent: -8,
         ease: 'none',
@@ -57,10 +47,17 @@ export default function Founder() {
       <div className="container founder__grid">
         {/* En phone el kicker va ANTES de la foto (en desktop se oculta y se usa el del body) */}
         <span className="eyebrow founder__kicker--mobile">Quién está detrás de esto</span>
-        <div className="founder__photo">
+        <div className="founder__photo reveal">
           <div className="founder__mask">
             {ASSETS.hasDavidPhoto ? (
-              <Image src="/img/david-retrato.jpg" alt="David Seiko, fundador de Kaizen Studios" fill sizes="(max-width: 700px) 100vw, 40vw" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+              // Img plana (no next/image): el optimizador de imágenes en este entorno
+              // sirve mal este archivo — ver nota en ASSETS.hasDavidPhoto en config.ts.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src="/img/david-retrato.jpg"
+                alt="David Seiko, fundador de Kaizen Studios"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+              />
             ) : (
               <div className="photo-ph">
                 <span className="ring"><Camera size={26} /></span>
@@ -137,6 +134,7 @@ export default function Founder() {
                 <div className="team__info">
                   <strong>{m.name}</strong>
                   <small>{m.role}</small>
+                  {m.bio && <p style={{ color: 'var(--muted)', fontSize: '.82rem', lineHeight: 1.5, marginTop: 6 }}>{m.bio}</p>}
                 </div>
                 {m.social ? (
                   <a className="team__social" href={m.social} target="_blank" rel="noopener noreferrer" aria-label={`Instagram de ${m.name}`}>
