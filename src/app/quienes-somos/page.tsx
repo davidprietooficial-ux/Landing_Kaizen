@@ -8,7 +8,7 @@ import { SITE } from '@/lib/config'
 export const metadata: Metadata = {
   title: `Quiénes somos — ${SITE.name}`,
   description: `Quiénes somos en ${SITE.name} y quién está detrás del estudio.`,
-  alternates: { canonical: '/quienes-somos' },
+  alternates: { canonical: '/quienes-somos', languages: { es: '/quienes-somos', en: '/en/quienes-somos' } },
   robots: { index: true, follow: true },
 }
 

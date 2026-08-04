@@ -12,6 +12,13 @@ const ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: '/recursos', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/terminos', priority: 0.3, changeFrequency: 'yearly' },
+  // Inglés — solo las páginas que ya existen bajo /en (Sistema/Servicios/
+  // Clientes/Blog aún no tienen versión EN, se agregan cuando se traduzcan).
+  { path: '/en', priority: 1, changeFrequency: 'monthly' },
+  { path: '/en/quienes-somos', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/en/recursos', priority: 0.5, changeFrequency: 'monthly' },
+  { path: '/en/privacidad', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/en/terminos', priority: 0.3, changeFrequency: 'yearly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

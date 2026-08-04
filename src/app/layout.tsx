@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans, DM_Mono } from 'next/font/google'
 import './globals.css'
 import SmoothScroll from '@/components/SmoothScroll'
+import LanguagePopup from '@/components/LanguagePopup'
 import { SITE } from '@/lib/config'
 
 const syne = Syne({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-syne', display: 'swap' })
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   applicationName: SITE.name,
   authors: [{ name: SITE.founder }],
   keywords: ['producción audiovisual', 'video marketing', 'contenido de marca', 'Colombia', 'estudio audiovisual', 'Kaizen Studios'],
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', languages: { es: '/', en: '/en' } },
   openGraph: {
     type: 'website',
     locale: 'es_CO',
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
+        <LanguagePopup />
       </body>
     </html>
   )

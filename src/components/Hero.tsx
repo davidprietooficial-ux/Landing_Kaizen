@@ -5,10 +5,33 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { scrollToId } from '@/lib/scroll'
 import { ArrowRight, ChevronDown } from './Icons'
-import { SITE, ASSETS } from '@/lib/config'
+import { SITE as SITE_ES, ASSETS } from '@/lib/config'
+import { SITE as SITE_EN } from '@/lib/config.en'
+import type { Locale } from '@/lib/locale'
 
-export default function Hero() {
+const COPY = {
+  es: {
+    sectionAria: 'Inicio',
+    title: ['Sin página propia,', 'no existes.'],
+    cta: 'Agenda tu Llamada Gratis',
+    ctaShort: 'Llamada Gratis',
+    work: 'Ver nuestro trabajo',
+    cueAria: 'Bajar a la siguiente sección',
+  },
+  en: {
+    sectionAria: 'Home',
+    title: ['Without your own site,', "you don't exist."],
+    cta: 'Book Your Free Call',
+    ctaShort: 'Free Call',
+    work: 'See our work',
+    cueAria: 'Scroll to the next section',
+  },
+}
+
+export default function Hero({ locale = 'es' }: { locale?: Locale }) {
   const root = useRef<HTMLElement>(null)
+  const t = COPY[locale]
+  const SITE = locale === 'en' ? SITE_EN : SITE_ES
 
   useGSAP(
     () => {
@@ -28,7 +51,7 @@ export default function Hero() {
   )
 
   return (
-    <section ref={root} id="top" className="hero" aria-label="Inicio">
+    <section ref={root} id="top" className="hero" aria-label={t.sectionAria}>
       {/* React lo eleva al <head>: el póster (elemento LCP) empieza a bajar de inmediato */}
       <link rel="preload" as="image" href="/video/hero-poster.webp" fetchPriority="high" />
       <div className="hero__media">
@@ -53,8 +76,8 @@ export default function Hero() {
         </div>
         <span className="mono hero-anim">{SITE.name}</span>
         <h1 className="hero__title hero-anim">
-          <span className="lt">Sin página propia,</span>
-          <span className="lt">no existes.</span>
+          <span className="lt">{t.title[0]}</span>
+          <span className="lt">{t.title[1]}</span>
         </h1>
         <p className="hero__desc hero-anim">
           <span className="hero__desc--full">{SITE.description}</span>
@@ -63,17 +86,17 @@ export default function Hero() {
 
         <div className="hero__actions hero-anim">
           <button className="btn-gold" onClick={() => scrollToId('agendar')}>
-            <span className="btn-gold__full">Agenda tu Llamada Gratis</span>
-            <span className="btn-gold__short">Llamada Gratis</span>
+            <span className="btn-gold__full">{t.cta}</span>
+            <span className="btn-gold__short">{t.ctaShort}</span>
             <ArrowRight size={16} />
           </button>
           <button className="btn-gold btn-gold--outline" onClick={() => scrollToId('trabajo')}>
-            Ver nuestro trabajo
+            {t.work}
           </button>
         </div>
       </div>
 
-      <button className="hero__cue" onClick={() => scrollToId('trabajo')} aria-label="Bajar a la siguiente sección">
+      <button className="hero__cue" onClick={() => scrollToId('trabajo')} aria-label={t.cueAria}>
         <span className="chev" aria-hidden="true">
           <ChevronDown size={18} />
         </span>

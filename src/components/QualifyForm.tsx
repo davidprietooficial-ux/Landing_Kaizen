@@ -2,14 +2,22 @@
 
 import { useState } from 'react'
 import {
-  FORM_INTEREST_OPTIONS,
-  FORM_TIMELINE_OPTIONS,
-  FORM_REVENUE_BUCKETS,
-  FORM_BUDGET_BUCKETS,
-  COUNTRIES,
+  FORM_INTEREST_OPTIONS as INTEREST_ES,
+  FORM_TIMELINE_OPTIONS as TIMELINE_ES,
+  FORM_REVENUE_BUCKETS as REVENUE_ES,
+  FORM_BUDGET_BUCKETS as BUDGET_ES,
+  COUNTRIES as COUNTRIES_ES,
   ASSETS,
   CONTACT,
 } from '@/lib/config'
+import {
+  FORM_INTEREST_OPTIONS as INTEREST_EN,
+  FORM_TIMELINE_OPTIONS as TIMELINE_EN,
+  FORM_REVENUE_BUCKETS as REVENUE_EN,
+  FORM_BUDGET_BUCKETS as BUDGET_EN,
+  COUNTRIES as COUNTRIES_EN,
+} from '@/lib/config.en'
+import type { Locale } from '@/lib/locale'
 import { ArrowRight, Check } from './Icons'
 
 type Currency = 'COP' | 'USD'
@@ -37,10 +45,47 @@ const EMPTY: FormState = {
   revenue: '', budget: '', timeline: '', hp: '',
 }
 
-// 2 pasos: (1) contacto + interés, (2) negocio + timing.
-const STEP_TITLES = ['Contacto', 'Tu negocio']
+const COPY = {
+  es: {
+    stepTitles: ['Contacto', 'Tu negocio'],
+    stepLabel: (step: number) => `Paso ${step} de 2`,
+    name: 'Nombre completo', email: 'Email', country: 'País', countryPlaceholder: 'Selecciona tu país',
+    phone: 'Teléfono', business: 'Nombre del negocio', website: 'Sitio web (si tienes)',
+    interest: '¿Cómo podemos ayudarte?', interestOtherPlaceholder: 'Cuéntanos qué necesitas',
+    currency: 'Moneda', project: 'Cuéntanos sobre tu proyecto (opcional)',
+    revenue: (c: string) => `Facturación mensual actual — ${c}`,
+    budget: (c: string) => `Presupuesto mensual — ${c}`,
+    timeline: 'Cuándo quiere empezar',
+    back: 'Atrás', next: 'Siguiente', sending: 'Enviando…', send: 'Enviar',
+    errorMsg: 'No se pudo enviar. Escríbenos directo a',
+    okTitle: 'Gracias por la información.',
+    okBody: 'Te contactaremos en menos de 24 horas al correo que dejaste.',
+  },
+  en: {
+    stepTitles: ['Contact', 'Your business'],
+    stepLabel: (step: number) => `Step ${step} of 2`,
+    name: 'Full name', email: 'Email', country: 'Country', countryPlaceholder: 'Select your country',
+    phone: 'Phone', business: 'Business name', website: 'Website (if you have one)',
+    interest: 'How can we help you?', interestOtherPlaceholder: 'Tell us what you need',
+    currency: 'Currency', project: 'Tell us about your project (optional)',
+    revenue: (c: string) => `Current monthly revenue — ${c}`,
+    budget: (c: string) => `Monthly budget — ${c}`,
+    timeline: 'When do you want to start',
+    back: 'Back', next: 'Next', sending: 'Sending…', send: 'Send',
+    errorMsg: "Couldn't send it. Email us directly at",
+    okTitle: 'Thanks for the info.',
+    okBody: "We'll reach out within 24 hours at the email you left.",
+  },
+}
 
-export default function QualifyForm() {
+export default function QualifyForm({ locale = 'es' }: { locale?: Locale }) {
+  const t = COPY[locale]
+  const FORM_INTEREST_OPTIONS = locale === 'en' ? INTEREST_EN : INTEREST_ES
+  const FORM_TIMELINE_OPTIONS = locale === 'en' ? TIMELINE_EN : TIMELINE_ES
+  const FORM_REVENUE_BUCKETS = locale === 'en' ? REVENUE_EN : REVENUE_ES
+  const FORM_BUDGET_BUCKETS = locale === 'en' ? BUDGET_EN : BUDGET_ES
+  const COUNTRIES = locale === 'en' ? COUNTRIES_EN : COUNTRIES_ES
+
   const [step, setStep] = useState(1)
   const [data, setData] = useState<FormState>(EMPTY)
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle')
@@ -83,6 +128,7 @@ export default function QualifyForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           type: 'lead',
+          locale,
           ...data,
           phone: `${dialCode} ${data.phone}`.trim(),
           qualified: isQualified,
@@ -105,8 +151,8 @@ export default function QualifyForm() {
         ) : (
           <span className="form-ok__art form-ok__art--ph"><Check size={26} /></span>
         )}
-        <strong>Gracias por la información.</strong>
-        <p>Te contactaremos en menos de 24 horas al correo que dejaste.</p>
+        <strong>{t.okTitle}</strong>
+        <p>{t.okBody}</p>
       </div>
     )
   }
@@ -121,36 +167,36 @@ export default function QualifyForm() {
       />
 
       <div className="qform__steps" aria-hidden="true">
-        {STEP_TITLES.map((t, i) => (
-          <span key={t} className={`qform__dot${i + 1 <= step ? ' is-active' : ''}`}>{i + 1}</span>
+        {t.stepTitles.map((title, i) => (
+          <span key={title} className={`qform__dot${i + 1 <= step ? ' is-active' : ''}`}>{i + 1}</span>
         ))}
       </div>
-      <p className="qform__step-title mono">Paso {step} de 2 · {STEP_TITLES[step - 1]}</p>
+      <p className="qform__step-title mono">{t.stepLabel(step)} · {t.stepTitles[step - 1]}</p>
 
       {step === 1 && (
         <div className="qform__fields">
           <div className="field-row">
             <div className="field">
-              <label htmlFor="qf-name">Nombre completo</label>
+              <label htmlFor="qf-name">{t.name}</label>
               <input id="qf-name" required value={data.name} onChange={(e) => set('name', e.target.value)} />
             </div>
             <div className="field">
-              <label htmlFor="qf-email">Email</label>
+              <label htmlFor="qf-email">{t.email}</label>
               <input id="qf-email" type="email" required value={data.email} onChange={(e) => set('email', e.target.value)} />
             </div>
           </div>
           <div className="field-row">
             <div className="field">
-              <label htmlFor="qf-country">País</label>
+              <label htmlFor="qf-country">{t.country}</label>
               <select id="qf-country" required value={data.country} onChange={(e) => set('country', e.target.value)}>
-                <option value="" disabled>Selecciona tu país</option>
+                <option value="" disabled>{t.countryPlaceholder}</option>
                 {COUNTRIES.map((c) => (
                   <option key={c.name} value={c.name}>{c.name}</option>
                 ))}
               </select>
             </div>
             <div className="field">
-              <label htmlFor="qf-phone">Teléfono</label>
+              <label htmlFor="qf-phone">{t.phone}</label>
               <div className="qform__phone">
                 <span className="qform__phone-code mono">{dialCode || '+__'}</span>
                 <input
@@ -162,17 +208,17 @@ export default function QualifyForm() {
           </div>
           <div className="field-row">
             <div className="field">
-              <label htmlFor="qf-business">Nombre del negocio</label>
+              <label htmlFor="qf-business">{t.business}</label>
               <input id="qf-business" required value={data.business} onChange={(e) => set('business', e.target.value)} />
             </div>
             <div className="field">
-              <label htmlFor="qf-website">Sitio web (si tienes)</label>
+              <label htmlFor="qf-website">{t.website}</label>
               <input id="qf-website" value={data.website} onChange={(e) => set('website', e.target.value)} />
             </div>
           </div>
 
           <div className="field">
-            <label>¿Cómo podemos ayudarte?</label>
+            <label>{t.interest}</label>
             <div className="qform__options">
               {FORM_INTEREST_OPTIONS.map((o) => (
                 <button
@@ -187,14 +233,14 @@ export default function QualifyForm() {
             {data.interest === 'otro' && (
               <input
                 style={{ marginTop: 8 }}
-                placeholder="Cuéntanos qué necesitas"
+                placeholder={t.interestOtherPlaceholder}
                 value={data.interestOther}
                 onChange={(e) => set('interestOther', e.target.value)}
               />
             )}
           </div>
           <div className="field">
-            <label>Moneda</label>
+            <label>{t.currency}</label>
             <div className="qform__options">
               {(['COP', 'USD'] as Currency[]).map((c) => (
                 <button
@@ -208,7 +254,7 @@ export default function QualifyForm() {
             </div>
           </div>
           <div className="field">
-            <label htmlFor="qf-project">Cuéntanos sobre tu proyecto (opcional)</label>
+            <label htmlFor="qf-project">{t.project}</label>
             <textarea id="qf-project" value={data.project} onChange={(e) => set('project', e.target.value)} />
           </div>
         </div>
@@ -217,7 +263,7 @@ export default function QualifyForm() {
       {step === 2 && (
         <div className="qform__fields">
           <div className="field">
-            <label>Facturación mensual actual — {data.currency}</label>
+            <label>{t.revenue(data.currency)}</label>
             <div className="qform__options qform__options--col">
               {revenueBuckets.map((b) => (
                 <button
@@ -231,7 +277,7 @@ export default function QualifyForm() {
             </div>
           </div>
           <div className="field">
-            <label>Presupuesto mensual — {data.currency}</label>
+            <label>{t.budget(data.currency)}</label>
             <div className="qform__options qform__options--col">
               {budgetBuckets.map((b) => (
                 <button
@@ -245,7 +291,7 @@ export default function QualifyForm() {
             </div>
           </div>
           <div className="field">
-            <label>Cuándo quiere empezar</label>
+            <label>{t.timeline}</label>
             <div className="qform__options qform__options--col">
               {FORM_TIMELINE_OPTIONS.map((o) => (
                 <button
@@ -263,21 +309,21 @@ export default function QualifyForm() {
 
       <div className="qform__nav">
         {step > 1 && (
-          <button type="button" className="btn-ghost" onClick={back}>Atrás</button>
+          <button type="button" className="btn-ghost" onClick={back}>{t.back}</button>
         )}
         {step < 2 ? (
           <button type="submit" className="btn-gold" disabled={!canAdvance()}>
-            Siguiente <ArrowRight size={16} />
+            {t.next} <ArrowRight size={16} />
           </button>
         ) : (
           <button type="submit" className="btn-gold" disabled={!canAdvance() || status === 'sending'}>
-            {status === 'sending' ? 'Enviando…' : 'Enviar'} <Check size={16} />
+            {status === 'sending' ? t.sending : t.send} <Check size={16} />
           </button>
         )}
       </div>
       {status === 'error' && (
         <p className="form-note">
-          No se pudo enviar. Escríbenos directo a {CONTACT.email}.
+          {t.errorMsg} {CONTACT.email}.
         </p>
       )}
     </form>

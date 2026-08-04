@@ -4,16 +4,26 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ASSETS, DIFFERENTIATOR, CONVERSION_POINTS } from '@/lib/config'
+import { ASSETS, DIFFERENTIATOR as DIFF_ES, CONVERSION_POINTS as POINTS_ES } from '@/lib/config'
+import { DIFFERENTIATOR as DIFF_EN, CONVERSION_POINTS as POINTS_EN } from '@/lib/config.en'
+import type { Locale } from '@/lib/locale'
 import LazyVideo from './LazyVideo'
 import { Layers, Sparkle, Target } from './Icons'
 
 const CONVERSION_ICONS = [Target, Layers, Sparkle]
 
+const COPY = {
+  es: { reelAria: 'Reel de producción audiovisual de Kaizen Studios', conversionEyebrow: 'Diseñado para convertir' },
+  en: { reelAria: 'Kaizen Studios video production reel', conversionEyebrow: 'Designed to convert' },
+}
+
 gsap.registerPlugin(ScrollTrigger)
 
-export default function Differentiator() {
+export default function Differentiator({ locale = 'es' }: { locale?: Locale }) {
   const root = useRef<HTMLElement>(null)
+  const t = COPY[locale]
+  const DIFFERENTIATOR = locale === 'en' ? DIFF_EN : DIFF_ES
+  const CONVERSION_POINTS = locale === 'en' ? POINTS_EN : POINTS_ES
 
   useGSAP(
     () => {
@@ -37,7 +47,7 @@ export default function Differentiator() {
         </div>
         <div className="diff__media">
           {ASSETS.hasShowreel ? (
-            <LazyVideo aria-label="Reel de producción audiovisual de Kaizen Studios">
+            <LazyVideo aria-label={t.reelAria}>
               <source src="/video/SHOWREEL.webm" type="video/webm" />
               <source src="/video/SHOWREEL.mp4" type="video/mp4" />
             </LazyVideo>
@@ -50,7 +60,7 @@ export default function Differentiator() {
       {/* Segundo bloque: no es solo audiovisual — el sitio entero está pensado
           para convertir (copy persuasivo, estructura y estética con criterio). */}
       <div className="container diff__conversion">
-        <span className="eyebrow">Diseñado para convertir</span>
+        <span className="eyebrow">{t.conversionEyebrow}</span>
         <ul className="value-list" style={{ listStyle: 'none', marginTop: '1.4rem' }}>
           {CONVERSION_POINTS.map(({ title, text }, i) => {
             const Icon = CONVERSION_ICONS[i]

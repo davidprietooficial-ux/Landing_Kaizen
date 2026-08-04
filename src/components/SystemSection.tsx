@@ -4,15 +4,28 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ASSETS, SYSTEM_PHASES } from '@/lib/config'
+import { ASSETS, SYSTEM_PHASES as PHASES_ES } from '@/lib/config'
+import { SYSTEM_PHASES as PHASES_EN } from '@/lib/config.en'
+import type { Locale } from '@/lib/locale'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Las 3 fases del sistema — texto real en SYSTEM_PHASES (src/lib/config.ts).
-// `art`: icono 3D real (se usa si ASSETS.hasStageArt Y la fase tiene `art`); si
-// no, cae al SVG line-art del mismo índice en SCENES. "Gestionar" no tiene foto
-// real todavía → siempre usa su SVG.
-const STEPS = SYSTEM_PHASES
+const COPY = {
+  es: {
+    kicker: 'El sistema · cómo funciona',
+    titleLead: 'Tu sistema digital',
+    titleGold: 'definitivo.',
+    lead: 'Tu negocio grabado con nivel de cine. Un flujo de clientes constante y predecible. Tu web —100% tuya— convirtiendo prospectos en dinero real, todos los días.',
+    stageAria: 'El sistema de Kaizen Studios: atraer, convertir y gestionar',
+  },
+  en: {
+    kicker: 'The system · how it works',
+    titleLead: 'Your',
+    titleGold: 'definitive digital system.',
+    lead: 'Your business filmed to a cinematic standard. A steady, predictable flow of clients. Your website —100% yours— turning prospects into real money, every day.',
+    stageAria: 'The Kaizen Studios system: attract, convert, and manage',
+  },
+}
 
 /* ── Escenas (line-art dorado sobre el fondo oscuro) ── */
 
@@ -164,9 +177,11 @@ const SCENES = [SceneDelivery, SceneEdit, SceneLogistics]
 void SceneCamera
 void SceneReview
 
-export default function SystemSection() {
+export default function SystemSection({ locale = 'es' }: { locale?: Locale }) {
   const root = useRef<HTMLElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
+  const STEPS = locale === 'en' ? PHASES_EN : PHASES_ES
+  const t = COPY[locale]
 
   useGSAP(
     () => {
@@ -234,19 +249,16 @@ export default function SystemSection() {
       <div className="system__pin">
         <div className="system__layout">
           <div className="system__head">
-            <span className="eyebrow system__kicker">El sistema · cómo funciona</span>
+            <span className="eyebrow system__kicker">{t.kicker}</span>
             <h2 className="system__title">
-              Tu sistema digital <span style={{ color: 'var(--gold)' }}>definitivo.</span>
+              {t.titleLead} <span style={{ color: 'var(--gold)' }}>{t.titleGold}</span>
             </h2>
-            <p className="lead system__lead">
-              Tu negocio grabado con nivel de cine. Un flujo de clientes constante y predecible. Tu web —100% tuya—
-              convirtiendo prospectos en dinero real, todos los días.
-            </p>
+            <p className="lead system__lead">{t.lead}</p>
           </div>
 
           <div className="system__canvas-wrap">
             <div className="system__halo" />
-            <div className="system__stage" role="img" aria-label="El sistema de Kaizen Studios: atraer, convertir y gestionar">
+            <div className="system__stage" role="img" aria-label={t.stageAria}>
               {SCENES.map((Scene, i) => (
                 <div className={`scene${i === 0 ? ' is-active' : ''}`} key={STEPS[i].cap}>
                   {ASSETS.hasStageArt && STEPS[i].art ? (

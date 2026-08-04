@@ -216,6 +216,23 @@ section[id] { scroll-margin-top: 80px; }
 }
 .site-search__results a:hover { background: var(--bg3); color: var(--gold2); }
 
+.lang-switch {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; color: var(--muted);
+}
+.lang-switch a { color: var(--muted); transition: color .2s ease; }
+.lang-switch a[aria-current] { color: var(--gold2); }
+.lang-switch a:hover { color: var(--gold2); }
+.lang-switch__sep { color: var(--border2); }
+.footer__col .lang-switch { justify-content: center; margin-top: 4px; }
+.lang-switch--drawer { justify-content: center; margin: 4px 0 2px; font-size: .8rem; }
+
+.lang-popup { max-width: 480px; text-align: center; }
+.lang-popup__line { display: flex; flex-direction: column; gap: 2px; margin-bottom: 14px; }
+.lang-popup__line strong { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; }
+.lang-popup__line span { color: var(--muted); font-size: .88rem; }
+.lang-popup__actions { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+
 .site-menu-toggle {
   display: none; place-items: center; width: 38px; height: 38px; border-radius: 50%;
   background: transparent; border: 1px solid var(--border2); color: var(--text); cursor: pointer;

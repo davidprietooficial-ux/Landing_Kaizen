@@ -11,7 +11,7 @@ const LAST_UPDATE = '4 de agosto de 2026'
 export const metadata: Metadata = {
   title: `Términos y Condiciones — ${SITE.name}`,
   description: `Términos y Condiciones de uso del sitio y de contratación de servicios de ${LEGAL_NAME}, operando bajo la marca ${SITE.name}.`,
-  alternates: { canonical: '/terminos' },
+  alternates: { canonical: '/terminos', languages: { es: '/terminos', en: '/en/terminos' } },
   robots: { index: true, follow: true },
 }
 

@@ -5,20 +5,56 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { scrollToId } from '@/lib/scroll'
 import { searchSite, type SearchEntry } from '@/lib/searchIndex'
+import { localeFromPathname, localizedHref } from '@/lib/locale'
 import { ArrowRight, Menu, Search, X } from './Icons'
 import Logo from './Logo'
+import LanguageSwitcher from './LanguageSwitcher'
 import { SITE } from '@/lib/config'
 
 // Sistema, Servicios, Clientes y Blog: páginas ya construidas pero todavía no
 // activas — desactivadas a pedido de David hasta que revise el contenido.
-// Descomenta la línea correspondiente para reactivar cada una.
-const NAV = [
-  // { href: '/sistema', label: 'Sistema' },
-  { href: '/quienes-somos', label: 'Quiénes somos' },
-  // { href: '/servicios', label: 'Servicios' },
-  // { href: '/clientes', label: 'Clientes' },
-  // { href: '/blog', label: 'Blog' },
-]
+// Descomenta la línea correspondiente para reactivar cada una (en ambos idiomas).
+const NAV = {
+  es: [
+    // { href: '/sistema', label: 'Sistema' },
+    { href: '/quienes-somos', label: 'Quiénes somos' },
+    // { href: '/servicios', label: 'Servicios' },
+    // { href: '/clientes', label: 'Clientes' },
+    // { href: '/blog', label: 'Blog' },
+  ],
+  en: [
+    // { href: '/en/sistema', label: 'System' },
+    { href: '/en/quienes-somos', label: 'About us' },
+    // { href: '/en/servicios', label: 'Services' },
+    // { href: '/en/clientes', label: 'Clients' },
+    // { href: '/en/blog', label: 'Blog' },
+  ],
+}
+
+const COPY = {
+  es: {
+    goHome: `${SITE.name} — ir al inicio`,
+    cta: 'Agenda tu Llamada Gratis',
+    ctaShort: 'Llamada Gratis',
+    searchLabel: 'Buscar en el sitio',
+    searchPlaceholder: '¿Qué necesitas? — ej. sistema, precios, blog…',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
+    home: 'Inicio',
+    resources: 'Recursos',
+  },
+  en: {
+    goHome: `${SITE.name} — go to homepage`,
+    cta: 'Book Your Free Call',
+    ctaShort: 'Free Call',
+    searchLabel: 'Search the site',
+    searchPlaceholder: 'What do you need? — e.g. system, pricing, blog…',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    home: 'Home',
+    resources: 'Resources',
+  },
+}
 
 export default function Header() {
   const [solid, setSolid] = useState(false)
@@ -29,6 +65,16 @@ export default function Header() {
   const searchRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const router = useRouter()
+  const locale = localeFromPathname(pathname)
+  const t = COPY[locale]
+  const nav = NAV[locale]
+  const homeHref = locale === 'en' ? '/en' : '/'
+
+  // El <html lang> vive en el layout raíz (Next no lo permite sobreescribir
+  // desde una ruta anidada) — se corrige acá en cada cambio de ruta.
+  useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40)
@@ -57,20 +103,20 @@ export default function Header() {
 
   // En la home, #agendar existe y se desliza suave. En cualquier otra página
   // ese id no está en el DOM y scrollToId no hace nada — hay que navegar a la
-  // home con el hash puesto.
+  // home (en el idioma actual) con el hash puesto.
   const goToAgendar = () => {
     if (document.getElementById('agendar')) scrollToId('agendar')
-    else window.location.href = '/#agendar'
+    else window.location.href = `${homeHref}#agendar`
   }
 
   const goHome = () => {
-    if (window.location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' })
-    else window.location.href = '/'
+    if (pathname === homeHref) window.scrollTo({ top: 0, behavior: 'smooth' })
+    else window.location.href = homeHref
   }
 
   const runSearch = (q: string) => {
     setQuery(q)
-    setResults(searchSite(q))
+    setResults(searchSite(q, locale))
   }
 
   const submitSearch = (e: React.FormEvent) => {
@@ -88,7 +134,7 @@ export default function Header() {
         <button
           className="iso"
           onClick={goHome}
-          aria-label={`${SITE.name} — ir al inicio`}
+          aria-label={t.goHome}
           style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0 }}
         >
           <Logo size={23} />
@@ -96,7 +142,7 @@ export default function Header() {
         </button>
 
         <nav className="site-nav" aria-label="Navegación principal">
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -108,11 +154,13 @@ export default function Header() {
         </nav>
 
         <div className="site-header__actions">
+          <LanguageSwitcher />
+
           <div className="site-search" ref={searchRef}>
             <button
               className="site-search__toggle"
               onClick={() => setSearchOpen((v) => !v)}
-              aria-label="Buscar en el sitio"
+              aria-label={t.searchLabel}
               aria-expanded={searchOpen}
             >
               <Search size={17} />
@@ -122,7 +170,7 @@ export default function Header() {
                 <input
                   autoFocus
                   type="search"
-                  placeholder="¿Qué necesitas? — ej. sistema, precios, blog…"
+                  placeholder={t.searchPlaceholder}
                   value={query}
                   onChange={(e) => runSearch(e.target.value)}
                 />
@@ -142,15 +190,15 @@ export default function Header() {
           </div>
 
           <button className="btn-gold" onClick={goToAgendar}>
-            <span className="btn-gold__full">Agenda tu Llamada Gratis</span>
-            <span className="btn-gold__short">Llamada Gratis</span>
+            <span className="btn-gold__full">{t.cta}</span>
+            <span className="btn-gold__short">{t.ctaShort}</span>
             <ArrowRight size={16} />
           </button>
 
           <button
             className="site-menu-toggle"
             onClick={() => setDrawerOpen((v) => !v)}
-            aria-label={drawerOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={drawerOpen ? t.closeMenu : t.openMenu}
             aria-expanded={drawerOpen}
           >
             {drawerOpen ? <X size={20} /> : <Menu size={20} />}
@@ -161,16 +209,19 @@ export default function Header() {
       {drawerOpen && (
         <div className="site-drawer">
           <nav className="site-drawer__nav" aria-label="Navegación móvil">
-            <Link href="/" className={pathname === '/' ? 'is-active' : ''}>Inicio</Link>
-            {NAV.map((item) => (
+            <Link href={homeHref} className={pathname === homeHref ? 'is-active' : ''}>{t.home}</Link>
+            {nav.map((item) => (
               <Link key={item.href} href={item.href} className={pathname === item.href ? 'is-active' : ''}>
                 {item.label}
               </Link>
             ))}
-            <Link href="/recursos" className={pathname === '/recursos' ? 'is-active' : ''}>Recursos</Link>
+            <Link href={localizedHref('/recursos', locale)} className={pathname === localizedHref('/recursos', locale) ? 'is-active' : ''}>
+              {t.resources}
+            </Link>
           </nav>
+          <LanguageSwitcher className="lang-switch--drawer" />
           <button className="btn-gold" style={{ width: '100%', justifyContent: 'center' }} onClick={goToAgendar}>
-            Agenda tu Llamada Gratis
+            {t.cta}
             <ArrowRight size={16} />
           </button>
         </div>

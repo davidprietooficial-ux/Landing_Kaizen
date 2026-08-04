@@ -2,16 +2,16 @@ import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { RESOURCES } from '@/lib/resources'
-import styles from './recursos.module.css'
+import styles from '../../recursos/recursos.module.css'
 
 export const metadata: Metadata = {
-  title: 'Recursos — Kaizen Studios',
-  description: 'Guías gratis y recursos de pago de Kaizen Studios. Todavía no hay ninguno publicado.',
-  alternates: { canonical: '/recursos', languages: { es: '/recursos', en: '/en/recursos' } },
+  title: 'Resources — Kaizen Studios',
+  description: 'Free guides and paid resources from Kaizen Studios. None published yet.',
+  alternates: { canonical: '/en/recursos', languages: { es: '/recursos', en: '/en/recursos' } },
   robots: { index: true, follow: true },
 }
 
-export default function RecursosPage() {
+export default function ResourcesPageEn() {
   const gratis = RESOURCES.filter((r) => r.type === 'gratis')
   const pago = RESOURCES.filter((r) => r.type === 'pago')
 
@@ -21,20 +21,20 @@ export default function RecursosPage() {
       <main>
         <section className={`section ${styles.hero}`}>
           <div className="container">
-            <span className="eyebrow">Recursos</span>
-            <h1 className={styles.h1}>Recursos descargables</h1>
+            <span className="eyebrow">Resources</span>
+            <h1 className={styles.h1}>Downloadable resources</h1>
             <p className={`lead ${styles.lead}`}>
-              Guías gratis y recursos de pago para quien quiere resolver esto por su cuenta. Todavía no
-              hay ninguno publicado — cuando salgan, van a estar aquí, sin relleno ni ejemplos inventados
-              mientras tanto.
+              Free guides and paid resources for people who want to solve this on their own. None
+              published yet — when they exist, they will be here, with no filler or made-up examples
+              in the meantime.
             </p>
 
             {RESOURCES.length === 0 ? (
               <div className={styles.emptyState}>
-                <p>Por ahora no hay nada que descargar. Preferimos no llenar esta página con recursos falsos.</p>
+                <p>There is nothing to download right now. We would rather not pad this page with fake resources.</p>
                 <p>
-                  Si quieres enterarte en cuanto publiquemos el primero, suscríbete al newsletter — el
-                  formulario está al final de esta misma página, en el pie.
+                  If you want to know as soon as we publish the first one, subscribe to the newsletter —
+                  the form is at the bottom of this same page, in the footer.
                 </p>
               </div>
             ) : (
@@ -42,7 +42,7 @@ export default function RecursosPage() {
                 {gratis.length > 0 && (
                   <>
                     <div className="section-head" style={{ marginTop: 44 }}>
-                      <span className="mono">Gratis</span>
+                      <span className="mono">Free</span>
                     </div>
                     <div className={styles.grid}>
                       {gratis.map((r) => (
@@ -55,7 +55,7 @@ export default function RecursosPage() {
                 {pago.length > 0 && (
                   <>
                     <div className="section-head" style={{ marginTop: 44 }}>
-                      <span className="mono">Pago</span>
+                      <span className="mono">Paid</span>
                     </div>
                     <div className={styles.grid}>
                       {pago.map((r) => (

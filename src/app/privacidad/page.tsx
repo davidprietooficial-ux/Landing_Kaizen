@@ -11,7 +11,7 @@ const LAST_UPDATE = '16 de julio de 2026'
 export const metadata: Metadata = {
   title: `Política de Privacidad — ${SITE.name}`,
   description: `Política de Tratamiento de Datos Personales de ${LEGAL_NAME}, operando bajo la marca ${SITE.name}.`,
-  alternates: { canonical: '/privacidad' },
+  alternates: { canonical: '/privacidad', languages: { es: '/privacidad', en: '/en/privacidad' } },
   robots: { index: true, follow: true },
 }
 

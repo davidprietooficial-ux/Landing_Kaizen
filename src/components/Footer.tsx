@@ -2,8 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { SITE, CONTACT, SOCIAL } from '@/lib/config'
+import { usePathname } from 'next/navigation'
+import { CONTACT, SOCIAL, SITE as SITE_ES } from '@/lib/config'
+import { SITE as SITE_EN } from '@/lib/config.en'
+import { localeFromPathname } from '@/lib/locale'
 import { Instagram, Youtube, /* Linkedin, */ Mail, WhatsApp, ArrowRight } from './Icons'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const SOCIALS = [
   // --- LinkedIn oculto temporalmente (descomenta para reactivar) ---
@@ -12,15 +16,46 @@ const SOCIALS = [
   { label: 'Instagram', Icon: Instagram, href: SOCIAL.instagram },
 ]
 
-const OTHER_PAGES = [
-  { label: 'Acerca de nosotros', href: '/quienes-somos' },
-  // Casos de éxito (/clientes): desactivada por ahora — descomenta al reactivar.
-  // { label: 'Casos de éxito', href: '/clientes' },
-  { label: 'Política de privacidad', href: '/privacidad' },
-  { label: 'Términos y condiciones', href: '/terminos' },
-]
+const COPY = {
+  es: {
+    newsletter: 'Newsletter',
+    newsletterPlaceholder: 'tu@correo.com',
+    newsletterAria: 'Correo para el newsletter',
+    newsletterSubscribe: 'Suscribirme',
+    newsletterOk: 'Listo — ya estás suscrito.',
+    newsletterError: 'No se pudo enviar. Escríbenos directo.',
+    contact: 'Contacto',
+    whatsappMissing: 'WhatsApp · por agregar',
+    social: 'Redes',
+    socialMissing: 'Por agregar',
+    otherPages: 'Otras páginas',
+    pages: [
+      { label: 'Acerca de nosotros', href: '/quienes-somos' },
+      { label: 'Política de privacidad', href: '/privacidad' },
+      { label: 'Términos y condiciones', href: '/terminos' },
+    ],
+  },
+  en: {
+    newsletter: 'Newsletter',
+    newsletterPlaceholder: 'you@email.com',
+    newsletterAria: 'Email for the newsletter',
+    newsletterSubscribe: 'Subscribe',
+    newsletterOk: "Done — you're subscribed.",
+    newsletterError: "Couldn't send it. Email us directly.",
+    contact: 'Contact',
+    whatsappMissing: 'WhatsApp · coming soon',
+    social: 'Social',
+    socialMissing: 'Coming soon',
+    otherPages: 'Other pages',
+    pages: [
+      { label: 'About us', href: '/en/quienes-somos' },
+      { label: 'Privacy policy', href: '/en/privacidad' },
+      { label: 'Terms and conditions', href: '/en/terminos' },
+    ],
+  },
+}
 
-function Newsletter() {
+function Newsletter({ t }: { t: typeof COPY.es }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle')
 
@@ -46,16 +81,16 @@ function Newsletter() {
       <input
         type="email"
         required
-        placeholder="tu@correo.com"
+        placeholder={t.newsletterPlaceholder}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        aria-label="Correo para el newsletter"
+        aria-label={t.newsletterAria}
       />
-      <button type="submit" aria-label="Suscribirme" disabled={status === 'sending'}>
+      <button type="submit" aria-label={t.newsletterSubscribe} disabled={status === 'sending'}>
         <ArrowRight size={15} />
       </button>
-      {status === 'ok' && <span className="footer__newsletter-msg">Listo — ya estás suscrito.</span>}
-      {status === 'error' && <span className="footer__newsletter-msg">No se pudo enviar. Escríbenos directo.</span>}
+      {status === 'ok' && <span className="footer__newsletter-msg">{t.newsletterOk}</span>}
+      {status === 'error' && <span className="footer__newsletter-msg">{t.newsletterError}</span>}
     </form>
   )
 }
@@ -63,6 +98,10 @@ function Newsletter() {
 export default function Footer() {
   const year = new Date().getFullYear()
   const activeSocials = SOCIALS.filter((s) => s.href)
+  const pathname = usePathname()
+  const locale = localeFromPathname(pathname)
+  const t = COPY[locale]
+  const SITE = locale === 'en' ? SITE_EN : SITE_ES
 
   return (
     <footer className="footer">
@@ -72,12 +111,12 @@ export default function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="lz-logo--flat" src="/logo/logo-kaizen.png" alt="Kaizen Studios" width={212} height={212} />
             <p>{SITE.tagline}</p>
-            <h5 style={{ marginTop: 18 }}>Newsletter</h5>
-            <Newsletter />
+            <h5 style={{ marginTop: 18 }}>{t.newsletter}</h5>
+            <Newsletter t={t} />
           </div>
 
           <div className="footer__col">
-            <h5>Contacto</h5>
+            <h5>{t.contact}</h5>
             <a href={`mailto:${CONTACT.email}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <Mail size={16} /> {CONTACT.email}
             </a>
@@ -87,10 +126,10 @@ export default function Footer() {
               </a>
             ) : (
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--muted2)' }}>
-                <WhatsApp size={16} /> WhatsApp · por agregar
+                <WhatsApp size={16} /> {t.whatsappMissing}
               </span>
             )}
-            <h5 style={{ marginTop: 18 }}>Redes</h5>
+            <h5 style={{ marginTop: 18 }}>{t.social}</h5>
             {activeSocials.length ? (
               <div className="footer__socials">
                 {activeSocials.map(({ label, Icon, href }) => (
@@ -100,15 +139,16 @@ export default function Footer() {
                 ))}
               </div>
             ) : (
-              <p style={{ color: 'var(--muted2)' }}>Por agregar</p>
+              <p style={{ color: 'var(--muted2)' }}>{t.socialMissing}</p>
             )}
           </div>
 
           <div className="footer__col">
-            <h5>Otras páginas</h5>
-            {OTHER_PAGES.map((p) => (
+            <h5>{t.otherPages}</h5>
+            {t.pages.map((p) => (
               <Link key={p.href} href={p.href}>{p.label}</Link>
             ))}
+            <LanguageSwitcher />
           </div>
         </div>
 
