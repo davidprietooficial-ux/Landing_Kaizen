@@ -823,7 +823,9 @@ section[id] { scroll-margin-top: 80px; }
 }
 .form-ok strong { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; }
 .form-ok p { color: var(--muted); line-height: 1.55; max-width: 34ch; }
-.form-ok__art { width: 112px; height: 112px; margin-bottom: 6px; object-fit: contain; }
+/* width:auto — la imagen de "no calificó" es más ancha (no cuadrada) que la
+   de "calificó"; forzar un cuadrado fijo la encogía y dejaba letterboxing. */
+.form-ok__art { width: auto; max-width: 220px; height: 120px; margin-bottom: 6px; object-fit: contain; }
 .form-ok__art--ph {
   display: grid; place-items: center; border-radius: 50%;
   border: 1px solid var(--gold-dim); color: var(--gold);
