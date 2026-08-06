@@ -24,6 +24,10 @@ export const CONTACT = {
   whatsapp: '573237158237',
 }
 
+// Link de agendamiento (Google Calendar) que se muestra al lead calificado
+// justo al enviar el formulario — ver QualifyForm.tsx.
+export const SCHEDULE_URL = 'https://calendar.app.google/qeEsdfsHpcwRctAN9'
+
 // Redes de Kaizen Studios (deja '' lo que no exista)
 export const SOCIAL = {
   instagram: 'https://www.instagram.com/kaizenstudios_oficial/',
@@ -224,9 +228,9 @@ export const TESTIMONIALS: { name: string; role?: string; company?: string; phot
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const FORM_INTEREST_OPTIONS = [
-  { value: 'sistema', label: 'El sistema' },
-  { value: 'completo', label: 'Sistema completo' },
-  { value: 'muestra', label: 'Empezar con la Muestra' },
+  { value: 'clientes', label: 'No consigo suficientes clientes nuevos' },
+  { value: 'conversion', label: 'Mi web no convierte, pierdo clientes' },
+  { value: 'seguimiento', label: 'Se me pierden leads, no doy seguimiento' },
   { value: 'no-seguro', label: 'No estoy seguro' },
   { value: 'otro', label: 'Otro' },
 ] as const

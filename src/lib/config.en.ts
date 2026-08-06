@@ -148,9 +148,9 @@ export const TESTIMONIALS: { name: string; role?: string; company?: string; phot
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const FORM_INTEREST_OPTIONS = [
-  { value: 'sistema', label: 'The system' },
-  { value: 'completo', label: 'Full system' },
-  { value: 'muestra', label: 'Start with the Sample' },
+  { value: 'clientes', label: "I don't get enough new clients" },
+  { value: 'conversion', label: "My website doesn't convert, I lose clients" },
+  { value: 'seguimiento', label: 'Leads slip through, no follow-up' },
   { value: 'no-seguro', label: "I'm not sure" },
   { value: 'otro', label: 'Other' },
 ] as const

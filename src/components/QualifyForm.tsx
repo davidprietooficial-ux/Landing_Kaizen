@@ -9,6 +9,7 @@ import {
   COUNTRIES as COUNTRIES_ES,
   ASSETS,
   CONTACT,
+  SCHEDULE_URL,
 } from '@/lib/config'
 import {
   FORM_INTEREST_OPTIONS as INTEREST_EN,
@@ -51,7 +52,7 @@ const COPY = {
     stepLabel: (step: number) => `Paso ${step} de 2`,
     name: 'Nombre completo', email: 'Email', country: 'País', countryPlaceholder: 'Selecciona tu país',
     phone: 'Teléfono', business: 'Nombre del negocio', website: 'Sitio web (si tienes)',
-    interest: '¿Cómo podemos ayudarte?', interestOtherPlaceholder: 'Cuéntanos qué necesitas',
+    interest: '¿Cuál es tu mayor problema hoy?', interestOtherPlaceholder: 'Cuéntanos qué te está pasando',
     currency: 'Moneda', project: 'Cuéntanos sobre tu proyecto (opcional)',
     revenue: (c: string) => `Facturación mensual actual — ${c}`,
     budget: (c: string) => `Presupuesto mensual — ${c}`,
@@ -60,13 +61,16 @@ const COPY = {
     errorMsg: 'No se pudo enviar. Escríbenos directo a',
     okTitle: 'Gracias por la información.',
     okBody: 'Te contactaremos en menos de 24 horas al correo que dejaste.',
+    okTitleQualified: '¡Calificaste! Agenda tu llamada.',
+    okBodyQualified: 'Elige el horario que más te convenga — no necesitas esperar a que te contactemos.',
+    scheduleCta: 'Agendar mi llamada',
   },
   en: {
     stepTitles: ['Contact', 'Your business'],
     stepLabel: (step: number) => `Step ${step} of 2`,
     name: 'Full name', email: 'Email', country: 'Country', countryPlaceholder: 'Select your country',
     phone: 'Phone', business: 'Business name', website: 'Website (if you have one)',
-    interest: 'How can we help you?', interestOtherPlaceholder: 'Tell us what you need',
+    interest: "What's your biggest problem right now?", interestOtherPlaceholder: "Tell us what's going on",
     currency: 'Currency', project: 'Tell us about your project (optional)',
     revenue: (c: string) => `Current monthly revenue — ${c}`,
     budget: (c: string) => `Monthly budget — ${c}`,
@@ -75,6 +79,9 @@ const COPY = {
     errorMsg: "Couldn't send it. Email us directly at",
     okTitle: 'Thanks for the info.',
     okBody: "We'll reach out within 24 hours at the email you left.",
+    okTitleQualified: "You qualified! Book your call.",
+    okBodyQualified: "Pick the time that works best for you — no need to wait for us to reach out.",
+    scheduleCta: 'Book my call',
   },
 }
 
@@ -151,8 +158,13 @@ export default function QualifyForm({ locale = 'es' }: { locale?: Locale }) {
         ) : (
           <span className="form-ok__art form-ok__art--ph"><Check size={26} /></span>
         )}
-        <strong>{t.okTitle}</strong>
-        <p>{t.okBody}</p>
+        <strong>{qualified ? t.okTitleQualified : t.okTitle}</strong>
+        <p>{qualified ? t.okBodyQualified : t.okBody}</p>
+        {qualified && (
+          <a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer" className="btn-gold">
+            {t.scheduleCta} <ArrowRight size={16} />
+          </a>
+        )}
       </div>
     )
   }
