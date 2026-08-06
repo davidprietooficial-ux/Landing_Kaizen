@@ -60,7 +60,7 @@ const COPY = {
     back: 'Atrás', next: 'Siguiente', sending: 'Enviando…', send: 'Enviar',
     errorMsg: 'No se pudo enviar. Escríbenos directo a',
     okTitle: 'Gracias por contarnos tu situación.',
-    okBody: 'Con lo que nos compartiste, creemos que ahora mismo puede no ser el mejor momento para trabajar juntos — pero eso cambia rápido. Te escribimos igual en menos de 24 horas al correo que dejaste.',
+    okBody: 'Con lo que nos compartiste, creemos que ahora mismo puede no ser el mejor momento para trabajar juntos — pero eso cambia rápido. Quedarás en nuestra base de datos prioritaria: en cuanto tengamos un servicio adecuado para ti, te contactaremos de forma prioritaria.',
     okTitleQualified: '¡Podemos ayudarte a resolver esto!',
     okBodyQualified: 'Estás a una llamada de distancia de ver cómo. Elige el horario que más te convenga — no necesitas esperar a que te contactemos.',
     scheduleCta: 'Agendar mi llamada',
@@ -78,7 +78,7 @@ const COPY = {
     back: 'Back', next: 'Next', sending: 'Sending…', send: 'Send',
     errorMsg: "Couldn't send it. Email us directly at",
     okTitle: "Thanks for sharing where you're at.",
-    okBody: "Based on what you shared, right now might not be the best time for us to work together — but that can change fast. We'll still reach out within 24 hours at the email you left.",
+    okBody: "Based on what you shared, right now might not be the best time for us to work together — but that can change fast. You'll be added to our priority list: as soon as we have a service that fits what you need, we'll reach out to you first.",
     okTitleQualified: "We can help you fix this.",
     okBodyQualified: "You're one call away from seeing how. Pick the time that works best for you — no need to wait for us to reach out.",
     scheduleCta: 'Book my call',
@@ -161,7 +161,7 @@ export default function QualifyForm({ locale = 'es' }: { locale?: Locale }) {
         <strong>{qualified ? t.okTitleQualified : t.okTitle}</strong>
         <p>{qualified ? t.okBodyQualified : t.okBody}</p>
         {qualified && (
-          <a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer" className="btn-gold">
+          <a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer" className="btn-gold btn-gold--pulse">
             {t.scheduleCta} <ArrowRight size={16} />
           </a>
         )}

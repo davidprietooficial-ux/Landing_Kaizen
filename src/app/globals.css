@@ -110,6 +110,21 @@ section[id] { scroll-margin-top: 80px; }
   background: rgba(200, 164, 90, .1); color: #fff;
   border-color: var(--gold2); box-shadow: none;
 }
+/* CTA de "calificado" en el resultado del formulario — más grande, en
+   mayúsculas y con un pulso continuo para que sea imposible de ignorar. */
+.btn-gold--pulse {
+  text-transform: uppercase; letter-spacing: .04em; font-weight: 700;
+  font-size: 1.02rem; padding: 1rem 1.9rem;
+  animation: btn-gold-pulse 1.7s ease-in-out infinite;
+}
+.btn-gold--pulse:hover { animation-play-state: paused; }
+@keyframes btn-gold-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 164, 90, .55); }
+  50% { transform: scale(1.045); box-shadow: 0 0 0 14px rgba(200, 164, 90, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-gold--pulse { animation: none; }
+}
 .btn-ghost {
   display: inline-flex; align-items: center; gap: .5rem;
   background: transparent; color: var(--text);
