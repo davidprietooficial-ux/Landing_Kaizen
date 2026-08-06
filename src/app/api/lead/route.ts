@@ -1,10 +1,11 @@
 import type { NextRequest } from 'next/server'
 import { appendLeadRow } from '@/lib/googleSheets'
+import { notifyNewLead } from '@/lib/notifyEmail'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Captura de leads → Google Sheets (+ GoHighLevel si está conectado). Alimenta
-// 3 orígenes distintos, todos con la misma forma de payload (`type` los
-// distingue del otro lado):
+// Captura de leads → Google Sheets (+ GoHighLevel + email si están conectados).
+// Alimenta 3 orígenes distintos, todos con la misma forma de payload (`type`
+// los distingue del otro lado):
 //   - 'lead'       — QualifyForm.tsx (los 2 pasos de calificación)
 //   - 'newsletter' — Footer.tsx (solo email)
 //   - 'careers'    — sección "Trabaja con nosotros" en /quienes-somos
@@ -12,13 +13,15 @@ import { appendLeadRow } from '@/lib/googleSheets'
 // El formulario hace POST aquí; nosotros escribimos/reenviamos a:
 //   1. Google Sheets, vía la API oficial con cuenta de servicio (googleSheets.ts).
 //   2. Inbound Webhook de GHL, si ya está configurado (opcional).
+//   3. Email de aviso a Kaizen (SMTP), si está configurado (opcional).
 // Las credenciales viven SOLO en el servidor (env vars), nunca en el
 // navegador. El cálculo de `qualified` (y el motivo) ya viene hecho desde el
 // cliente (QualifyForm) — aquí solo se reenvía.
 //
-// Si ninguna de las dos está configurada todavía, NO rompemos el formulario:
-// el lead se registra en los logs (Vercel → Deployments → Functions) para no
-// perderlo, y el usuario sigue viendo su resultado / calendario con normalidad.
+// Si ninguna está configurada todavía, NO rompemos el formulario: el lead se
+// registra en los logs (Hostinger → Node.js → logs) para no perderlo, y el
+// usuario sigue viendo su resultado / calendario con normalidad. El email de
+// aviso es informativo — un fallo ahí nunca cambia la respuesta al cliente.
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Mismo orden de columnas que la hoja "Leads" — ver instrucciones de setup.
@@ -59,14 +62,15 @@ export async function POST(req: NextRequest) {
     process.env.GOOGLE_SHEET_ID
   )
   const ghlWebhook = process.env.GHL_WEBHOOK_URL
+  const emailConfigured = !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD)
 
-  if (!sheetsConfigured && !ghlWebhook) {
+  if (!sheetsConfigured && !ghlWebhook && !emailConfigured) {
     // Nada conectado todavía: no perdemos el lead, queda en los logs del servidor.
     console.log('[lead] sin destino configurado todavía →', JSON.stringify(payload))
     return Response.json({ ok: true, forwarded: false })
   }
 
-  const [sheetsResult, ghlResult] = await Promise.allSettled([
+  const [sheetsResult, ghlResult, emailResult] = await Promise.allSettled([
     sheetsConfigured ? appendLeadRow(toSheetRow(payload)) : Promise.resolve(null),
     ghlWebhook
       ? fetch(ghlWebhook, {
@@ -75,12 +79,15 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify(payload),
         })
       : Promise.resolve(null),
+    emailConfigured ? notifyNewLead(payload) : Promise.resolve(null),
   ])
 
   if (sheetsResult.status === 'rejected') console.error('[lead] error escribiendo en Google Sheets:', sheetsResult.reason)
 
   if (ghlResult.status === 'rejected') console.error('[lead] error reenviando a GHL:', ghlResult.reason)
   else if (ghlResult.value && !ghlResult.value.ok) console.error('[lead] GHL respondió', ghlResult.value.status)
+
+  if (emailResult.status === 'rejected') console.error('[lead] error enviando email de aviso:', emailResult.reason)
 
   // No bloqueamos la UX del usuario por un fallo en algún destino: si al menos
   // uno de los configurados quedó ok, respondemos ok.
