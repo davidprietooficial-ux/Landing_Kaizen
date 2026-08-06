@@ -52,6 +52,16 @@ export async function appendLeadRow(row: (string | number)[]): Promise<void> {
   // como env var del panel (a veces ambas anidadas) — las quitamos todas de
   // los extremos, junto con el \n escapado.
   const privateKey = rawKey.replace(/^['"]+|['"]+$/g, '').replace(/\\n/g, '\n')
+
+  // TEMPORAL: diagnóstico del formato real del env var en runtime, sin
+  // exponer la clave completa. Quitar una vez resuelto.
+  console.log(
+    '[debug-key] len:', rawKey.length,
+    'first10:', JSON.stringify(rawKey.slice(0, 10)),
+    'last10:', JSON.stringify(rawKey.slice(-10)),
+    'cleaned_first10:', JSON.stringify(privateKey.slice(0, 10)),
+    'cleaned_last10:', JSON.stringify(privateKey.slice(-10)),
+  )
   const token = await getAccessToken(email, privateKey)
   const range = encodeURIComponent(`${tab}!A:A`)
 
