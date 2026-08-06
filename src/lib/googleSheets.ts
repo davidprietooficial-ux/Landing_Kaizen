@@ -48,7 +48,9 @@ export async function appendLeadRow(row: (string | number)[]): Promise<void> {
   const tab = process.env.GOOGLE_SHEET_TAB_NAME || 'Leads'
   if (!email || !rawKey || !sheetId) throw new Error('faltan env vars de Google Sheets')
 
-  const privateKey = rawKey.replace(/\\n/g, '\n')
+  // Hostinger envuelve el valor en comillas dobles al guardarlo como env var
+  // del panel — las quitamos si vienen incluidas, junto con el \n escapado.
+  const privateKey = rawKey.replace(/^"|"$/g, '').replace(/\\n/g, '\n')
   const token = await getAccessToken(email, privateKey)
   const range = encodeURIComponent(`${tab}!A:A`)
 
