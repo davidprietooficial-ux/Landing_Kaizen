@@ -49,20 +49,10 @@ export async function appendLeadRow(row: (string | number)[]): Promise<void> {
   if (!email || !rawKey || !sheetId) throw new Error('faltan env vars de Google Sheets')
 
   // Hostinger envuelve el valor en comillas simples y/o dobles al guardarlo
-  // como env var del panel (a veces ambas anidadas) — las quitamos todas de
-  // los extremos, junto con el \n escapado.
-  const privateKey = rawKey.replace(/^['"]+|['"]+$/g, '').replace(/\\n/g, '\n')
-
-  // TEMPORAL: diagnóstico del formato real del env var en runtime, sin
-  // exponer la clave completa. Quitar una vez resuelto.
-  const codes = (s: string) => Array.from(s).map((c) => c.charCodeAt(0)).join(',')
-  console.log(
-    '[debug-key] len:', rawKey.length,
-    'raw_first15_codes:', codes(rawKey.slice(0, 15)),
-    'raw_last15_codes:', codes(rawKey.slice(-15)),
-    'clean_first15_codes:', codes(privateKey.slice(0, 15)),
-    'clean_last15_codes:', codes(privateKey.slice(-15)),
-  )
+  // como env var del panel, y además duplica la barra invertida de cada \n
+  // (queda \\n) — quitamos las comillas de los extremos y colapsamos una o
+  // más barras invertidas seguidas de "n" en un salto de línea real.
+  const privateKey = rawKey.replace(/^['"]+|['"]+$/g, '').replace(/\\+n/g, '\n')
   const token = await getAccessToken(email, privateKey)
   const range = encodeURIComponent(`${tab}!A:A`)
 
