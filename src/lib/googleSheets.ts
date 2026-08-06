@@ -55,12 +55,13 @@ export async function appendLeadRow(row: (string | number)[]): Promise<void> {
 
   // TEMPORAL: diagnóstico del formato real del env var en runtime, sin
   // exponer la clave completa. Quitar una vez resuelto.
+  const codes = (s: string) => Array.from(s).map((c) => c.charCodeAt(0)).join(',')
   console.log(
     '[debug-key] len:', rawKey.length,
-    'first10:', JSON.stringify(rawKey.slice(0, 10)),
-    'last10:', JSON.stringify(rawKey.slice(-10)),
-    'cleaned_first10:', JSON.stringify(privateKey.slice(0, 10)),
-    'cleaned_last10:', JSON.stringify(privateKey.slice(-10)),
+    'raw_first15_codes:', codes(rawKey.slice(0, 15)),
+    'raw_last15_codes:', codes(rawKey.slice(-15)),
+    'clean_first15_codes:', codes(privateKey.slice(0, 15)),
+    'clean_last15_codes:', codes(privateKey.slice(-15)),
   )
   const token = await getAccessToken(email, privateKey)
   const range = encodeURIComponent(`${tab}!A:A`)
