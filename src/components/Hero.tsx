@@ -12,7 +12,7 @@ import type { Locale } from '@/lib/locale'
 const COPY = {
   es: {
     sectionAria: 'Inicio',
-    title: ['Sin página propia,', 'no existes.'],
+    title: ['Sin sistema completo,', 'pierdes clientes.'],
     cta: 'Agenda tu Llamada Gratis',
     ctaShort: 'Llamada Gratis',
     work: 'Ver nuestro trabajo',
@@ -20,7 +20,7 @@ const COPY = {
   },
   en: {
     sectionAria: 'Home',
-    title: ['Without your own site,', "you don't exist."],
+    title: ['Without a complete system,', "you're losing clients."],
     cta: 'Book Your Free Call',
     ctaShort: 'Free Call',
     work: 'See our work',
