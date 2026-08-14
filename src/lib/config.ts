@@ -14,8 +14,7 @@ export const SITE = {
     'No vendemos servicios sueltos: vendemos un sistema. Meta Ads que traen a la gente correcta, una web 100% tuya que convierte, y contenido orgánico que hace crecer tu marca. Producción audiovisual de calidad en cada pieza.',
   descriptionMobile:
     'Un sistema que atrae, convierte y hace crecer tu marca — con producción audiovisual de calidad en cada pieza.',
-  // [[ TODO ]] dominio final de producción
-  url: 'https://kaizenstudios.co',
+  url: 'https://www.kaizenvisualstudio.com',
 }
 
 export const CONTACT = {

@@ -23,7 +23,7 @@ export const SITE = {
     "We don't sell loose services: we sell a system. Meta Ads that bring in the right people, a website that's 100% yours and converts, and organic content that grows your brand. Quality video production in every piece.",
   descriptionMobile:
     'A system that attracts, converts, and grows your brand — with quality video production in every piece.',
-  url: 'https://kaizenstudios.co',
+  url: 'https://www.kaizenvisualstudio.com',
 }
 
 export const PAIN_POINTS = [
