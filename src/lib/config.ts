@@ -192,9 +192,9 @@ export const CLIENTS: { name: string; src: string; h?: number; w?: number; iw: n
 // ⚠️ [[ TODO David ]] Son placeholders de motionsites.ai convertidos a MP4.
 // Reemplazar por capturas/grabaciones de las webs propias cuando existan.
 export const WORK_MARQUEE: { name: string; src: string; iw?: number; ih?: number }[] = [
-  { name: 'Aethera', src: '/marquee/aethera.mp4' },
+  { name: 'Plan de Edición Total — Clase', src: '/marquee/clase.mp4' },
   { name: 'Asme', src: '/marquee/asme.webp', iw: 1000, ih: 560 },
-  { name: 'Nexora', src: '/marquee/nexora.mp4' },
+  { name: 'Plan de Edición Total — Webinar', src: '/marquee/form-webinar.mp4' },
   { name: 'Velorah', src: '/marquee/velorah.mp4' },
 ]
 
