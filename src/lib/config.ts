@@ -217,10 +217,6 @@ export const TESTIMONIALS: { name: string; role?: string; company?: string; phot
   // [[ TODO David: completar rol/empresa, estrellas y quote de Marco y la Dra., luego descomentar ]]
   // { name: 'Marco', role: '', company: '', photo: '/testimonials/marco.jpg', stars: 5, quote: '' },
   // { name: 'Dra.', role: '', company: '', photo: '/testimonials/dra.jpg', stars: 5, quote: '' },
-  {
-    name: 'Peluquería Origen', role: 'Negocio local', photo: '/testimonials/origen-96.webp', stars: 4,
-    quote: 'Trabajamos con Kaizen durante un par de meses, produciendo contenido para nuestra marca. Hubo comunicación constante durante todo el proceso y los resultados se reflejaron mejorando nuestra presencia digital. La disposición y el seguimiento fueron clave de principio a fin.',
-  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────

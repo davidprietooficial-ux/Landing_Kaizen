@@ -137,10 +137,6 @@ export const TESTIMONIALS: { name: string; role?: string; company?: string; phot
     name: 'Diana Castillo Hernández', role: 'Independent Accountant', photo: '/testimonials/diana.jpg', stars: 5,
     quote: "Before, I had to re-explain to every client what services I offered and how to book an appointment — I wasted time with people who weren't even going to hire me. Kaizen built me a page where I explain my accounting services and book appointments directly from it. Now the website does that filtering for me: by the time someone messages me, they already know what they want and are ready to move forward. The calls I get today are much more effective.",
   },
-  {
-    name: 'Peluquería Origen', role: 'Local business', photo: '/testimonials/origen-96.webp', stars: 4,
-    quote: 'We worked with Kaizen for a couple of months, producing content for our brand. There was constant communication throughout the process, and the results showed in our improved digital presence. Their availability and follow-through were key from start to finish.',
-  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
