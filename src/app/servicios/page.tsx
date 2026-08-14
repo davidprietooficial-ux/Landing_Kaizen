@@ -9,7 +9,7 @@ import styles from './servicios.module.css'
 export const metadata: Metadata = {
   title: 'Un sistema, tres accesos — Kaizen Studios',
   description:
-    'No vendemos tres servicios ni tres paquetes sueltos: vendemos un solo sistema — atraer, convertir, gestionar. Muestra, El sistema o Sistema completo solo cambian cuánto queda automatizado para ti.',
+    'No vendemos tres servicios ni tres paquetes sueltos: vendemos un solo sistema — atraer, convertir, crecer. Muestra, El sistema o Sistema completo solo cambian cuánto queda automatizado para ti.',
   alternates: { canonical: '/servicios' },
   robots: { index: true, follow: true },
 }
@@ -26,7 +26,7 @@ export default function ServiciosPage() {
             <p className={`lead ${styles.lead}`}>
               Esto sigue viviendo en <span className="mono" style={{ letterSpacing: 0 }}>/servicios</span> porque
               así lo buscas. Pero aquí no eliges piezas sueltas: eliges cuánto del mismo sistema —
-              atraer, convertir, gestionar — queda armado y automatizado para ti. El sistema que recibes
+              atraer, convertir, crecer — queda armado y automatizado para ti. El sistema que recibes
               es siempre el mismo. Lo que cambia es cuánto de él operas tú y cuánto opera solo.
             </p>
 

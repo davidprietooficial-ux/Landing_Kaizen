@@ -12,7 +12,7 @@ export type SearchEntry = { title: string; href: string; keywords: string[] }
 // búsqueda. Descomenta la entrada correspondiente al reactivar cada página.
 export const SEARCH_INDEX: SearchEntry[] = [
   { title: 'Inicio', href: '/', keywords: ['home', 'inicio', 'kaizen'] },
-  // { title: 'Cómo funciona el sistema', href: '/sistema', keywords: ['sistema', 'atraer', 'convertir', 'gestionar', 'metodología', 'proceso'] },
+  // { title: 'Cómo funciona el sistema', href: '/sistema', keywords: ['sistema', 'atraer', 'convertir', 'crecer', 'metodología', 'proceso'] },
   { title: 'Quiénes somos', href: '/quienes-somos', keywords: ['equipo', 'nosotros', 'quienes somos', 'david seiko'] },
   // { title: 'Un sistema, tres accesos', href: '/servicios', keywords: ['servicios', 'precios', 'muestra', 'sistema completo', 'accesos'] },
   // { title: 'Clientes y casos de estudio', href: '/clientes', keywords: ['clientes', 'casos de estudio', 'resultados', 'testimonios'] },

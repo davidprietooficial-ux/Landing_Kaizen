@@ -20,9 +20,9 @@ export const SITE = {
   founder: 'David Seiko',
   tagline: 'The definitive system. Not just another website.',
   description:
-    "We don't sell loose services: we sell a system. Meta Ads that bring in the right people, a website that's 100% yours and converts, and automated management that follows up. Quality video production in every piece.",
+    "We don't sell loose services: we sell a system. Meta Ads that bring in the right people, a website that's 100% yours and converts, and organic content that grows your brand. Quality video production in every piece.",
   descriptionMobile:
-    'A system that attracts, converts, and manages clients for you — with quality video production in every piece.',
+    'A system that attracts, converts, and grows your brand — with quality video production in every piece.',
   url: 'https://kaizenstudios.co',
 }
 
@@ -51,10 +51,10 @@ export const SYSTEM_PHASES: { cap: string; art?: string; t: string; d: string }[
     d: 'A website that is 100% yours, with strategic copy and quality video production. The click stops getting lost: it becomes a customer.',
   },
   {
-    cap: 'Manage',
+    cap: 'Grow',
     art: '/stages/08-gestion.png',
-    t: 'Manage',
-    d: 'Automatic conversations, follow-up, and onboarding with GoHighLevel + n8n. Every sale feeds back into refining the Meta ads — the machine optimizes itself.',
+    t: 'Grow',
+    d: 'Organic content that builds brand and trust before the click — the layer that raises lead quality and conversion.',
   },
 ]
 

@@ -11,9 +11,9 @@ export const SITE = {
   founder: 'David Seiko',
   tagline: 'Un sistema que vende. No una web más.',
   description:
-    'No vendemos servicios sueltos: vendemos un sistema. Meta Ads que traen a la gente correcta, una web 100% tuya que convierte, y gestión automática que da seguimiento. Producción audiovisual de calidad en cada pieza.',
+    'No vendemos servicios sueltos: vendemos un sistema. Meta Ads que traen a la gente correcta, una web 100% tuya que convierte, y contenido orgánico que hace crecer tu marca. Producción audiovisual de calidad en cada pieza.',
   descriptionMobile:
-    'Un sistema que atrae, convierte y gestiona clientes por ti — con producción audiovisual de calidad en cada pieza.',
+    'Un sistema que atrae, convierte y hace crecer tu marca — con producción audiovisual de calidad en cada pieza.',
   // [[ TODO ]] dominio final de producción
   url: 'https://kaizenstudios.co',
 }
@@ -73,10 +73,10 @@ export const SYSTEM_PHASES: { cap: string; art?: string; t: string; d: string }[
     d: 'Una web 100% tuya, con copy estratégico y producción audiovisual de calidad. El clic deja de perderse: se vuelve cliente.',
   },
   {
-    cap: 'Gestionar',
+    cap: 'Crecer',
     art: '/stages/08-gestion.png',
-    t: 'Gestionar',
-    d: 'Conversaciones, seguimiento y onboarding automáticos con GoHighLevel + n8n. Cada venta vuelve a afinar los anuncios en Meta — la máquina se optimiza sola.',
+    t: 'Crecer',
+    d: 'Contenido orgánico que construye marca y confianza antes del clic — el complemento que sube la calidad de cada lead y la conversión.',
   },
 ]
 
@@ -119,7 +119,7 @@ export const ACCESS_TIERS = [
     key: 'sistema',
     name: 'El sistema',
     subtitle: 'El que siempre vendemos',
-    text: 'Las 3 fases completas — atraer, convertir, gestionar — con cierre simple: Calendly, WhatsApp o formulario. Sin GoHighLevel. Resultados asegurados.',
+    text: 'Las 3 fases completas — atraer, convertir, crecer — con cierre simple: Calendly, WhatsApp o formulario. Sin GoHighLevel. Resultados asegurados.',
     forWho: 'Para negocios listos para dejar de depender del algoritmo.',
     featured: true,
   },

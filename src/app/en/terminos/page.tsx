@@ -64,25 +64,26 @@ export default function TerminosEnPage() {
             <h2 style={{ fontSize: '1.4rem', marginTop: '2rem', marginBottom: '.7rem' }}>2. Description of the service</h2>
             <p>
               {SITE.name} does not sell standalone services: it sells a system made up of three phases that work
-              together to attract, convert, and manage customers for the contracting client&rsquo;s business.
+              together to attract customers, convert them, and grow the contracting client&rsquo;s business
+              through organic content.
             </p>
             <ul style={{ display: 'grid', gap: '.5rem', paddingLeft: '1.1rem', color: 'var(--muted)' }}>
               <li><strong style={{ color: 'var(--text)' }}>Attract:</strong> Meta Ads campaigns designed to bring qualified traffic to the client&rsquo;s business, not simply impressions or reach.</li>
               <li><strong style={{ color: 'var(--text)' }}>Convert:</strong> a website owned by the client, with strategic copywriting and video production, designed to convert that traffic into leads and customers.</li>
-              <li><strong style={{ color: 'var(--text)' }}>Manage:</strong> follow-up and management of conversations with the prospective customer, handled manually or through automation depending on the access tier engaged.</li>
+              <li><strong style={{ color: 'var(--text)' }}>Grow:</strong> organic content published on a consistent basis to build brand and trust, as a complement to the two phases above — it raises the quality of incoming leads and the conversion rate.</li>
             </ul>
             <p style={{ marginTop: '.6rem' }}>This system is currently offered in three access tiers:</p>
             <ul style={{ display: 'grid', gap: '.5rem', paddingLeft: '1.1rem', color: 'var(--muted)' }}>
               <li><strong style={{ color: 'var(--text)' }}>Sample:</strong> a single landing page, with video production and AI support, without ad spend or a CRM — designed so the client can get to know {SITE.name}&rsquo;s way of working before committing to the full system.</li>
-              <li><strong style={{ color: 'var(--text)' }}>The System:</strong> all three phases in full — attract, convert, manage — with a simple closing mechanism (scheduling link, WhatsApp, or form), without a CRM. This is the primary access tier offered by {SITE.name}, and the one on which we work with guaranteed results under the terms agreed in writing with each client in their particular proposal.</li>
+              <li><strong style={{ color: 'var(--text)' }}>The System:</strong> all three phases in full — attract, convert, grow — with a simple closing mechanism (scheduling link, WhatsApp, or form), without a CRM. This is the primary access tier offered by {SITE.name}, and the one on which we work with guaranteed results under the terms agreed in writing with each client in their particular proposal.</li>
               <li><strong style={{ color: 'var(--text)' }}>Full System:</strong> everything above plus automated conversation management, follow-up, and onboarding through GoHighLevel and associated automations.</li>
             </ul>
             <p style={{ marginTop: '.6rem' }}>
               The exact scope, deliverables, timelines, and particular conditions of each project are defined in
               the proposal or quote that {LEGAL_NAME} provides to the client before starting the work, and that
               proposal forms an integral part of the contractual relationship between the parties. {SITE.name}{' '}
-              works to make each system fulfill its purpose of attracting, converting, and managing customers
-              effectively, within the framework agreed in each particular proposal; business results also depend
+              works to make each system fulfill its purpose of attracting and converting customers and growing the
+              client&rsquo;s business effectively, within the framework agreed in each particular proposal; business results also depend
               on factors outside {SITE.name}&rsquo;s control, such as the market, the client&rsquo;s offer, and the
               advertising budget allocated to the campaigns.
             </p>

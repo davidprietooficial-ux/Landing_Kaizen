@@ -10,7 +10,7 @@ import styles from './sistema.module.css'
 export const metadata: Metadata = {
   title: `Cómo funciona el sistema — ${SITE.name}`,
   description:
-    'Meta Ads que usan tus propias redes, una web 100% tuya que convierte y automatización que da seguimiento a cada lead. Las 3 fases del sistema de Kaizen Studios, explicadas a fondo.',
+    'Meta Ads que usan tus propias redes, una web 100% tuya que convierte y contenido orgánico que sube la calidad de cada lead. Las 3 fases del sistema de Kaizen Studios, explicadas a fondo.',
   alternates: { canonical: '/sistema' },
   robots: { index: true, follow: true },
 }
@@ -28,10 +28,10 @@ const PHASE_DETAILS: string[][] = [
     'Tu perfil de Instagram no es tuyo: es un espacio que rentas, y el dueño puede cambiar las reglas — o cerrarte la cuenta — cuando quiera. Una web sí es tuya. Nadie te la puede quitar y ningún algoritmo decide quién la ve.',
     'La construimos con copy estratégico, pensado para resolver la objeción exacta que tiene el visitante en cada sección, y con producción audiovisual de calidad — no plantilla, no stock genérico. El clic que antes se perdía en un feed aterriza en un lugar diseñado para convertirlo en cliente.',
   ],
-  // 03 · Gestionar
+  // 03 · Crecer
   [
-    'Un lead que no recibe respuesta en minutos se enfría y se va con la competencia. Contestar a mano, cuando alguien tiene tiempo, no escala — y siempre hay algún mensaje que se queda sin respuesta.',
-    'Con GoHighLevel + n8n automatizamos la conversación inicial, el seguimiento y el onboarding: nadie se pierde entre los mensajes, sin importar cuántos lleguen ni a qué hora.',
+    'Meta Ads trae tráfico y la web lo convierte — pero lo que hace que alguien confíe antes de dar clic es lo que ve de ti en el camino. Sin presencia orgánica, cada lead llega frío, sin contexto, dudando si eres real.',
+    'Publicamos contenido orgánico de forma constante: es el complemento natural de atraer y convertir, la capa que construye marca y confianza para que el lead llegue más caliente — y convierta más.',
   ],
 ]
 
@@ -61,7 +61,7 @@ export default function SistemaPage() {
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">Las 3 fases</span>
-              <h2>Atraer, convertir, gestionar.</h2>
+              <h2>Atraer, convertir, crecer.</h2>
             </div>
 
             <div className={styles.phases}>
@@ -79,9 +79,9 @@ export default function SistemaPage() {
             </div>
 
             <p className={`${styles.loop} reveal`}>
-              Cada venta que se cierra alimenta datos reales de vuelta a los anuncios en Meta: qué audiencia sí
-              compra, qué mensaje sí convierte. <strong>Atraer mejora con cada Gestionar — la máquina se optimiza
-              sola.</strong>
+              Cada pieza de contenido orgánico construye la audiencia propia desde la que parte Atraer — mientras
+              más creces, más barato y mejor calibrado es cada anuncio. <strong>Atraer mejora con cada Crecer — el
+              sistema se retroalimenta solo.</strong>
             </p>
           </div>
         </section>

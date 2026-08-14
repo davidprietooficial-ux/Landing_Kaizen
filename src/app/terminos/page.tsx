@@ -76,24 +76,25 @@ export default function TerminosPage() {
             <h2 style={{ fontSize: '1.4rem', marginTop: '2rem', marginBottom: '.7rem' }}>2. Descripción del servicio</h2>
             <p>
               {SITE.name} no vende servicios sueltos: vende un sistema compuesto por tres fases que trabajan juntas
-              para atraer, convertir y gestionar clientes para el negocio del cliente contratante.
+              para atraer clientes, convertirlos y hacer crecer el negocio del cliente contratante con contenido
+              orgánico.
             </p>
             <ul style={{ display: 'grid', gap: '.5rem', paddingLeft: '1.1rem', color: 'var(--muted)' }}>
               <li><strong style={{ color: 'var(--text)' }}>Atraer:</strong> pauta en Meta Ads pensada para llevar tráfico calificado hacia el negocio del cliente, no simplemente impresiones o alcance.</li>
               <li><strong style={{ color: 'var(--text)' }}>Convertir:</strong> una web propia del cliente, con copy estratégico y producción audiovisual, diseñada para convertir ese tráfico en contactos y clientes.</li>
-              <li><strong style={{ color: 'var(--text)' }}>Gestionar:</strong> seguimiento y gestión de conversaciones con el cliente potencial, de forma manual o automatizada según el acceso contratado.</li>
+              <li><strong style={{ color: 'var(--text)' }}>Crecer:</strong> contenido orgánico publicado de forma constante para construir marca y confianza, como complemento de las dos fases anteriores — mejora la calidad de los leads que llegan y la tasa de conversión.</li>
             </ul>
             <p style={{ marginTop: '.6rem' }}>Este sistema se ofrece hoy en tres niveles de acceso:</p>
             <ul style={{ display: 'grid', gap: '.5rem', paddingLeft: '1.1rem', color: 'var(--muted)' }}>
               <li><strong style={{ color: 'var(--text)' }}>Muestra:</strong> una landing page, con producción audiovisual y apoyo de IA, sin pauta publicitaria ni CRM — pensada para que el cliente conozca la forma de trabajar de {SITE.name} antes de comprometerse con el sistema completo.</li>
-              <li><strong style={{ color: 'var(--text)' }}>El sistema:</strong> las tres fases completas — atraer, convertir, gestionar — con un mecanismo de cierre simple (agenda, WhatsApp o formulario), sin CRM. Es el acceso principal que ofrece {SITE.name}, y sobre el que trabajamos con resultados asegurados en los términos que se acuerden por escrito con cada cliente en su propuesta particular.</li>
+              <li><strong style={{ color: 'var(--text)' }}>El sistema:</strong> las tres fases completas — atraer, convertir, crecer — con un mecanismo de cierre simple (agenda, WhatsApp o formulario), sin CRM. Es el acceso principal que ofrece {SITE.name}, y sobre el que trabajamos con resultados asegurados en los términos que se acuerden por escrito con cada cliente en su propuesta particular.</li>
               <li><strong style={{ color: 'var(--text)' }}>Sistema completo:</strong> todo lo anterior más la gestión automatizada de conversaciones, seguimiento y onboarding a través de GoHighLevel y automatizaciones asociadas.</li>
             </ul>
             <p style={{ marginTop: '.6rem' }}>
               El alcance exacto, los entregables, los tiempos y las condiciones particulares de cada proyecto se
               definen en la propuesta o cotización que {LEGAL_NAME} entrega al cliente antes de iniciar el trabajo,
               y esa propuesta forma parte integral de la relación contractual entre las partes. {SITE.name} trabaja
-              para que cada sistema cumpla su propósito de atraer, convertir y gestionar clientes de forma efectiva,
+              para que cada sistema cumpla su propósito de atraer, convertir y hacer crecer el negocio del cliente de forma efectiva,
               dentro del marco de lo pactado en cada propuesta particular; los resultados de negocio dependen
               también de factores fuera del control de {SITE.name}, como el mercado, la oferta del cliente y la
               inversión publicitaria destinada a la pauta.

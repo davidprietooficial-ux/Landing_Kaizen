@@ -16,14 +16,14 @@ const COPY = {
     titleLead: 'Tu sistema digital',
     titleGold: 'definitivo.',
     lead: 'Tu negocio grabado con nivel de cine. Un flujo de clientes constante y predecible. Tu web —100% tuya— convirtiendo prospectos en dinero real, todos los días.',
-    stageAria: 'El sistema de Kaizen Studios: atraer, convertir y gestionar',
+    stageAria: 'El sistema de Kaizen Studios: atraer, convertir y crecer',
   },
   en: {
     kicker: 'The system · how it works',
     titleLead: 'Your',
     titleGold: 'definitive digital system.',
     lead: 'Your business filmed to a cinematic standard. A steady, predictable flow of clients. Your website —100% yours— turning prospects into real money, every day.',
-    stageAria: 'The Kaizen Studios system: attract, convert, and manage',
+    stageAria: 'The Kaizen Studios system: attract, convert, and grow',
   },
 }
 
@@ -171,7 +171,7 @@ function SceneDelivery() {
 }
 
 // Fallback line-art alineado con las 3 fases: tiles=Atraer, monitor=Convertir,
-// dashboard+checklist=Gestionar (encaja con CRM/automatización). SceneCamera y
+// dashboard+checklist=Crecer (encaja con contenido orgánico). SceneCamera y
 // SceneReview quedan sin usar mientras la sección sea de fases del sistema.
 const SCENES = [SceneDelivery, SceneEdit, SceneLogistics]
 void SceneCamera

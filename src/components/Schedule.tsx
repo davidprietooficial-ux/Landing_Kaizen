@@ -11,7 +11,7 @@ const COPY = {
     banner: 'Cupos limitados cada mes. El calendario se desbloquea solo si tu proyecto califica.',
     points: [
       'Entendemos tu negocio, tu oferta y a quién le vendes.',
-      'Te mostramos cómo se vería tu sistema — atraer, convertir, gestionar — para conseguir clientes.',
+      'Te mostramos cómo se vería tu sistema — atraer, convertir, crecer — para conseguir clientes.',
       'Sales con un plan y una cotización claros, sin compromiso.',
     ],
   },
@@ -23,7 +23,7 @@ const COPY = {
     banner: 'Limited spots every month. The calendar only unlocks if your project qualifies.',
     points: [
       'We understand your business, your offer, and who you sell to.',
-      'We show you what your system — attract, convert, manage — would look like to win clients.',
+      'We show you what your system — attract, convert, grow — would look like to win clients.',
       'You leave with a clear plan and quote, no strings attached.',
     ],
   },
