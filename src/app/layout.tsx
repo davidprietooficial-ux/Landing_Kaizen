@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     images: ['/logo/logo-kaizen.png'],
   },
   robots: { index: true, follow: true },
+  verification: { google: '9mM2R6mug-FpxovA9NbjAu_T0zdI2OOZXVWJpRkMxpc' },
 }
 
 export const viewport: Viewport = {
