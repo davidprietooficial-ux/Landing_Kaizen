@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
     url: SITE.url,
-    images: [{ url: '/img/og-image.svg', width: 1200, height: 630, alt: `${SITE.name} — ${SITE.tagline}` }],
+    images: [{ url: '/logo/logo-kaizen.png', width: 212, height: 212, alt: `${SITE.name}` }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: ['/img/og-image.svg'],
+    images: ['/logo/logo-kaizen.png'],
   },
   robots: { index: true, follow: true },
 }
